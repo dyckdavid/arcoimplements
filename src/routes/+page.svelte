@@ -1,12 +1,11 @@
 <script>
-	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Arco Implements designed by David Dyck" />
 </svelte:head>
 
 <section>
@@ -18,14 +17,12 @@
 			</picture>
 		</span>
 
-		to your new<br />SvelteKit app
+		to<br />Arco Implements
 	</h1>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
 
-	<Counter />
+
+
 </section>
 
 <style>

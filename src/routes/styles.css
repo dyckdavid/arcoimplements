@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --arco-ornage: #d2582d;
+}
+
 body {
   overflow-y: scroll;
 }

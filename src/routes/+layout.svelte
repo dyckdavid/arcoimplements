@@ -1,37 +1,35 @@
 <script>
-	import Header from './Header.svelte';
+    import Navbar from '$lib/components/Navbar.svelte';
 	import './styles.css';
 </script>
 
 <div class="app">
-	<Header />
+	<Navbar />
 
-	<main>
+	<main >
 		<slot />
 	</main>
 
 	<footer>
-		<p>visit <a href="https://estufaselarco.com.mx">Arco</a> to learn about Arco</p>
+		<p>Visit <a href="https://estufaselarco.com.mx">Arco</a> to learn about Arco</p>
 	</footer>
 </div>
 
 <style>
 	.app {
-		display: flex;
-		flex-direction: column;
+        padding-top: 53px;
 		min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 	}
 
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
+    main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        width: 100%;
+    }
 
 	footer {
 		display: flex;

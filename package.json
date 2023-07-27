@@ -25,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@tabler/icons-svelte": "^2.29.0"
+		"@tabler/icons-svelte": "^2.29.0",
+		"firebase": "^10.1.0"
 	}
 }

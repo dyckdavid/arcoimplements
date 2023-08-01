@@ -64,11 +64,11 @@
   
     @media (max-width: 768px) {
       .image-container {
-        width: calc(100vw - 50px); /* Full viewport width with 10px margin on each side */
+        width: calc(100vw - 50px); /* Full viewport width with 50px margin on each side */
         height: calc((100vw - 50px) * 0.75); /* Scale height with width */
         max-width: none;
-        margin-left: 50px;
-        margin-right: 50px;
+        margin-left: 0px;
+        margin-right: 0px;
       }
     }
   </style>

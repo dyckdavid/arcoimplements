@@ -7,6 +7,12 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
+<div class="w-screen ml-[calc(-50vw+50%)]">
+    <img src="/Arcobuilding.jpg" alt="Building" class="w-screen h-[40vh] object-cover" style="object-position: 50% 23%;">
+</div>
+
+
+
 <section class="pt-8 flex flex-col md:flex-row items-center md:items-start md:justify-around">
 	<div class="md:w-1/2 text-center md:text-left">
 		<h1 class="text-4xl">About Arco Implements</h1>

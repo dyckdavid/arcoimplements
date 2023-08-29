@@ -2,11 +2,11 @@
   import { onMount, onDestroy } from 'svelte';
 
   let images: string[] = [
-    '/appletrailer.jpg',
-    '/balescooper.png',
-    '/workers.JPG',
-    '/balescooper.png',
-    '/workers.JPG'
+    'https://firebasestorage.googleapis.com/v0/b/arco-implements.appspot.com/o/about%20img%2Fappletrailer.jpg?alt=media&token=656b8f71-305a-4b83-9525-7e78f4e290d4',
+    'https://firebasestorage.googleapis.com/v0/b/arco-implements.appspot.com/o/about%20img%2Fbalescooper.png?alt=media&token=1fbad91b-69a1-4629-a273-7541f391c2f1',
+    'https://firebasestorage.googleapis.com/v0/b/arco-implements.appspot.com/o/about%20img%2Fworkers.JPG?alt=media&token=8dce517c-9691-4ca9-b9e6-c24bb10d3eba',
+    'https://firebasestorage.googleapis.com/v0/b/arco-implements.appspot.com/o/about%20img%2Fbalescooper.png?alt=media&token=1fbad91b-69a1-4629-a273-7541f391c2f1',
+    'https://firebasestorage.googleapis.com/v0/b/arco-implements.appspot.com/o/about%20img%2Fworkers.JPG?alt=media&token=8dce517c-9691-4ca9-b9e6-c24bb10d3eba'
   ];
 
   let currentIndex: number = 0;
@@ -64,11 +64,11 @@
   
     @media (max-width: 768px) {
       .image-container {
-        width: calc(100vw - 50px); /* Full viewport width with 10px margin on each side */
+        width: calc(100vw - 50px); /* Full viewport width with 50px margin on each side */
         height: calc((100vw - 50px) * 0.75); /* Scale height with width */
         max-width: none;
-        margin-left: 50px;
-        margin-right: 50px;
+        margin-left: 0px;
+        margin-right: 0px;
       }
     }
   </style>

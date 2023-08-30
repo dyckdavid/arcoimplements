@@ -9,7 +9,7 @@
 </svelte:head>
 
 <div class="w-full md:w-screen md:ml-[calc(-50vw+50%)] img-container-mobile">
-	<img src="/Arcobuilding.jpg" alt="Building" class="w-full h-auto md:h-[40vh] object-cover img-mobile-full" style="object-position: 50% 23%;" />
+	<img src="https://firebasestorage.googleapis.com/v0/b/arco-implements.appspot.com/o/about%20img%2FArcobuilding.jpg?alt=media&token=dde48676-ab7c-4056-aa27-2fd618bde6a4" alt="Building" class="w-full h-auto md:h-[40vh] object-cover img-mobile-full" style="object-position: 50% 23%;" />
 </div>
 
 <section class="pt-8 px-4 md:px-0 flex flex-col md:flex-row items-center md:items-start md:justify-around">

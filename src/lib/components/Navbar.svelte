@@ -49,19 +49,6 @@
     {
       label: "About",
       path: "/about",
-      expandable: true,
-      submenuHeight: 110,
-      // getter
-      submenu: [
-        {
-          label: "Our Story",
-          path: "/about/our-story",
-        },
-        {
-          label: "Our Team",
-          path: "/about/our-team",
-        },
-      ],
     },
   ];
 

@@ -3,27 +3,9 @@
 @tailwind utilities;
 
 :root {
-    --arco-ornage: #d2582d;
+    --arco-orange: #d2582d;
 }
 
 body {
   overflow-y: scroll;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.fade-in {
-  animation: fadeIn 5s;
-}
-
-.fade {
-  opacity: 0;
-  transition: opacity 1s linear;
-}
-
-.fade.show {
-  opacity: 1;
 }

@@ -145,7 +145,7 @@
             href={link.path}
             class="uppercase"
             on:click={(e) => {
-              if (!isMobile) return;
+              if (!isMobile || !link.expandable) return;
 
               e.preventDefault();
 

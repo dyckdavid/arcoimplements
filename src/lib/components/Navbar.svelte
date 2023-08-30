@@ -2,15 +2,49 @@
   import { page } from "$app/stores";
   import logo from "$lib/images/Arco.png";
   import { afterNavigate } from "$app/navigation";
+  import "./Navbar.css";
+  import { onMount } from "svelte";
 
+  let isMobile = false;
+
+  /**
+   * To calculate submenuHeight, use h = 30px * item + 50px
+   *
+   * TODO: Make this dynamic using proxies
+   */
   const links = [
     {
       label: "Home",
       path: "/",
+      expandable: false,
     },
     {
       label: "Products",
       path: "/products",
+      expandable: true,
+      submenuHeight: 200,
+      submenu: [
+        {
+          label: "Tractor Implements",
+          path: "/products/tractor-implements",
+        },
+        {
+          label: "Hay Equipment",
+          path: "/products/hay-equipment",
+        },
+        {
+          label: "Lawn & Garden",
+          path: "/products/lawn-garden",
+        },
+        {
+          label: "Construction",
+          path: "/products/construction",
+        },
+        {
+          label: "Parts",
+          path: "/products/parts",
+        },
+      ],
     },
     {
       label: "About",
@@ -19,16 +53,55 @@
   ];
 
   afterNavigate(() => {
-    const menuState = document.getElementById("cj-menustate") as HTMLInputElement;
+    const menuState = document.getElementById(
+      "cj-menustate"
+    ) as HTMLInputElement;
 
     if (menuState) {
       menuState.checked = false;
     }
   });
+
+  onMount(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+
+    isMobile = mq.matches;
+
+    mq.addEventListener("change", (e) => {
+      isMobile = e.matches;
+    });
+
+    const menuState = document.getElementById(
+      "cj-menustate"
+    ) as HTMLInputElement;
+
+    menuState.addEventListener("change", (e: any) => {
+      if (!e.target?.checked) {
+        setTimeout(() => {
+          expand = false;
+          hoveredLabel = "";
+        }, 500);
+      }
+    });
+  });
+
+  let expand = false;
+  let submenuHeight = 0;
+  let hoveredLabel = "";
 </script>
 
 <input type="checkbox" name="cj-menustate" id="cj-menustate" />
-<nav id="cj-globalnav">
+<nav
+  id="cj-globalnav"
+  class:expand
+  on:mouseleave={() => {
+    if (isMobile) return;
+
+    expand = false;
+    hoveredLabel = "";
+  }}
+  style="height: {expand ? submenuHeight + 53 : 53}px"
+>
   <div class="cj-content">
     <div class="cj-site-logo">
       <a href="/">
@@ -55,509 +128,71 @@
         <li
           class="cj-item cj-item-menu"
           class:current-page={$page.url.pathname === link.path}
+          on:mouseenter={() => {
+            if (isMobile) return;
+
+            if (link.expandable) {
+              submenuHeight = link.submenuHeight || 200;
+              expand = true;
+              hoveredLabel = link.label;
+            } else {
+              expand = false;
+              hoveredLabel = "";
+            }
+          }}
         >
-          <a href={link.path} class="uppercase">{link.label}</a>
+          <a
+            href={link.path}
+            class="uppercase"
+            on:click={(e) => {
+              if (!isMobile) return;
+
+              e.preventDefault();
+
+              if (link.expandable) {
+                expand = true;
+                hoveredLabel = link.label;
+              }
+            }}>{link.label}</a
+          >
         </li>
       {/each}
     </ul>
   </div>
+  <div class="cj-submenu">
+    {#each links as link}
+      {#if link.expandable && link.submenu}
+        <ul
+          class="absolue w-full top-0 px-8 py-4 flex flex-col md:items-start items-center gap-2"
+          class:hide={link.label !== hoveredLabel}
+        >
+          <li />
+          {#if isMobile}
+            <li class="cj-item cj-item-menu">
+              <button
+                class="uppercase"
+                on:click={() => {
+                  expand = false;
+                  hoveredLabel = "";
+                }}>&#8592; Back</button
+              >
+            </li>
+          {/if}
+          {#each link.submenu as submenu}
+            <li class={isMobile ? "cj-item cj-item-menu" : ""}>
+              <a href={submenu.path}>
+                {submenu.label}
+              </a>
+            </li>
+          {/each}
+        </ul>
+      {/if}
+    {/each}
+  </div>
 </nav>
 
 <style>
-  #cj-globalnav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 48px;
-    height: 53px;
-    background: #fff;
-    /* background: none; */
-    z-index: 9999;
-    color: #111;
-    user-select: none;
-    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.13);
-  }
-
-  @media only screen and (max-width: 767px) {
-    #cj-globalnav {
-      overflow-y: hidden;
-      box-shadow: none;
-      transition: background 0.44s 0.2s cubic-bezier(0.52, 0.16, 0.24, 1),
-        height 0.56s cubic-bezier(0.52, 0.16, 0.24, 1);
-    }
-
-    #cj-menustate:checked ~ #cj-globalnav {
-      height: 100%;
-      background: #fff;
-      transition: background 0.36s cubic-bezier(0.32, 0.08, 0.24, 1),
-        height 0.56s cubic-bezier(0.52, 0.16, 0.24, 1);
-    }
-  }
-
-  #cj-menustate {
+  .hide {
     display: none;
-  }
-
-  #cj-globalnav .cj-content {
-    position: absolute;
-    top: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-  }
-
-  #cj-globalnav .cj-header {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 3;
-  }
-
-  @media only screen and (max-width: 767px) {
-    #cj-globalnav .cj-header {
-      display: block;
-    }
-  }
-
-  #cj-globalnav .cj-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    height: 100%;
-    width: auto;
-  }
-
-  @media only screen and (max-width: 767px) {
-    #cj-globalnav .cj-list {
-      display: block;
-      position: absolute;
-      top: 3.5rem;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      margin: 0 auto;
-      max-width: 664px;
-      visibility: hidden;
-      transition: visibility 0s linear 1s;
-    }
-
-    #cj-menustate:checked ~ #cj-globalnav .cj-list {
-      visibility: visible;
-      transition-delay: 0s;
-    }
-  }
-
-  #cj-globalnav .cj-item {
-    box-sizing: border-box;
-    height: 48px;
-    line-height: 48px;
-    text-align: center;
-  }
-
-  #cj-globalnav .cj-item > a {
-    padding: 5px;
-  }
-
-  #cj-globalnav .cj-item:hover > a {
-    background: #000;
-    color: #fff;
-    opacity: 0.8;
-    transition: all 0.2s linear;
-  }
-
-  #cj-globalnav .current-page > a {
-    background: #000;
-    color: #fff;
-    opacity: 0.8;
-  }
-
-  #cj-globalnav .cj-menuicon-label {
-    display: block;
-    position: absolute;
-    opacity: 0.8;
-    top: 0;
-    right: 0;
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    background: #000;
-    margin-top: 5px;
-    margin-right: 5px;
-    transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-      background 0.2s linear;
-  }
-
-  .cj-site-logo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 48px;
-    height: 48px;
-    margin: 5px 0 0 5px;
-  }
-
-  #cj-menustate:checked ~ #cj-globalnav .cj-menuicon-label {
-    background: #fff;
-  }
-
-  #cj-globalnav .cj-menuicon-bread {
-    position: absolute;
-    top: 9px;
-    left: 9px;
-    width: 30px;
-    height: 30px;
-    transition: transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96);
-    transform: none;
-  }
-
-  #cj-globalnav .cj-menuicon-bread-crust {
-    display: block;
-    width: 17px;
-    height: 1px;
-    background: #fff;
-    border-radius: 0.5px;
-    position: absolute;
-    left: 7px;
-  }
-
-  #cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-crust {
-    background: #000;
-  }
-
-  #cj-globalnav .cj-menuicon-bread-crust-top {
-    top: 14px;
-    transform: translateY(-3px) scaleX(0.88235);
-    transition: transform 0.1596s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.1008s,
-      -webkit-transform 0.1596s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.1008s;
-  }
-
-  #cj-globalnav .cj-menuicon-bread-crust-bottom {
-    bottom: 14px;
-    transform: translateY(3px) scaleX(0.88235);
-    transition: transform 0.1596s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.1008s,
-      -webkit-transform 0.1596s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.1008s;
-  }
-
-  #cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-top {
-    transform: rotate(45deg);
-    transition: transform 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s,
-      -webkit-transform 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
-  }
-
-  #cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-bottom {
-    transform: rotate(-45deg);
-    transition: transform 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s,
-      -webkit-transform 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
-  }
-
-  #cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-crust-top {
-    transform: none;
-    transition: transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96),
-      -webkit-transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96);
-  }
-
-  #cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-crust-bottom {
-    transform: none;
-    transition: transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96),
-      -webkit-transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96);
-  }
-
-  @media only screen and (max-width: 767px) {
-    #cj-globalnav .cj-item-menu {
-      opacity: 0;
-      pointer-events: none;
-    }
-    #cj-globalnav .cj-item-menu:nth-child(2) {
-      -webkit-transform: translateY(-44px);
-      transform: translateY(-44px);
-      -webkit-transition: opacity 0.3345s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.15s,
-        -webkit-transform 0.4669s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.108s;
-      transition: opacity 0.3345s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.15s,
-        -webkit-transform 0.4669s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.108s;
-      transition: opacity 0.3345s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.15s,
-        transform 0.4669s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.108s;
-      transition: opacity 0.3345s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.15s,
-        transform 0.4669s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.108s,
-        -webkit-transform 0.4669s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.108s;
-      padding-top: 1px;
-    }
-    #cj-globalnav .cj-item-menu:nth-child(3) {
-      -webkit-transform: translateY(-40px);
-      transform: translateY(-40px);
-      -webkit-transition: opacity 0.30573s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.13667s,
-        -webkit-transform 0.45552s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09933s;
-      transition: opacity 0.30573s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.13667s,
-        -webkit-transform 0.45552s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09933s;
-      transition: opacity 0.30573s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.13667s,
-        transform 0.45552s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09933s;
-      transition: opacity 0.30573s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.13667s,
-        transform 0.45552s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09933s,
-        -webkit-transform 0.45552s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09933s;
-    }
-
-    #cj-globalnav .cj-item-menu:nth-child(4) {
-      -webkit-transform: translateY(-36px);
-      transform: translateY(-36px);
-      -webkit-transition: opacity 0.28122s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.12333s,
-        -webkit-transform 0.44574s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09067s;
-      transition: opacity 0.28122s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.12333s,
-        -webkit-transform 0.44574s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09067s;
-      transition: opacity 0.28122s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.12333s,
-        transform 0.44574s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09067s;
-      transition: opacity 0.28122s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.12333s,
-        transform 0.44574s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09067s,
-        -webkit-transform 0.44574s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09067s;
-    }
-
-    #cj-globalnav .cj-item-menu:nth-child(5) {
-      -webkit-transform: translateY(-32px);
-      transform: translateY(-32px);
-      -webkit-transition: opacity 0.26098s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.11s,
-        -webkit-transform 0.43756s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.082s;
-      transition: opacity 0.26098s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.11s,
-        -webkit-transform 0.43756s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.082s;
-      transition: opacity 0.26098s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.11s,
-        transform 0.43756s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.082s;
-      transition: opacity 0.26098s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.11s,
-        transform 0.43756s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.082s,
-        -webkit-transform 0.43756s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.082s;
-    }
-
-    #cj-globalnav .cj-item-menu:nth-child(6) {
-      -webkit-transform: translateY(-28px);
-      transform: translateY(-28px);
-      -webkit-transition: opacity 0.24499s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.09667s,
-        -webkit-transform 0.43097s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.07333s;
-      transition: opacity 0.24499s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09667s,
-        -webkit-transform 0.43097s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.07333s;
-      transition: opacity 0.24499s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09667s,
-        transform 0.43097s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.07333s;
-      transition: opacity 0.24499s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.09667s,
-        transform 0.43097s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.07333s,
-        -webkit-transform 0.43097s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.07333s;
-    }
-
-    #cj-globalnav .cj-item-menu:nth-child(7) {
-      -webkit-transform: translateY(-24px);
-      transform: translateY(-24px);
-      -webkit-transition: opacity 0.23327s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.08333s,
-        -webkit-transform 0.42598s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.06467s;
-      transition: opacity 0.23327s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.08333s,
-        -webkit-transform 0.42598s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.06467s;
-      transition: opacity 0.23327s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.08333s,
-        transform 0.42598s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.06467s;
-      transition: opacity 0.23327s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.08333s,
-        transform 0.42598s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.06467s,
-        -webkit-transform 0.42598s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.06467s;
-    }
-
-    #cj-globalnav .cj-item-menu:nth-child(8) {
-      -webkit-transform: translateY(-20px);
-      transform: translateY(-20px);
-      -webkit-transition: opacity 0.22581s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.07s,
-        -webkit-transform 0.42259s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.056s;
-      transition: opacity 0.22581s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.07s,
-        -webkit-transform 0.42259s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.056s;
-      transition: opacity 0.22581s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.07s,
-        transform 0.42259s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.056s;
-      transition: opacity 0.22581s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.07s,
-        transform 0.42259s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.056s,
-        -webkit-transform 0.42259s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.056s;
-    }
-
-    #cj-globalnav .cj-item-menu:nth-child(9) {
-      -webkit-transform: translateY(-16px);
-      transform: translateY(-16px);
-      -webkit-transition: opacity 0.22261s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.05667s,
-        -webkit-transform 0.4208s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.04733s;
-      transition: opacity 0.22261s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.05667s,
-        -webkit-transform 0.4208s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.04733s;
-      transition: opacity 0.22261s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.05667s,
-        transform 0.4208s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.04733s;
-      transition: opacity 0.22261s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.05667s,
-        transform 0.4208s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.04733s,
-        -webkit-transform 0.4208s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.04733s;
-    }
-
-    #cj-globalnav .cj-item-menu:nth-child(10) {
-      -webkit-transform: translateY(-12px);
-      transform: translateY(-12px);
-      -webkit-transition: opacity 0.22368s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.04333s,
-        -webkit-transform 0.4206s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03867s;
-      transition: opacity 0.22368s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.04333s,
-        -webkit-transform 0.4206s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03867s;
-      transition: opacity 0.22368s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.04333s,
-        transform 0.4206s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03867s;
-      transition: opacity 0.22368s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.04333s,
-        transform 0.4206s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03867s,
-        -webkit-transform 0.4206s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03867s;
-    }
-
-    #cj-globalnav .cj-item-menu:nth-child(11) {
-      -webkit-transform: translateY(-8px);
-      transform: translateY(-8px);
-      -webkit-transition: opacity 0.229s cubic-bezier(0.52, 0.16, 0.52, 0.84)
-          0.03s,
-        -webkit-transform 0.422s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03s;
-      transition: opacity 0.229s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03s,
-        -webkit-transform 0.422s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03s;
-      transition: opacity 0.229s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03s,
-        transform 0.422s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03s;
-      transition: opacity 0.229s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03s,
-        transform 0.422s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03s,
-        -webkit-transform 0.422s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.03s;
-    }
-
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu,
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu {
-      opacity: 1;
-      pointer-events: auto;
-      -webkit-transform: none;
-      transform: none;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(2),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(2) {
-      -webkit-transition: opacity 0.3091s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.03s,
-        -webkit-transform 0.3455s cubic-bezier(0.32, 0.08, 0.24, 1) 0.02s;
-      transition: opacity 0.3091s cubic-bezier(0.32, 0.08, 0.24, 1) 0.03s,
-        -webkit-transform 0.3455s cubic-bezier(0.32, 0.08, 0.24, 1) 0.02s;
-      transition: opacity 0.3091s cubic-bezier(0.32, 0.08, 0.24, 1) 0.03s,
-        transform 0.3455s cubic-bezier(0.32, 0.08, 0.24, 1) 0.02s;
-      transition: opacity 0.3091s cubic-bezier(0, 0.57, 0.24, 1) 0.03s,
-        transform 0.3455s cubic-bezier(0.32, 0.08, 0.24, 1) 0.02s,
-        -webkit-transform 0.3455s cubic-bezier(0.32, 0.08, 0.24, 1) 0.02s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(3),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(3) {
-      -webkit-transition: opacity 0.31812s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.04333s,
-        -webkit-transform 0.35351s cubic-bezier(0.32, 0.08, 0.24, 1) 0.03333s;
-      transition: opacity 0.31812s cubic-bezier(0.32, 0.08, 0.24, 1) 0.04333s,
-        -webkit-transform 0.35351s cubic-bezier(0.32, 0.08, 0.24, 1) 0.03333s;
-      transition: opacity 0.31812s cubic-bezier(0.32, 0.08, 0.24, 1) 0.04333s,
-        transform 0.35351s cubic-bezier(0.32, 0.08, 0.24, 1) 0.03333s;
-      transition: opacity 0.31812s cubic-bezier(0.32, 0.08, 0.24, 1) 0.04333s,
-        transform 0.35351s cubic-bezier(0.32, 0.08, 0.24, 1) 0.03333s,
-        -webkit-transform 0.35351s cubic-bezier(0.32, 0.08, 0.24, 1) 0.03333s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(4),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(4) {
-      -webkit-transition: opacity 0.32664s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.05667s,
-        -webkit-transform 0.36347s cubic-bezier(0.32, 0.08, 0.24, 1) 0.04667s;
-      transition: opacity 0.32664s cubic-bezier(0.32, 0.08, 0.24, 1) 0.05667s,
-        -webkit-transform 0.36347s cubic-bezier(0.32, 0.08, 0.24, 1) 0.04667s;
-      transition: opacity 0.32664s cubic-bezier(0.32, 0.08, 0.24, 1) 0.05667s,
-        transform 0.36347s cubic-bezier(0.32, 0.08, 0.24, 1) 0.04667s;
-      transition: opacity 0.32664s cubic-bezier(0.32, 0.08, 0.24, 1) 0.05667s,
-        transform 0.36347s cubic-bezier(0.32, 0.08, 0.24, 1) 0.04667s,
-        -webkit-transform 0.36347s cubic-bezier(0.32, 0.08, 0.24, 1) 0.04667s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(5),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(5) {
-      -webkit-transition: opacity 0.33467s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.07s,
-        -webkit-transform 0.37539s cubic-bezier(0.32, 0.08, 0.24, 1) 0.06s;
-      transition: opacity 0.33467s cubic-bezier(0.32, 0.08, 0.24, 1) 0.07s,
-        -webkit-transform 0.37539s cubic-bezier(0.32, 0.08, 0.24, 1) 0.06s;
-      transition: opacity 0.33467s cubic-bezier(0.32, 0.08, 0.24, 1) 0.07s,
-        transform 0.37539s cubic-bezier(0.32, 0.08, 0.24, 1) 0.06s;
-      transition: opacity 0.33467s cubic-bezier(0.32, 0.08, 0.24, 1) 0.07s,
-        transform 0.37539s cubic-bezier(0.32, 0.08, 0.24, 1) 0.06s,
-        -webkit-transform 0.37539s cubic-bezier(0.32, 0.08, 0.24, 1) 0.06s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(6),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(6) {
-      -webkit-transition: opacity 0.3422s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.08333s,
-        -webkit-transform 0.38926s cubic-bezier(0.32, 0.08, 0.24, 1) 0.07333s;
-      transition: opacity 0.3422s cubic-bezier(0.32, 0.08, 0.24, 1) 0.08333s,
-        -webkit-transform 0.38926s cubic-bezier(0.32, 0.08, 0.24, 1) 0.07333s;
-      transition: opacity 0.3422s cubic-bezier(0.32, 0.08, 0.24, 1) 0.08333s,
-        transform 0.38926s cubic-bezier(0.32, 0.08, 0.24, 1) 0.07333s;
-      transition: opacity 0.3422s cubic-bezier(0.32, 0.08, 0.24, 1) 0.08333s,
-        transform 0.38926s cubic-bezier(0.32, 0.08, 0.24, 1) 0.07333s,
-        -webkit-transform 0.38926s cubic-bezier(0.32, 0.08, 0.24, 1) 0.07333s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(7),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(7) {
-      -webkit-transition: opacity 0.34923s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.09667s,
-        -webkit-transform 0.40508s cubic-bezier(0.32, 0.08, 0.24, 1) 0.08667s;
-      transition: opacity 0.34923s cubic-bezier(0.32, 0.08, 0.24, 1) 0.09667s,
-        -webkit-transform 0.40508s cubic-bezier(0.32, 0.08, 0.24, 1) 0.08667s;
-      transition: opacity 0.34923s cubic-bezier(0.32, 0.08, 0.24, 1) 0.09667s,
-        transform 0.40508s cubic-bezier(0.32, 0.08, 0.24, 1) 0.08667s;
-      transition: opacity 0.34923s cubic-bezier(0.32, 0.08, 0.24, 1) 0.09667s,
-        transform 0.40508s cubic-bezier(0.32, 0.08, 0.24, 1) 0.08667s,
-        -webkit-transform 0.40508s cubic-bezier(0.32, 0.08, 0.24, 1) 0.08667s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(8),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(8) {
-      -webkit-transition: opacity 0.35577s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.11s,
-        -webkit-transform 0.42286s cubic-bezier(0.32, 0.08, 0.24, 1) 0.1s;
-      transition: opacity 0.35577s cubic-bezier(0.32, 0.08, 0.24, 1) 0.11s,
-        -webkit-transform 0.42286s cubic-bezier(0.32, 0.08, 0.24, 1) 0.1s;
-      transition: opacity 0.35577s cubic-bezier(0.32, 0.08, 0.24, 1) 0.11s,
-        transform 0.42286s cubic-bezier(0.32, 0.08, 0.24, 1) 0.1s;
-      transition: opacity 0.35577s cubic-bezier(0.32, 0.08, 0.24, 1) 0.11s,
-        transform 0.42286s cubic-bezier(0.32, 0.08, 0.24, 1) 0.1s,
-        -webkit-transform 0.42286s cubic-bezier(0.32, 0.08, 0.24, 1) 0.1s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(9),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(9) {
-      -webkit-transition: opacity 0.36181s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.12333s,
-        -webkit-transform 0.44258s cubic-bezier(0.32, 0.08, 0.24, 1) 0.11333s;
-      transition: opacity 0.36181s cubic-bezier(0.32, 0.08, 0.24, 1) 0.12333s,
-        -webkit-transform 0.44258s cubic-bezier(0.32, 0.08, 0.24, 1) 0.11333s;
-      transition: opacity 0.36181s cubic-bezier(0.32, 0.08, 0.24, 1) 0.12333s,
-        transform 0.44258s cubic-bezier(0.32, 0.08, 0.24, 1) 0.11333s;
-      transition: opacity 0.36181s cubic-bezier(0.32, 0.08, 0.24, 1) 0.12333s,
-        transform 0.44258s cubic-bezier(0.32, 0.08, 0.24, 1) 0.11333s,
-        -webkit-transform 0.44258s cubic-bezier(0.32, 0.08, 0.24, 1) 0.11333s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(10),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(10) {
-      -webkit-transition: opacity 0.36735s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.13667s,
-        -webkit-transform 0.46427s cubic-bezier(0.32, 0.08, 0.24, 1) 0.12667s;
-      transition: opacity 0.36735s cubic-bezier(0.32, 0.08, 0.24, 1) 0.13667s,
-        -webkit-transform 0.46427s cubic-bezier(0.32, 0.08, 0.24, 1) 0.12667s;
-      transition: opacity 0.36735s cubic-bezier(0.32, 0.08, 0.24, 1) 0.13667s,
-        transform 0.46427s cubic-bezier(0.32, 0.08, 0.24, 1) 0.12667s;
-      transition: opacity 0.36735s cubic-bezier(0.32, 0.08, 0.24, 1) 0.13667s,
-        transform 0.46427s cubic-bezier(0.32, 0.08, 0.24, 1) 0.12667s,
-        -webkit-transform 0.46427s cubic-bezier(0.32, 0.08, 0.24, 1) 0.12667s;
-    }
-    #cj-menustate:checked ~ #cj-globalnav .cj-item-menu:nth-child(11),
-    #cj-menustate:target ~ #cj-globalnav .cj-item-menu:nth-child(11) {
-      -webkit-transition: opacity 0.3724s cubic-bezier(0.32, 0.08, 0.24, 1)
-          0.15s,
-        -webkit-transform 0.4879s cubic-bezier(0.32, 0.08, 0.24, 1) 0.14s;
-      transition: opacity 0.3724s cubic-bezier(0.32, 0.08, 0.24, 1) 0.15s,
-        -webkit-transform 0.4879s cubic-bezier(0.32, 0.08, 0.24, 1) 0.14s;
-      transition: opacity 0.3724s cubic-bezier(0.32, 0.08, 0.24, 1) 0.15s,
-        transform 0.4879s cubic-bezier(0.32, 0.08, 0.24, 1) 0.14s;
-      transition: opacity 0.3724s cubic-bezier(0.32, 0.08, 0.24, 1) 0.15s,
-        transform 0.4879s cubic-bezier(0.32, 0.08, 0.24, 1) 0.14s,
-        -webkit-transform 0.4879s cubic-bezier(0.32, 0.08, 0.24, 1) 0.14s;
-    }
   }
 </style>

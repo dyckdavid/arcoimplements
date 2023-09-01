@@ -33,9 +33,18 @@
     </div>
   </Navbar>
 
+<<<<<<< HEAD
   <main>
     <slot />
   </main>
+=======
+	
+	  
+
+	<main >
+		<slot />
+	</main>
+>>>>>>> 5256c6acc6591a85e672c78cea65a26d1462dec7
 
   <footer>
     <p>

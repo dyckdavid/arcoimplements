@@ -1,0 +1,82 @@
+
+#cj-globalnav .cj-menuicon-label {
+  display: block;
+  position: absolute;
+  opacity: 0.8;
+  top: 0;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  background: #000;
+  margin-top: 5px;
+  margin-right: 5px;
+  transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    background 0.2s linear;
+}
+
+#cj-menustate:checked ~ #cj-globalnav .cj-menuicon-label {
+  background: #fff;
+}
+
+#cj-globalnav .cj-menuicon-bread {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96);
+  transform: none;
+}
+
+#cj-globalnav .cj-menuicon-bread-crust {
+  display: block;
+  width: 17px;
+  height: 1px;
+  background: #fff;
+  border-radius: 0.5px;
+  position: absolute;
+  left: 7px;
+}
+
+#cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-crust {
+  background: #000;
+}
+
+#cj-globalnav .cj-menuicon-bread-crust-top {
+  top: 14px;
+  transform: translateY(-3px) scaleX(0.88235);
+  transition: transform 0.1596s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.1008s,
+    -webkit-transform 0.1596s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.1008s;
+}
+
+#cj-globalnav .cj-menuicon-bread-crust-bottom {
+  bottom: 14px;
+  transform: translateY(3px) scaleX(0.88235);
+  transition: transform 0.1596s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.1008s,
+    -webkit-transform 0.1596s cubic-bezier(0.52, 0.16, 0.52, 0.84) 0.1008s;
+}
+
+#cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-top {
+  transform: rotate(45deg);
+  transition: transform 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s,
+    -webkit-transform 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+}
+
+#cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-bottom {
+  transform: rotate(-45deg);
+  transition: transform 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s,
+    -webkit-transform 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+}
+
+#cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-crust-top {
+  transform: none;
+  transition: transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96),
+    -webkit-transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96);
+}
+
+#cj-menustate:checked ~ #cj-globalnav .cj-menuicon-bread-crust-bottom {
+  transform: none;
+  transition: transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96),
+    -webkit-transform 0.1806s cubic-bezier(0.04, 0.04, 0.12, 0.96);
+}

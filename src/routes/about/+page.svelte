@@ -15,7 +15,7 @@
 <section class="pt-8 px-4 md:px-0 flex flex-col md:flex-row items-center md:items-start md:justify-around">
 	<div class="md:w-1/2 text-center md:text-left">
 	  <h1 class="text-4xl">About Arco Implements</h1>
-	  <p class="mt-4 text-lg">Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	  <p class="mt-4 text-lg">ESTUFAS ARCO, ES UNA EMPRESA QUE FUE FUNDADA EN 1977, DEDICADA A LA FABRICACION DE CHIMENEAS, CALENTADORES Y ESTUFAS A LEÃ‘A, ESTAMOS UBICADOS EN EL CAMPO NO 25 DE CD, CUAUHTEMOC, CHIH. MEXICO. ES UNA EMPRESA FAMILIAR, EMPESANDO COMO UN PEQUEÃ‘O NEGOCIO CON GRAN ACEPTACION EN EL MERCADO EN LA REGION DE CUAUHTEMOC, CON EL TRANSCURSO DE LOS AÃ‘OS HEMOS TENIDO UNA GRAN DEMANDA YA QUE SE A EXTENDIDO EL MERCADO A TODA REPUBLICA MEXICANA Y ACTUALMENTE TENEMOS COMO PUNTOS FUERTES DE VENTA EL NORTE DE PAIS, COMO SON LOS ESTADOS DE ZACATECAS, DURANGO SONORA, B.C. Y CHIHUAHUA. HOY EN DIA ESTAMOS ENFOCADOS EN FABRICAR Y COMERCIALIZAR ESTUFAS Y CALENTADORES DE SEGURIDAD CUMPLIENDO ASÃ CON LAS ESPECIFICACIONES INTERNACIONALES DE CALIDAD, SIENDO ASÃ QUE YA ESTAN SIENDO EXPORTADOS NUESTROS PRODUCTOS. NUESTRA POLITICA ESTA BASADA EN OFRECER EL MEJOR PRODUCTO Y SERVICIO DEL MERCADO ASÃ COMO CUMPLIR CON LOS REQUISITOS Y NECESIDADES DE NUESTROS CLIENTES</p>
 	</div>
 	<div class="md:w-1/2 mt-8 md:mt-0">
 	  <Slider />

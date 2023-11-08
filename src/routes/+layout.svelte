@@ -39,7 +39,7 @@
 
   <footer>
     <p>
-      Visit <a href="https://estufaselarco.com.mx">Arco</a> to learn about Arco
+      Visit <a class="text-orange-500" href="https://estufaselarco.com.mx">Arco</a> to learn more about Arco
     </p>
   </footer>
 </div>

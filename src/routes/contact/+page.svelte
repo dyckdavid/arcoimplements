@@ -12,11 +12,12 @@
       <div class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
         <div class="mb-6 sm:mb-0">
           <h2 class="text-xl font-bold mb-2">Phone</h2>
-          <p>+52 625 594 3429</p>
+          <a href="tel+6255943429"><p>+52 625 594 3429</p></a>
+          <a href="tel+6251203533"><p>+52 625 120 3533</p></a>
         </div>
         <div>
           <h2 class="text-xl font-bold mb-2">Email</h2>
-          <p>estufaselarco@gmail.com</p>
+          <a href="mailto:estufaselarco@gmail.com"><p>estufaselarco@gmail.com</p></a>
         </div>
       </div>
     </div>

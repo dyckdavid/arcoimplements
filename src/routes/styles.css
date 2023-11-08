@@ -5,7 +5,3 @@
 :root {
     --arco-orange: #d2582d;
 }
-
-main {
-  overflow-y: scroll;
-}

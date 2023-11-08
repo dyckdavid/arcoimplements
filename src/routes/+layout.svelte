@@ -54,7 +54,6 @@
   }
 
   main {
-    max-width: 960px;
     margin: 0 auto;
     padding: 0 1rem;
     width: 100%;

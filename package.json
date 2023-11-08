@@ -26,6 +26,8 @@
 	"type": "module",
 	"dependencies": {
 		"@tabler/icons-svelte": "^2.29.0",
+		"embla-carousel-autoplay": "^8.0.0-rc14",
+		"embla-carousel-svelte": "^8.0.0-rc14",
 		"firebase": "^10.1.0",
 		"svelte-preprocess": "^5.0.4"
 	}

@@ -35,7 +35,7 @@
 		disabled={selected === 0}
 		on:click={onLeft}
 	>
-		<IconChevronCompactLeft class="w-9 h-9" />
+		<IconChevronCompactLeft />
 	</button>
 	<button
 		class="absolute top-1/2 right-4 disabled:opacity-30 disabled:cursor-not-allowed"

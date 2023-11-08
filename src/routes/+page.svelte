@@ -1,7 +1,7 @@
 <script lang="ts">
-    // Import the icon component from your icon library setup
-    import { IconPhone } from '@tabler/icons-svelte';
-  </script>
+  import { IconPhone } from '@tabler/icons-svelte';
+
+</script>
   
   <svelte:head>
     <title>Home</title>
@@ -20,4 +20,3 @@
       </a>
     </div>
   </section>
-  

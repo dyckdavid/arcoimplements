@@ -19,6 +19,15 @@
 </script>
 
 
+<style>
+  /* Ensure your icon scales as needed and is aligned properly */
+  :global(svg.tabler-icon) {
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+  }
+</style>
+
 <div class="relative bg-embla-carousel p-4 overflow-hidden rounded-[.25rem]">
 	<div class="overflow-hidden" use:embla={{ store: carousel }} on:e-select={onSelect}>
 		<div class="grid grid-flow-col auto-cols-[100%] grid-rows-[320px] gap-x-[10px]">
@@ -56,12 +65,3 @@
 		{/each}
 	</div>
 </div>
-
-<style>
-  /* Ensure your icon scales as needed and is aligned properly */
-  :global(svg.tabler-icon) {
-    width: 2.5rem;
-    height: 2.5rem;
-    align-items: center;
-  }
-</style>

@@ -5,7 +5,7 @@
   import { IconChevronCompactRight } from '@tabler/icons-svelte';
   import { IconChevronCompactLeft } from '@tabler/icons-svelte';
 
-	const images = Array.from({ length: 3 }, (_, index) => `/slide-${(index % 4) + 1}.jpg`);
+	const images = Array.from({ length: 4 }, (_, index) => `/slide-${(index % 4) + 1}.jpg`);
 	const carousel = writable<EmblaCarouselType>();
 
 	const onLeft = () => $carousel?.canScrollPrev() && $carousel?.scrollPrev();

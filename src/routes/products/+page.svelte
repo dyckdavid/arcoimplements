@@ -43,10 +43,13 @@
   onMount(async () => {
     isLoading.set(true);
     try {
-      const fetchedProducts: Product[] = await sanityClient.fetch('*[_type == "products"]');
+    const fetchedProducts = await sanityClient.fetch('*[_type == "products"]');
+    if (Array.isArray(fetchedProducts) && fetchedProducts.length > 0) {
       products.set(fetchedProducts);
-      // Initialize selected array
-      selected = fetchedProducts.map(() => 0);
+      selected = fetchedProducts.map(() => 0); // Initialize selected array
+    } else {
+      console.error('Fetched data is not an array or is empty:', fetchedProducts);
+    }
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {

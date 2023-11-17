@@ -41,15 +41,13 @@
 
 
   onMount(async () => {
+    console.log('Mounting component and fetching products...');
     isLoading.set(true);
     try {
     const fetchedProducts = await sanityClient.fetch('*[_type == "products"]');
-    if (Array.isArray(fetchedProducts) && fetchedProducts.length > 0) {
-      products.set(fetchedProducts);
-      selected = fetchedProducts.map(() => 0); // Initialize selected array
-    } else {
-      console.error('Fetched data is not an array or is empty:', fetchedProducts);
-    }
+    console.log('Fetched products:', fetchedProducts);
+    products.set(fetchedProducts);
+    selected = fetchedProducts.map(() => 0);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {

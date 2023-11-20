@@ -1,8 +1,30 @@
+<script context="module">
+  import { createClient } from '@sanity/client';
+
+  // Sanity Client for SSR
+  const sanityClient = createClient({
+    projectId: 'hnzv88np',
+    dataset: 'production',
+    useCdn: true,
+    apiVersion: '2021-03-25',
+  });
+
+  export async function load() {
+    try {
+      const products = await sanityClient.fetch('*[_type == "products"]');
+      return { props: { initialProducts: products } };
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      return { props: { initialProducts: [] } }; // Handle error appropriately
+    }
+  }
+</script>
+
+
 <script lang="ts">
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import { get } from 'svelte/store';
-  import { createClient } from '@sanity/client';
   import imageUrlBuilder from '@sanity/image-url';
   import embla from 'embla-carousel';
   import type { EmblaCarouselType } from 'embla-carousel';
@@ -107,12 +129,6 @@ const onSelect = (productIndex: number) => {
 
 
 </script>
-
-
-
-<!-- Rest of your HTML and CSS remains the same -->
-
-
 
 <!-- Tailwind CSS for responsiveness -->
 <style>

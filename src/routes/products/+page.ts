@@ -21,3 +21,4 @@ export async function load() {
       props: { products: [] }
     };
   }
+}

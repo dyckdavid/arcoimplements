@@ -182,6 +182,11 @@ const onSelect = (productIndex: number) => {
 </style>
 
 
+<svelte:head>
+    <title>Products</title>
+    <meta name="description" content="Arco Implements designed by David Dyck" />
+  </svelte:head>
+
 <section class="max-width-container p-4">
   <h1 class="text-5xl text-center mb-8">Products</h1>
 

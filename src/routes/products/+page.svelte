@@ -6,7 +6,7 @@
     projectId: 'hnzv88np',
     dataset: 'production',
     useCdn: true,
-    apiVersion: '2021-03-25',
+    apiVersion: '2023-03-25',
   });
 
   export async function load() {
@@ -52,7 +52,7 @@
     projectId: 'hnzv88np',
     dataset: 'production',
     useCdn: true,
-    apiVersion: '2021-03-25',
+    apiVersion: '2023-03-25',
   });
 
   const builder = imageUrlBuilder(sanityClient);

@@ -4,7 +4,7 @@
 
 <svelte:head>
 	<title>About</title>
-	<meta name="description" content="About this app" />
+	<meta name="description" content="Arco Implements designed by David Dyck and David Rempel" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </svelte:head>
 

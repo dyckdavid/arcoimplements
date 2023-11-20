@@ -4,8 +4,8 @@
 </script>
   
   <svelte:head>
-    <title>Home</title>
-    <meta name="description" content="Arco Implements designed by David Dyck" />
+    <title>Arco Implements</title>
+    <meta name="description" content="Arco Implements designed by David Dyck and David Rempel" />
   </svelte:head>
   
   <section class="pt-8">

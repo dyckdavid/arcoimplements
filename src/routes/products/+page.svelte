@@ -98,11 +98,19 @@ const onSelect = (productIndex: number) => {
   if (node) {
     carousels.update((existingCarousels) => {
       const newCarousels = [...existingCarousels];
-      newCarousels[productIndex] = embla(node);
+      const emblaInstance = embla(node);
+
+      // Event listener for slide changes
+      emblaInstance.on('select', () => {
+        updateButtonState(productIndex);
+      });
+
+      newCarousels[productIndex] = emblaInstance;
       return newCarousels;
     });
   }
 }
+
 
 
 

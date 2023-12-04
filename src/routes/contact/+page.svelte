@@ -1,6 +1,12 @@
 <script lang="ts">
     // TypeScript script can be included if necessary.
   </script>
+
+<svelte:head>
+	<title>Contact</title>
+	<meta name="description" content="Arco Implements designed by David Dyck and David Rempel" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</svelte:head>
   
   <div class="flex flex-col items-center justify-center w-full min-h-screen px-4">
     <!-- Dark section for contact details -->

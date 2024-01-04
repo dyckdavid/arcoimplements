@@ -7,43 +7,36 @@
 
   $: isFormFilled = name && email && phone && message;
 
-  // Function to handle form submission
+  // ... your existing script ...
+
   async function handleSubmit(event: { preventDefault: () => void; }) {
-    event.preventDefault();
-    if (isFormFilled) {
-      const formData = { name, email, phone, message };
+  event.preventDefault();
+  if (isFormFilled) {
+    const formData = { name, email, phone, message };
 
-      // Define the target URL of your Google Apps Script web app
-      const targetUrl = 'https://script.google.com/macros/s/AKfycbyIy3jHzzSg3AXFMBUQIzZ09c-6yQ5I9_OvVumbntBtIRZ65RMChUvh5UR-b2_-YaY/exec';
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbyIy3jHzzSg3AXFMBUQIzZ09c-6yQ5I9_OvVumbntBtIRZ65RMChUvh5UR-b2_-YaY/exec', {
+        method: 'POST',
+        mode: 'no-cors', // This is important for CORS issues
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-      // Optional: Define a CORS proxy
-      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-
-      try {
-        const response = await fetch(proxyUrl + targetUrl, { // Using the proxy URL
-          method: 'POST',
-          body: JSON.stringify(formData),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (response.ok) {
-          // Reset form fields and display a success message
-          name = '';
-          email = '';
-          phone = '';
-          message = '';
-          submissionStatus = 'Thank you for contacting us!';
-        } else {
-          submissionStatus = 'Failed to send contact data';
-        }
-      } catch (error) {
-        console.error('Failed to send contact data', error);
-        submissionStatus = 'Failed to send contact data';
-      }
+      // Assuming the submission is successful
+      submissionStatus = 'Thank you for contacting us!';
+      name = '';
+      email = '';
+      phone = '';
+      message = '';
+    } catch (error) {
+      console.error('Failed to send contact data', error);
+      submissionStatus = 'Failed to send contact data';
     }
   }
+}
+
 </script>
 
 <svelte:head>

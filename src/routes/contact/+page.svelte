@@ -1,6 +1,50 @@
 <script lang="ts">
-    // TypeScript script can be included if necessary.
-  </script>
+  let name = '';
+  let email = '';
+  let phone = '';
+  let message = '';
+  let submissionStatus = ''; // To store the status of form submission
+
+  $: isFormFilled = name && email && phone && message;
+
+  // Function to handle form submission
+  async function handleSubmit(event: { preventDefault: () => void; }) {
+    event.preventDefault();
+    if (isFormFilled) {
+      const formData = { name, email, phone, message };
+
+      // Define the target URL of your Google Apps Script web app
+      const targetUrl = 'https://script.google.com/macros/s/AKfycbyIy3jHzzSg3AXFMBUQIzZ09c-6yQ5I9_OvVumbntBtIRZ65RMChUvh5UR-b2_-YaY/exec';
+
+      // Optional: Define a CORS proxy
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
+      try {
+        const response = await fetch(proxyUrl + targetUrl, { // Using the proxy URL
+          method: 'POST',
+          body: JSON.stringify(formData),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          // Reset form fields and display a success message
+          name = '';
+          email = '';
+          phone = '';
+          message = '';
+          submissionStatus = 'Thank you for contacting us!';
+        } else {
+          submissionStatus = 'Failed to send contact data';
+        }
+      } catch (error) {
+        console.error('Failed to send contact data', error);
+        submissionStatus = 'Failed to send contact data';
+      }
+    }
+  }
+</script>
 
 <svelte:head>
 	<title>Contact</title>
@@ -28,17 +72,34 @@
       </div>
     </div>
     <!-- Light section for maps iframe -->
-    <div class="shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto w-full">
-      <div class="relative" style="height: 0; padding-bottom: 56.25%;">
+    <div class="flex flex-col md:flex-row justify-between items-start shadow-lg rounded-lg max-w-4xl mx-auto w-full">
+      <div class="md:w-1/2 w-full rounded-l-lg md:rounded-l-lg md:rounded-none overflow-hidden">
         <!-- svelte-ignore a11y-missing-attribute -->
         <iframe
-          class="absolute top-0 left-0 w-full h-full"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22270.87552797161!2d-106.85868869708742!3d28.466205065926044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86c1c9267981e2c3%3A0xf4f6dd51f411e669!2sEstufas%20El%20Arco!5e0!3m2!1sen!2smx!4v1699309386795!5m2!1sen!2smx"
-          style="border:0;"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        class="w-full"
+        style="height: 20rem; border:0;"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22270.87552797161!2d-106.85868869708742!3d28.466205065926044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86c1c9267981e2c3%3A0xf4f6dd51f411e669!2sEstufas%20El%20Arco!5e0!3m2!1sen!2smx!4v1699309386795!5m2!1sen!2smx"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
       </div>
+      <!-- Contact form -->
+      <div class="md:w-1/2 w-full bg-white p-6 rounded-r-lg md:rounded-r-lg md:rounded-none">
+      <form class="flex flex-col space-y-4" on:submit={handleSubmit}>
+        <input type="text" placeholder="Name" bind:value={name} class="p-2 border border-gray-300 rounded">
+        <input type="email" placeholder="Email" bind:value={email} class="p-2 border border-gray-300 rounded">
+        <input type="tel" placeholder="Phone No" bind:value={phone} class="p-2 border border-gray-300 rounded">
+        <textarea placeholder="Message" bind:value={message} class="p-2 border border-gray-300 rounded"></textarea>
+        <button type="submit" class="{isFormFilled ? 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer' : 'bg-gray-300 text-white font-bold py-2 px-4 rounded cursor-not-allowed'}" 
+            disabled={!isFormFilled}>
+      Submit
+    </button>
+
+      </form>
+      {#if submissionStatus}
+      <p class="mt-4 text-green-500">{submissionStatus}</p>
+    {/if}
+    </div>
     </div>
   </div>
   

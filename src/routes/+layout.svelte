@@ -16,6 +16,7 @@
         <a href="/products">Products</a><IconArrowRight class="md:hidden" />
       </li>
       <li class="cj-item-menu"><a href="/about">About</a></li>
+      <li class="cj-item-menu"><a href="/contact">Contact</a></li>
     </ul>
     <div slot="secondary-content" class="cj-secondary-content">
       <ul
@@ -27,7 +28,7 @@
           <button class="flex gap-2"><IconArrowLeft />Back</button>
         </li>
         <li class="cj-item-menu"><a href="/products/trailers">Trailers</a></li>
-        <li class="cj-item-menu"><a href="/products/stoves">Stoves</a></li>
+        <li class="cj-item-menu"><a href="/products/gates">Gates</a></li>
         <li class="cj-item-menu"><a href="/products/other">Other</a></li>
       </ul>
     </div>

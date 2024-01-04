@@ -111,6 +111,12 @@ const onSelect = (productIndex: number) => {
   }
 }
 
+ // Function to check if carousel should be interactive
+ function isCarouselInteractive(productIndex: number) {
+    const product = get(products)[productIndex];
+    return product && product.images.length > 1;
+  }
+
 
 
 
@@ -187,6 +193,19 @@ const onSelect = (productIndex: number) => {
     @apply w-full flex justify-center;
   }
 
+/* Hide arrows by default and show them only on group hover */
+.arrow-button {
+    @apply opacity-0 transition-opacity;
+  }
+
+  .group:hover .arrow-button {
+    @apply opacity-100;
+  }
+
+  /* Scale images on hover */
+  .carousel-image:hover {
+    @apply transform scale-110;
+  }
 </style>
 
 
@@ -205,9 +224,9 @@ const onSelect = (productIndex: number) => {
   {:else if $products && $products.length}
   <div class="card-container">
     {#each $products as product, productIndex}
-      <div class="product-card">
+      <div class="product-card group">
         <div class="embla">
-          <div class="overflow-hidden" use:initCarousel={productIndex} on:e-select={() => onSelect(productIndex)}>
+          <div class="overflow-hidden" use:initCarousel={productIndex}>
             <div class="grid grid-flow-col auto-cols-[100%]">
               {#each product.images as image}
                 <div class="relative">
@@ -216,18 +235,25 @@ const onSelect = (productIndex: number) => {
               {/each}
             </div>
           </div>
+          
 
-            <!-- Left Arrow Button -->
-            <button class={`absolute top-1/2 left-4 ${selected[productIndex] === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
-                    on:click={() => onLeft(productIndex)}>
-              <IconChevronCompactLeft />
-            </button>
+          {#if product.images.length > 1}
+        <!-- Left Arrow Button -->
+        <button 
+          class={`arrow-button absolute top-1/2 left-4 ${selected[productIndex] === 0 ? 'invisible' : ''}`}
+          on:click={() => onLeft(productIndex)}
+          disabled={selected[productIndex] === 0}>
+          <IconChevronCompactLeft />
+        </button>
 
-            <!-- Right Arrow Button -->
-            <button class={`absolute top-1/2 right-4 ${selected[productIndex] === product.images.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}`}
-                    on:click={() => onRight(productIndex)}>
-              <IconChevronCompactRight />
-            </button>
+        <!-- Right Arrow Button -->
+        <button 
+          class={`arrow-button absolute top-1/2 right-4 ${selected[productIndex] === product.images.length - 1 ? 'invisible' : ''}`}
+          on:click={() => onRight(productIndex)}
+          disabled={selected[productIndex] === product.images.length - 1}>
+          <IconChevronCompactRight />
+        </button>
+      {/if}
           </div>
 
           <div class="p-4 text-left">

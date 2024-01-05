@@ -1,76 +1,114 @@
 <script lang="ts">
+  import { IconCopy } from '@tabler/icons-svelte';
+
   let name = '';
   let email = '';
   let phone = '';
   let message = '';
   let submissionStatus = ''; 
+  type CopyConfirmationKeys = 'phone1' | 'phone2' | 'email';
+  let showCopyConfirmation: Record<CopyConfirmationKeys, boolean> = {
+    phone1: false,
+    phone2: false,
+    email: false
+  };
 
   $: isFormFilled = name && email && phone && message;
 
+  async function handleSubmit(event: { preventDefault: () => void; }) {
+    event.preventDefault();
+    if (isFormFilled) {
+      const formData = { name, email, phone, message };
 
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbyIy3jHzzSg3AXFMBUQIzZ09c-6yQ5I9_OvVumbntBtIRZ65RMChUvh5UR-b2_-YaY/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify(formData),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-async function handleSubmit(event: { preventDefault: () => void; }) {
-  event.preventDefault();
-  if (isFormFilled) {
-    const formData = { name, email, phone, message };
+        submissionStatus = 'Thank you for contacting us!';
+        
+        setTimeout(() => {
+          submissionStatus = '';
+        }, 10000);
 
-    try {
-      await fetch('https://script.google.com/macros/s/AKfycbyIy3jHzzSg3AXFMBUQIzZ09c-6yQ5I9_OvVumbntBtIRZ65RMChUvh5UR-b2_-YaY/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      submissionStatus = 'Thank you for contacting us!';
-      
-      setTimeout(() => {
-        submissionStatus = '';
-      }, 10000);
-
-      name = '';
-      email = '';
-      phone = '';
-      message = '';
-    } catch (error) {
-      console.error('Failed to send contact data', error);
-      submissionStatus = 'Failed to send contact data';
+        name = '';
+        email = '';
+        phone = '';
+        message = '';
+      } catch (error) {
+        console.error('Failed to send contact data', error);
+        submissionStatus = 'Failed to send contact data';
+      }
     }
   }
-}
 
-
-
+  function copyText(text: string, key: CopyConfirmationKeys) {
+    navigator.clipboard.writeText(text).then(() => {
+      showCopyConfirmation[key] = true;
+      setTimeout(() => showCopyConfirmation[key] = false, 2000); // Hide tooltip after 2 seconds
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  }
 
 </script>
 
 <svelte:head>
-	<title>Contact</title>
-	<meta name="description" content="Arco Implements designed by David Dyck and David Rempel" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact</title>
+  <meta name="description" content="Arco Implements designed by David Dyck and David Rempel" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </svelte:head>
-  
-  <div class="flex flex-col items-center justify-center w-full min-h-screen px-4">
-    <!-- Dark section for contact details -->
-    <div class="bg-gray-800 text-white shadow-lg rounded-lg p-8 mb-8 max-w-4xl mx-auto w-full">
-      <div class="mb-6 text-center sm:text-left">
-        <h1 class="text-3xl font-bold mb-4">Contact Us</h1>
-        <p class="text-xl">Reach out via phone or email.</p>
-      </div>
-      <div class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
-        <div class="mb-6 sm:mb-0">
-          <h2 class="text-xl font-bold mb-2">Phone</h2>
-          <a href="tel+6255943429"><p>+52 625 594 3429</p></a>
-          <a href="tel+6251203533"><p>+52 625 120 3533</p></a>
+
+<div class="flex flex-col items-center justify-center w-full min-h-screen px-4">
+  <!-- Dark section for contact details -->
+  <div class="bg-gray-800 text-white shadow-lg rounded-lg p-8 mb-8 max-w-4xl mx-auto w-full">
+    <div class="mb-6 text-center sm:text-left">
+      <h1 class="text-3xl font-bold mb-4">Contact Us</h1>
+      <p class="text-xl">Reach out via phone or email.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+      <div class="mb-6 sm:mb-0">
+        <h2 class="text-xl font-bold mb-2">Phone</h2>
+        <div class="flex items-center justify-center space-x-2">
+          <p>+52 625 594 3429</p>
+          <button on:click={() => copyText('+526255943429', 'phone1')} class="cursor-pointer relative">
+            <IconCopy />
+            {#if showCopyConfirmation.phone1}
+              <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
+            {/if}
+          </button>
+
         </div>
-        <div>
-          <h2 class="text-xl font-bold mb-2">Email</h2>
-          <a href="mailto:estufaselarco@gmail.com"><p>estufaselarco@gmail.com</p></a>
+        <div class="flex items-center justify-center space-x-2">
+          <p>+52 625 120 3533</p>
+          <button on:click={() => copyText('+526251203533', 'phone2')} class="cursor-pointer relative">
+            <IconCopy />
+            {#if showCopyConfirmation.phone2}
+              <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
+            {/if}
+          </button>
+
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold mb-2">Email</h2>
+        <div class="flex items-center justify-center space-x-2">
+          <p>estufaselarco@gmail.com</p>
+          <button on:click={() => copyText('estufaselarco@gmail.com', 'email')} class="cursor-pointer relative">
+            <IconCopy />
+            {#if showCopyConfirmation.email}
+              <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
+            {/if}
+          </button>
         </div>
       </div>
     </div>
+  </div>
     <!-- Light section for maps iframe -->
     <div class="flex flex-col md:flex-row justify-between items-start shadow-lg rounded-lg max-w-4xl mx-auto w-full">
       <div class="md:w-1/2 w-full rounded-l-lg md:rounded-l-lg md:rounded-none overflow-hidden">

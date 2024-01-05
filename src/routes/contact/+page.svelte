@@ -3,12 +3,11 @@
   let email = '';
   let phone = '';
   let message = '';
-  let submissionStatus = ''; // To store the status of form submission
+  let submissionStatus = ''; 
 
   $: isFormFilled = name && email && phone && message;
 
 
-  // ... your existing script ...
 
 async function handleSubmit(event: { preventDefault: () => void; }) {
   event.preventDefault();
@@ -26,7 +25,7 @@ async function handleSubmit(event: { preventDefault: () => void; }) {
       });
 
       submissionStatus = 'Thank you for contacting us!';
-      // Clear the message after 10 seconds
+      
       setTimeout(() => {
         submissionStatus = '';
       }, 10000);
@@ -42,7 +41,7 @@ async function handleSubmit(event: { preventDefault: () => void; }) {
   }
 }
 
-// ... rest of your script ...
+
 
 
 </script>

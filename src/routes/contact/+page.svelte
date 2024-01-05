@@ -7,9 +7,10 @@
 
   $: isFormFilled = name && email && phone && message;
 
+
   // ... your existing script ...
 
-  async function handleSubmit(event: { preventDefault: () => void; }) {
+async function handleSubmit(event: { preventDefault: () => void; }) {
   event.preventDefault();
   if (isFormFilled) {
     const formData = { name, email, phone, message };
@@ -17,15 +18,19 @@
     try {
       await fetch('https://script.google.com/macros/s/AKfycbyIy3jHzzSg3AXFMBUQIzZ09c-6yQ5I9_OvVumbntBtIRZ65RMChUvh5UR-b2_-YaY/exec', {
         method: 'POST',
-        mode: 'no-cors', // This is important for CORS issues
+        mode: 'no-cors',
         body: JSON.stringify(formData),
         headers: {
           'Content-Type': 'application/json',
         },
       });
 
-      // Assuming the submission is successful
       submissionStatus = 'Thank you for contacting us!';
+      // Clear the message after 10 seconds
+      setTimeout(() => {
+        submissionStatus = '';
+      }, 10000);
+
       name = '';
       email = '';
       phone = '';
@@ -36,6 +41,9 @@
     }
   }
 }
+
+// ... rest of your script ...
+
 
 </script>
 

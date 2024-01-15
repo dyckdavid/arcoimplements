@@ -77,7 +77,7 @@
         <div class="flex items-center justify-center space-x-2">
           <p>+52 625 594 3429</p>
           <button on:click={() => copyText('+526255943429', 'phone1')} class="cursor-pointer relative">
-            <IconCopy />
+            <IconCopy class="w-5 h-5 sm:w-6 sm:h-6"/>
             {#if showCopyConfirmation.phone1}
               <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
             {/if}
@@ -87,7 +87,7 @@
         <div class="flex items-center justify-center space-x-2">
           <p>+52 625 120 3533</p>
           <button on:click={() => copyText('+526251203533', 'phone2')} class="cursor-pointer relative">
-            <IconCopy />
+            <IconCopy class="w-5 h-5 sm:w-6 sm:h-6" />
             {#if showCopyConfirmation.phone2}
               <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
             {/if}
@@ -100,7 +100,7 @@
         <div class="flex items-center justify-center space-x-2">
           <p>estufaselarco@gmail.com</p>
           <button on:click={() => copyText('estufaselarco@gmail.com', 'email')} class="cursor-pointer relative">
-            <IconCopy />
+            <IconCopy class="w-5 h-5 sm:w-6 sm:h-6" />
             {#if showCopyConfirmation.email}
               <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
             {/if}

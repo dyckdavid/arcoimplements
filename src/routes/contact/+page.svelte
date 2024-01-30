@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { IconCopy } from '@tabler/icons-svelte';
+  import { IconCopy, IconCheck } from '@tabler/icons-svelte';
 
   let name = '';
   let email = '';
@@ -14,6 +14,8 @@
   };
 
   $: isFormFilled = name && email && phone && message;
+
+
 
   async function handleSubmit(event: { preventDefault: () => void; }) {
     event.preventDefault();
@@ -58,6 +60,33 @@
 
 </script>
 
+<style>
+  .custom-underline::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ffffff; /* Choose your color */
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+  }
+
+  .custom-underline:hover::after {
+    width: 100%;
+  }
+
+  .custom-underline::after {
+    transition: width 0.3s, left 0.3s 0.3s, right 0.3s 0.3s;
+  }
+
+  .custom-underline:hover::after {
+    transition: width 0.3s 0.3s, left 0.3s, right 0.3s;
+  }
+</style>
+
+
 <svelte:head>
   <title>Contact</title>
   <meta name="description" content="Arco Implements designed by David Dyck and David Rempel" />
@@ -75,21 +104,30 @@
       <div class="mb-6 sm:mb-0">
         <h2 class="text-xl font-bold mb-2">Phone</h2>
         <div class="flex items-center justify-center space-x-2">
-          <p>+52 625 594 3429</p>
+          <span class="relative custom-underline" >
+          <p class="cursor-pointer">+52 625 594 3429</p>
+        </span>
           <button on:click={() => copyText('+526255943429', 'phone1')} class="cursor-pointer relative">
-            <IconCopy class="w-5 h-5 sm:w-6 sm:h-6"/>
             {#if showCopyConfirmation.phone1}
+              <IconCheck class="w-5 h-5 sm:w-6 sm:h-6"/>
               <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
+            {:else}
+              <IconCopy class="w-5 h-5 sm:w-6 sm:h-6"/>
             {/if}
           </button>
+          
 
         </div>
         <div class="flex items-center justify-center space-x-2">
-          <p>+52 625 120 3533</p>
+          <span class="relative custom-underline" >
+          <p class="cursor-pointer">+52 625 120 3533</p>
+        </span>
           <button on:click={() => copyText('+526251203533', 'phone2')} class="cursor-pointer relative">
-            <IconCopy class="w-5 h-5 sm:w-6 sm:h-6" />
             {#if showCopyConfirmation.phone2}
+              <IconCheck class="w-5 h-5 sm:w-6 sm:h-6"/>
               <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
+            {:else}
+              <IconCopy class="w-5 h-5 sm:w-6 sm:h-6"/>
             {/if}
           </button>
 
@@ -98,11 +136,15 @@
       <div>
         <h2 class="text-xl font-bold mb-2">Email</h2>
         <div class="flex items-center justify-center space-x-2">
-          <p>estufaselarco@gmail.com</p>
+          <span class="relative custom-underline" >
+          <p class="cursor-pointer">estufaselarco@gmail.com</p>
+        </span>
           <button on:click={() => copyText('estufaselarco@gmail.com', 'email')} class="cursor-pointer relative">
-            <IconCopy class="w-5 h-5 sm:w-6 sm:h-6" />
             {#if showCopyConfirmation.email}
+              <IconCheck class="w-5 h-5 sm:w-6 sm:h-6"/>
               <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>
+            {:else}
+              <IconCopy class="w-5 h-5 sm:w-6 sm:h-6"/>
             {/if}
           </button>
         </div>

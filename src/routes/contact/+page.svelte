@@ -66,7 +66,7 @@
     display: block;
     width: 0;
     height: 2px;
-    background: #ffffff; /* Choose your color */
+    background: #ffffff; /* Color */
     transition: width 0.3s;
     position: absolute;
     bottom: -3px;

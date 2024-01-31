@@ -51,8 +51,7 @@
   }
 
   main {
-    margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0;
     width: 100%;
   }
 

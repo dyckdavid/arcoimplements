@@ -42,18 +42,6 @@
 </div>
 
 <style>
-  .app {
-    padding-top: 53px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  main {
-    padding: 0;
-    width: 100%;
-  }
-
+ 
  
 </style>

@@ -2,17 +2,18 @@
     import { IconPhone } from '@tabler/icons-svelte';
   import { onMount } from 'svelte';
 
-  let parallaxSpeed = 0.5; // Speed of the parallax effect
+  let parallaxSpeed = 0.5;
 
   onMount(() => {
-    window.addEventListener('scroll', () => {
-      const scrollPosition = window.scrollY;
-      const section1 = document.querySelector('.section1') as HTMLElement;
-      if (section1) {
-        section1.style.transform = `translateY(${scrollPosition * parallaxSpeed}px)`;
-      }
-    });
+  window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const section1 = document.querySelector('.section1') as HTMLElement;
+    if (section1) {
+      section1.style.transform = `translateY(-${scrollPosition * parallaxSpeed}px)`;
+    }
   });
+});
+
 
   let headerText = 'Welcome to Arco Implements';
   let words = headerText.split(' ');
@@ -23,20 +24,28 @@
     animationComplete = true;
     setTimeout(() => {
       buttonAnimationStarted = true;
-    }, 1000); // Delay to start after the text animation
+    }, 1000);
   }
   
   </script>
   
   <style>
 
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
 .wrapper {
-    height: 100vh;
-    perspective: 1px;
-    transform-style: preserve-3d;
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 1px;
+  transform-style: preserve-3d;
+}
+
 
   .section1, .section2 {
   width: 100%;
@@ -45,12 +54,14 @@
   position: relative;
   transform-style: preserve-3d;
 }
+
+
 .section1::before {
   content:"";
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url("./base.png") top center;
+  background: url("../../lib/images/cloud.png") top center;
   background-size: cover;
   transform: translateZ(-1px) scale(2.2);
   filter: blur(2px);
@@ -60,14 +71,13 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url("./outer-layer-blur.png") top center;
+  background: url("../../lib/images/arcoimgv2.png") top center;
   background-size: cover;
 }
 
 .section1 {
     position: relative;
     transform-style: preserve-3d;
-    /* Adjust transform-origin if needed */
   }
 
   
@@ -95,7 +105,7 @@
   }
 
   .animate-scribble {
-    display: inline-block; /* Adjust as needed */
+    display: inline-block;
     animation: scribble 0.5s ease forwards;
     opacity: 0;
     margin-right: 0.2em;
@@ -131,6 +141,6 @@
           </h1>
         </div>
         <div class="section2">
-          <div class="text">NORMAL</div>
+          <div class="text">Products</div>
         </div>
       </div>

@@ -215,7 +215,7 @@ const onSelect = (productIndex: number) => {
   </svelte:head>
 
 <section class="max-width-container p-4">
-  <h1 class="text-5xl text-center mb-8">Products</h1>
+  <h1 class="text-5xl text-center mb-8 pt-10">Products</h1>
 
   {#if $isLoading}
     <div class="flex justify-center items-center">

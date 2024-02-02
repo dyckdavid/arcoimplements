@@ -2,8 +2,36 @@
     import { IconPhone, IconShoppingBag } from '@tabler/icons-svelte';
     import { onMount } from 'svelte';
 
-  let parallaxSpeed = 0.5;
+    let parallaxSpeed = 0.5;
+    let isVisible = false;
+    let buttonAnimationStarted = false;
 
+  function scrollFade(node: Element): { destroy: () => void } {
+    let hasAnimated = false;
+
+    const updateVisibility = (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && !hasAnimated) {
+        node.classList.add('opacity-100');
+        node.classList.remove('opacity-0');
+        hasAnimated = true;
+      }
+    };
+
+    const observer = new IntersectionObserver(updateVisibility, {
+      threshold: 0.5
+    });
+
+    observer.observe(node);
+
+    return {
+      destroy() {
+        observer.unobserve(node);
+      }
+    };
+  }
+  
+  
   onMount(() => {
   window.addEventListener('scroll', () => {
     const scrollPosition = window.scrollY;
@@ -18,7 +46,6 @@
   let headerText = 'Welcome to Arco Implements';
   let words = headerText.split(' ');
   let animationComplete = false;
-  let buttonAnimationStarted = false;
   
   function onAnimationEnd() {
     animationComplete = true;
@@ -26,10 +53,7 @@
       buttonAnimationStarted = true;
     }, 1000);
   }
-  
-
-  
-  </script>
+</script>
   
   <style>
 
@@ -89,7 +113,7 @@
   transform: translateZ(-0.5px) scale(1.5,1.6) translate(-33%,10%);
 }
 .section2 {
-  background: rgb(255, 85, 0);
+  background: rgb(250, 250, 250);
 }
 .section3 {
   background: url("../../lib/images/Arcobuilding.jpg");
@@ -101,9 +125,8 @@
   background-position: center;
 }
 
-
 .section4 {
-  background: rgb(55, 0, 255);
+  background: rgb(25, 25, 25);
 }
 .text {
   top:30%;
@@ -129,8 +152,6 @@
     color: orangered;
 
   }
-
- 
   </style>
   
   
@@ -156,25 +177,26 @@
           
         </div>
         <div class="section2 content-section content-center">
-          <div class="flex justify-center mt-8 text ">
-            <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0" class:opacity-100={buttonAnimationStarted}>
-              <IconPhone class="mr-2" />
-              Contact Us
+          <div class="flex justify-center mt-8 text">
+            <a use:scrollFade href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0">
+               <IconShoppingBag class="mr-2" />
+              Products
             </a>
           </div>
         </div>
         <div class="section3 content-section content-center">
           <div class="flex justify-center mt-8 text">
-            <a href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0" class:opacity-100={buttonAnimationStarted}>
+            <a use:scrollFade href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0">
               <IconShoppingBag class="mr-2" />
-              Products
+            About
             </a>
           </div>
         </div>
         <div class="section4 content-section content-center">
           <div class="flex justify-center mt-8 text">
-            <a href="/about" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0" class:opacity-100={buttonAnimationStarted}>
-              About Us
+            <a use:scrollFade href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0">
+              <IconPhone class="mr-2" />
+            Contact
             </a>
           </div>
         </div>

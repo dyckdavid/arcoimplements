@@ -1,7 +1,6 @@
 <script lang="ts">
   import { IconPhone } from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-
 let parallaxSpeed = 0.5;
 
 onMount(() => {
@@ -49,6 +48,7 @@ function onAnimationEnd() {
 
   
 </style>
+
 
 <section class="content-section pt-14">
   <h1 class="text-5xl text-center">

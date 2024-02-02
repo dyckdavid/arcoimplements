@@ -93,7 +93,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </svelte:head>
 
-<div class="flex flex-col items-center justify-center w-full min-h-screen px-4">
+<div class="flex flex-col items-center justify-center w-full min-h-screen px-4 pt-20">
   <!-- Dark section for contact details -->
   <div class="bg-gray-800 text-white shadow-lg rounded-lg p-8 mb-8 max-w-4xl mx-auto w-full">
     <div class="mb-6 text-center sm:text-left">

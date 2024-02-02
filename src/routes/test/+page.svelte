@@ -34,8 +34,8 @@
   <style>
 
 .content-section {
-    position: relative; /* Keeps content in the normal document flow */
-    z-index: 2; /* Ensures content is above the scrolling image */
+    position: relative; 
+    z-index: 2; 
   }
 
 

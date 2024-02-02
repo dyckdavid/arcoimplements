@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { IconPhone } from '@tabler/icons-svelte';
-  import { onMount } from 'svelte';
+    import { IconPhone, IconShoppingBag } from '@tabler/icons-svelte';
+    import { onMount } from 'svelte';
 
   let parallaxSpeed = 0.5;
 
@@ -27,16 +27,18 @@
     }, 1000);
   }
   
+
+  
   </script>
   
   <style>
 
+.content-section {
+    position: relative; /* Keeps content in the normal document flow */
+    z-index: 2; /* Ensures content is above the scrolling image */
+  }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+
 
 .wrapper {
   height: 100vh;
@@ -47,12 +49,13 @@
 }
 
 
-  .section1, .section2 {
+  .section1, .section2, .section3, .section4 {
   width: 100%;
   min-height: 100vh;
   margin: 0;
   position: relative;
   transform-style: preserve-3d;
+  top: 60px;
 }
 
 
@@ -88,6 +91,20 @@
 .section2 {
   background: rgb(255, 85, 0);
 }
+.section3 {
+  background: url("../../lib/images/Arcobuilding.jpg");
+  height: 100%;
+  width: 100%;
+  display: block;
+  content: '';
+  background-size: cover;
+  background-position: center;
+}
+
+
+.section4 {
+  background: rgb(55, 0, 255);
+}
 .text {
   top:30%;
   left:50%;
@@ -109,14 +126,11 @@
     animation: scribble 0.5s ease forwards;
     opacity: 0;
     margin-right: 0.2em;
+    color: orangered;
 
   }
 
-
-
-
-  
-    
+ 
   </style>
   
   
@@ -139,8 +153,30 @@
               </span>
             {/each}
           </h1>
+          
         </div>
-        <div class="section2">
-          <div class="text">Products</div>
+        <div class="section2 content-section content-center">
+          <div class="flex justify-center mt-8 text ">
+            <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0" class:opacity-100={buttonAnimationStarted}>
+              <IconPhone class="mr-2" />
+              Contact Us
+            </a>
+          </div>
+        </div>
+        <div class="section3 content-section content-center">
+          <div class="flex justify-center mt-8 text">
+            <a href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0" class:opacity-100={buttonAnimationStarted}>
+              <IconShoppingBag class="mr-2" />
+              Products
+            </a>
+          </div>
+        </div>
+        <div class="section4 content-section content-center">
+          <div class="flex justify-center mt-8 text">
+            <a href="/about" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0" class:opacity-100={buttonAnimationStarted}>
+              About Us
+            </a>
+          </div>
         </div>
       </div>
+      

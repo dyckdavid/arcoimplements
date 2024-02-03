@@ -58,10 +58,13 @@
   <style>
 
 .content-section {
-    position: relative; 
-    z-index: 2; 
-  }
-
+  display: flex;
+  align-items: center; /* Centers content vertically */
+  justify-content: center; /* Centers content horizontally */
+  height: 100vh; /* Full height of the viewport */
+  position: relative; 
+  z-index: 2;
+}
 
 
 .wrapper {
@@ -117,10 +120,6 @@
 }
 .section3 {
   background: url("../../lib/images/Arcobuilding.jpg");
-  height: 100%;
-  width: 100%;
-  display: block;
-  content: '';
   background-size: cover;
   background-position: center;
 }
@@ -128,14 +127,15 @@
 .section4 {
   background: rgb(25, 25, 25);
 }
+
 .text {
-  top:30%;
-  left:50%;
+  /* Remove top and transform adjustments that might misalign your content */
   position: absolute;
   font-size: 3em;
   text-align: center;
-  color:rgb(255, 255, 255);
-  transform: scale(1,1.1) translate(-50%, 10%);
+  color: rgb(255, 255, 255);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 
@@ -192,7 +192,7 @@
           </div>
         </div>
         <div class="section4 content-section content-center">
-          <div class="flex justify-center mt-8 text">
+          <div class="flex justify-center mt-8 text ">
             <a use:scrollFade href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0">
               <IconPhone class="mr-2" />
             Contact

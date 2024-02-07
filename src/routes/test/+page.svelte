@@ -2,37 +2,38 @@
     import { IconPhone, IconShoppingBag } from '@tabler/icons-svelte';
     import { onMount } from 'svelte';
 
-    let parallaxSpeed = 0.5;
-    let isVisible = false;
-    let buttonAnimationStarted = false;
+let parallaxSpeed = 0.5;
+let buttonAnimationStarted = false;
 
-  function scrollFade(node: Element): { destroy: () => void } {
-    let hasAnimated = false;
+interface ScrollFadeOptions {
+    delay?: number;
+  }
 
-    const updateVisibility = (entries: IntersectionObserverEntry[]) => {
-      const [entry] = entries;
-      if (entry.isIntersecting && !hasAnimated) {
-        node.classList.add('opacity-100');
-        node.classList.remove('opacity-0');
-        hasAnimated = true;
-      }
-    };
+  function scrollFade(node: Element, options?: ScrollFadeOptions): { destroy: () => void } {
+    const { delay = 0 } = options || {};
 
-    const observer = new IntersectionObserver(updateVisibility, {
-      threshold: 0.5
-    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            node.classList.add('opacity-100');
+            node.classList.remove('opacity-0');
+            observer.unobserve(node);
+          }, delay);
+        }
+      });
+    }, { threshold: 0.5 });
 
     observer.observe(node);
 
     return {
       destroy() {
-        observer.unobserve(node);
+        observer.disconnect();
       }
     };
   }
-  
-  
-  onMount(() => {
+onMount(() => {
+  // Parallax scrolling for section1
   window.addEventListener('scroll', () => {
     const scrollPosition = window.scrollY;
     const section1 = document.querySelector('.section1') as HTMLElement;
@@ -98,10 +99,12 @@
 }
 .section1::after {
   content:"";
-  width: 100%;
+  width: 110%;
   height: 100%;
+  margin-left: -5%;
+  margin-top: 2%;
   position: absolute;
-  background: url("../../lib/images/arcoimgv2.png") top center;
+  background: url("../../lib/images/arcobuildingwithoutclouds.png") top center;
   background-size: cover;
 }
 
@@ -152,6 +155,16 @@
     color: orangered;
 
   }
+
+  /* Fade-in animation styles */
+.opacity-0 {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.opacity-100 {
+  opacity: 1;
+}
+
   </style>
   
   
@@ -177,11 +190,20 @@
           
         </div>
         <div class="section2 content-section content-center">
+          <div class="left-image opacity-0" use:scrollFade={{ delay: 100 }}>
+            <!-- Left Image Content -->
+            <img alt="The project logo" class="" src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" />
+          </div>
           <div class="flex justify-center mt-8 text">
             <a use:scrollFade href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0">
                <IconShoppingBag class="mr-2" />
               Products
             </a>
+          </div>
+          <div class="right-image opacity-0" use:scrollFade={{ delay: 200 }}>
+            <!-- Right Image Content -->
+            <img alt="The project logo" class="" src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" />
+
           </div>
         </div>
         <div class="section3 content-section content-center">

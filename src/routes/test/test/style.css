@@ -1,0 +1,157 @@
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+
+
+:root {
+  --content: 66ch;
+  --gutter: 1rem;
+  --gap: 0rem;
+}
+
+ main {
+  width: var(--content);
+  max-width: calc(100vw - (2 * var(--gutter)));
+  margin: 0 auto;
+}
+
+
+section {
+  display: grid;
+  gap: var(--gutter);
+  grid-template-columns:
+    auto
+    1fr;
+  align-items: center;
+  min-height: 100vh;
+}
+
+p:first-line {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+section p {
+  z-index: 2;
+  background: hsl(210 17% 98% / 0.45);
+  padding: 1rem;
+  color: var(--text-1);
+  backdrop-filter: blur(4px);
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+@media(prefers-color-scheme: dark) {
+
+
+  section p {
+    background: hsl(210 11% 15% / 0.65);
+  }
+}
+
+section img {
+  grid-column: 1;
+  width: 260px;
+  max-width: 20vw;
+  clip-path: polygon(0 10%, 10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+  scale: 1.5;
+}
+
+section:nth-of-type(even) {
+  grid-template-columns:
+    1fr
+    auto;
+  grid-auto-flow: dense;
+}
+section:nth-of-type(even) img {
+  grid-column: 2;
+}
+section:nth-of-type(even) p {
+  grid-column: 1;
+}
+
+
+section {
+  --x: -100%;
+}
+section:nth-of-type(even) {
+  --x: 100%;
+}
+
+section img {
+  view-timeline: --item;
+  animation: item-reveal both ease-in;
+  animation-timeline: --item;
+  animation-delay: cover 10%;
+  animation-range: cover 10% cover 35%;
+  
+}
+
+section img {
+  --y: 0;
+}
+section p {
+  --x: 0;
+  --y: 50%;
+  view-timeline: --item;
+  animation: item-reveal both ease-out;
+  animation-timeline: --item;
+  animation-delay: cover 25%;
+  animation-range: cover 25% cover 50%;
+  position: sticky;
+  bottom: 40%;
+}
+
+@keyframes item-reveal {
+  0% {
+    opacity: 0;
+    translate: var(--x, 0) var(--y, 0);
+  }
+}
+
+@keyframes rotation {
+  to {
+    rotate: 720deg;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    main {
+      padding-left: var(--gutter); /* Add left padding */
+      padding-right: var(--gutter); /* Add right padding */
+      padding-top: var(--gutter); /* Add top padding */
+    }
+  
+    section p {
+      font-size: 0.9rem; /* Smaller font size for text */
+      padding: 0.75rem; /* Adjusted padding for text content */
+      margin-left: var(--gutter); /* Add left margin */
+      margin-right: var(--gutter); /* Add right margin */
+    }
+  
+    section img {
+      width: auto; /* Adjust width as needed */
+      max-width: 40vw; /* Larger percentage of the viewport width */
+      scale: 1.75; /* Make the image larger */
+      margin-left: auto; /* Center align the image */
+      margin-right: auto; /* Center align the image */
+      display: block; /* Ensure the image is block level for auto margins to work */
+    }
+  
+    /* Adjust grid template columns for mobile */
+    section {
+      grid-template-columns: 1fr;
+      gap: var(--gutter);
+      padding: 0 var(--gutter); /* Adds padding to the left and right of the section */
+    }
+    
+    section img, section p {
+      grid-column: 1; /* Stack them instead of side by side */
+    }
+  }
+  

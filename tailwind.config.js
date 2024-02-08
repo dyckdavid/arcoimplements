@@ -6,7 +6,20 @@ export default {
       colors: {
         "arco-orange": "#d2582d",
       },
+      backgroundImage: {
+        'arco1': 'url("../src/lib/images/Arcobuilding.jpg")',
+        'arco2': 'url("../src/lib/images/cloud.png")',
+        'arco3': 'url("../src/lib/images/Arcobuilding.jpg")',
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require('taos/plugin'),
+    require("tailwindcss-animate"),
+  ],
+  safelist: [
+    '!duration-[0ms]',
+    '!delay-[0ms]',
+    'html.js :where([class*="taos:"]:not(.taos-init))'
+  ],
 };

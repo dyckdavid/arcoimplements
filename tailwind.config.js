@@ -7,9 +7,9 @@ export default {
         "arco-orange": "#d2582d",
       },
       backgroundImage: {
-        'arco1': 'url("../src/lib/images/Arcobuilding.jpg")',
-        'arco2': 'url("../src/lib/images/cloud.png")',
-        'arco3': 'url("../src/lib/images/Arcobuilding.jpg")',
+        'arco1': 'url("https://estufaselarco.com.mx/tienda/wp-content/uploads/2024/02/Arcobuilding.jpg")',
+        'arco2': 'url("https://estufaselarco.com.mx/tienda/wp-content/uploads/2024/02/cloud.png")',
+        'arco3': 'url("https://estufaselarco.com.mx/tienda/wp-content/uploads/2024/02/Arcobuilding.jpg")',
       }
     },
   },

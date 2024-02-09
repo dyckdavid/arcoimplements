@@ -27,10 +27,13 @@
     opacity: 0; /* Start with words hidden to prevent flash before animation */
   }
 
+  .flextwo {
+    display: flex;
+}
 </style>
 
 
-<div class="min-h-screen flex justify-center items-center bg-arco1 bg-fixed bg-no-repeat bg-cover bg-center ">
+<div class="min-h-screen flextwo justify-center items-center bg-arco1 bg-fixed bg-no-repeat bg-cover bg-center ">
   {#each "Welcome to Arco Implements!".split(' ') as word, index (word)}
     <span bind:this={welcomeWords[index]} class="word font-black text-4xl pl-2 text-white">{word}</span>
   {/each}

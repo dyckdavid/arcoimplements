@@ -1,49 +1,129 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import gsap from 'gsap';
+  import { ScrollTrigger } from '$lib/gsap/index';
+  import { parallax } from '$lib/actions/parallax'; // Adjust the import path as necessary
 
-  let welcomeWords: HTMLElement[] = [];
+  gsap.registerPlugin(ScrollTrigger);
 
-  onMount(() => {
-  console.log('Animating words:', welcomeWords); // Debug: Check if elements are correctly referenced
+let welcomeWords: HTMLElement[] = [];
+let flextwo: HTMLElement; // Reference for the parallax element
+
+function setupAnimations() {
+  ScrollTrigger.getAll().forEach(st => st.kill());
+  gsap.killTweensOf(welcomeWords);
+
   welcomeWords.forEach((word, index) => {
-    console.log(`Animating word ${index}:`, word); // Debug: Ensure this block is executed
-    gsap.to(word, {
-      delay: index * 0.1, // Sequential delay for each word
-      duration: 0.5,
-      opacity: 1, // Fade to visible
-      ease: 'power2.out',
-      y: -20 // Optional: adds a slight vertical movement from 20px above
-    });
+    gsap.fromTo(word,
+      { opacity: 0, y: -100 },
+      {
+        opacity: 1,
+        y: 0,
+        ease: 'power2.out',
+        delay: index * 0.2,
+        duration: 1,
+        scrollTrigger: {
+          trigger: word,
+          start: "top center",
+          toggleActions: "play none none none",
+        }
+      }
+    );
+  });
+
+  // Directly setting up the parallax effect for #flextwo
+  gsap.to(flextwo, {
+    scrollTrigger: {
+      trigger: flextwo,
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    },
+    y: -100
+  });
+}
+
+onMount(() => {
+  setupAnimations();
+
+  gsap.to('.background-image', {
+    scrollTrigger: {
+      trigger: '#flextwo',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true,
+    },
+    y: -150,
   });
 });
 
+onDestroy(() => {
+  ScrollTrigger.getAll().forEach(st => st.kill());
+  gsap.killTweensOf([...welcomeWords, flextwo]);
+});
 </script>
 
-
 <style>
-
-  .word {
-    opacity: 0; /* Start with words hidden to prevent flash before animation */
-  }
-
-  .flextwo {
-    display: flex;
+.word {
+  display: inline-flex; 
+  margin: 0 5px; 
+  opacity: 1;
+  font-weight: 900;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  color: rgb(255, 0, 0);
+  transition: opacity 0.3s ease, transform 0.3s ease; 
 }
+
+
+.background-image {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: -1; 
+}
+
+
+#flextwo {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;
+  height: 100%; 
+  padding: 100px 0; 
+  margin-top: 80px;
+  overflow: hidden;
+  text-align: center; 
+}
+
+
+
 </style>
 
-
-<div class="min-h-screen flextwo justify-center items-center bg-arco1 bg-fixed bg-no-repeat bg-cover bg-center ">
+<div id="flextwo" bind:this={flextwo}>
+  <img src="https://estufaselarco.com.mx/tienda/wp-content/uploads/2024/02/Arcobuilding.jpg" alt="Background" class="background-image">
   {#each "Welcome to Arco Implements!".split(' ') as word, index (word)}
-    <span bind:this={welcomeWords[index]} class="word font-black text-4xl pl-2 text-white">{word}</span>
+    <span bind:this={welcomeWords[index]} class="word">{word}</span>
   {/each}
+</div>
+
+
+<div class="p-10">
+<h2 class="font-bold text-4xl">Sample Section</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iste qui hic nam aut numquam, modi quibusdam nobis a explicabo labore tempore. Nulla voluptas illum cum incidunt, eos accusantium libero fugiat hic laudantium velit adipisci. Iste non, distinctio earum doloribus ducimus fuga dolorum a laudantium nisi accusantium debitis praesentium temporibus!</p>
 </div>
 
 <div class="p-10">
   <h2 class="font-bold text-4xl">Sample Section</h2>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iste qui hic nam aut numquam, modi quibusdam nobis a explicabo labore tempore. Nulla voluptas illum cum incidunt, eos accusantium libero fugiat hic laudantium velit adipisci. Iste non, distinctio earum doloribus ducimus fuga dolorum a laudantium nisi accusantium debitis praesentium temporibus!</p>
-</div>
+  </div>
 
-<div class="bg-arco2 min-h-screen ng-center bg-no-repeat bg-cover bg-fixed"></div>
-
-<div class="bg-arco3 min-h-screen bg-fixed bg-no-repeat bg-cover"></div>
+  <div class="p-10">
+    <h2 class="font-bold text-4xl">Sample Section</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iste qui hic nam aut numquam, modi quibusdam nobis a explicabo labore tempore. Nulla voluptas illum cum incidunt, eos accusantium libero fugiat hic laudantium velit adipisci. Iste non, distinctio earum doloribus ducimus fuga dolorum a laudantium nisi accusantium debitis praesentium temporibus!</p>
+    </div>

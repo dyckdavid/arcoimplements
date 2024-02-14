@@ -1,174 +1,67 @@
-<script lang="ts">
-    import { IconPhone, IconShoppingBag } from '@tabler/icons-svelte';
-    import { onMount } from 'svelte';
+<script>
+  import gsap from 'gsap';
+	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+	import { onMount } from 'svelte';
 
-let parallaxSpeed = 0.5;
-let buttonAnimationStarted = false;
+  onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-interface ScrollFadeOptions {
-    delay?: number;
-  }
+    let tl = gsap.timeline();
 
-  function scrollFade(node: Element, options?: ScrollFadeOptions): { destroy: () => void } {
-    const { delay = 0 } = options || {};
+    gsap.fromTo(
+			'#welcome-text',
+			{ opacity: 0, x: -100 },
+			{
+				opacity: 1,
+				x: 0,
+				duration: 1,
+				scrollTrigger: {
+					trigger: '#welcome-text',
+					start: 'top center'
+					// end: 'bottom 20%',
+					// scrub: true
+				}
+			}
+		);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            node.classList.add('opacity-100');
-            node.classList.remove('opacity-0');
-            observer.unobserve(node);
-          }, delay);
-        }
-      });
-    }, { threshold: 0.5 });
+    gsap.fromTo(
+			'#gate',
+			{ opacity: 0, x: -100 },
+			{
+				opacity: 1,
+				x: 0,
+				duration: 1,
+        delay: .5,
+				scrollTrigger: {
+					trigger: '#gate',
+					start: 'top center'
+					// end: 'bottom 20%',
+					// scrub: true
+				}
+			}
+		);
 
-    observer.observe(node);
-
-    return {
-      destroy() {
-        observer.disconnect();
-      }
-    };
-  }
-onMount(() => {
-  // Parallax scrolling for section1
-  window.addEventListener('scroll', () => {
-    const scrollPosition = window.scrollY;
-    const section1 = document.querySelector('.section1') as HTMLElement;
-    if (section1) {
-      section1.style.transform = `translateY(-${scrollPosition * parallaxSpeed}px)`;
-    }
-  });
-});
+    gsap.fromTo(
+			'#scooper',
+			{ opacity: 0, x: 100 },
+			{
+				opacity: 1,
+				x: 0,
+				duration: 1,
+				scrollTrigger: {
+					trigger: '#scooper',
+					start: 'top center'
+					// end: 'bottom 20%',
+					// scrub: true
+				}
+			}
+		);
 
 
-  let headerText = 'Welcome to Arco Implements';
-  let words = headerText.split(' ');
-  let animationComplete = false;
-  
-  function onAnimationEnd() {
-    animationComplete = true;
-    setTimeout(() => {
-      buttonAnimationStarted = true;
-    }, 1000);
-  }
+  })
+
+
 </script>
-  
-  <style>
-
-.content-section {
-  display: flex;
-  align-items: center; /* Centers content vertically */
-  justify-content: center; /* Centers content horizontally */
-  height: 100vh; /* Full height of the viewport */
-  position: relative; 
-  z-index: 2;
-}
-
-
-.wrapper {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  perspective: 1px;
-  transform-style: preserve-3d;
-}
-
-
-  .section1, .section2, .section3, .section4 {
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  position: relative;
-  transform-style: preserve-3d;
-  top: 60px;
-}
-
-
-.section1::before {
-  content:"";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: url("../../lib/images/cloud.png") top center;
-  background-size: cover;
-  transform: translateZ(-1px) scale(2.2);
-  filter: blur(2px);
-}
-.section1::after {
-  content:"";
-  width: 110%;
-  height: 100%;
-  margin-left: -5%;
-  margin-top: 2%;
-  position: absolute;
-  background: url("../../lib/images/arcobuildingwithoutclouds.png") top center;
-  background-size: cover;
-}
-
-.section1 {
-    position: relative;
-    transform-style: preserve-3d;
-  }
-
-  
-.section1 .text {
-  top:10%;
-  transform: translateZ(-0.5px) scale(1.5,1.6) translate(-33%,10%);
-}
-.section2 {
-  background: rgb(250, 250, 250);
-}
-.section3 {
-  background: url("../../lib/images/Arcobuilding.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.section4 {
-  background: rgb(25, 25, 25);
-}
-
-.text {
-  /* Remove top and transform adjustments that might misalign your content */
-  position: absolute;
-  font-size: 3em;
-  text-align: center;
-  color: rgb(255, 255, 255);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-
-@keyframes scribble {
-    0% { opacity: 0; transform: translateY(-100%); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-scribble {
-    display: inline-block;
-    animation: scribble 0.5s ease forwards;
-    opacity: 0;
-    margin-right: 0.2em;
-    color: orangered;
-
-  }
-
-  /* Fade-in animation styles */
-.opacity-0 {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-.opacity-100 {
-  opacity: 1;
-}
-
-  </style>
-  
-  
-  
     
     <svelte:head>
       <title>Arco Implements</title>
@@ -176,50 +69,22 @@ onMount(() => {
     </svelte:head>
 
     
-  
-    <div class="wrapper">
-        <div class="section1">
-          <h1 class="text">
-            {#each words as word, index (word)}
-              <span class="animate-scribble" style="animation-delay: {index * 0.2}s"
-                    on:animationend={index === words.length - 1 ? onAnimationEnd : null}>
-                {word}
-              </span>
-            {/each}
-          </h1>
-          
-        </div>
-        <div class="section2 content-section content-center">
-          <div class="left-image opacity-0" use:scrollFade={{ delay: 100 }}>
-            <!-- Left Image Content -->
-            <img alt="The project logo" class="" src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" />
-          </div>
-          <div class="flex justify-center mt-8 text">
-            <a use:scrollFade href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0">
-               <IconShoppingBag class="mr-2" />
-              Products
-            </a>
-          </div>
-          <div class="right-image opacity-0" use:scrollFade={{ delay: 200 }}>
-            <!-- Right Image Content -->
-            <img alt="The project logo" class="" src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" />
+  <section class="px-2 lg:py-16 lg:px-0" >
 
-          </div>
-        </div>
-        <div class="section3 content-section content-center">
-          <div class="flex justify-center mt-8 text">
-            <a use:scrollFade href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0">
-            About
-            </a>
-          </div>
-        </div>
-        <div class="section4 content-section content-center">
-          <div class="flex justify-center mt-8 text ">
-            <a use:scrollFade href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4 transition-opacity duration-1000 ease-in-out opacity-0">
-              <IconPhone class="mr-2" />
-            Contact
-            </a>
-          </div>
-        </div>
-      </div>
-      
+    <div id="welcome-text" class="pt-24">
+      <h1 class="text-center text-4xl">Welcome to Arco Implements</h1>
+    </div>
+   
+  </section>
+
+  <section class="mx-2 my-32">
+    <div class="">
+    <div class="flex justify-center items-center">
+      <img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="w-1/2 pt-24" alt="i" id="gate" />
+    </div>
+    <div class="flex justify-center items-center">
+      <img src="https://cdn.sanity.io/images/hnzv88np/production/4f32216f9c1abdb1c0e98a2f5fe021faae990c3a-4032x2268.png" class="w-1/2 pt-24" alt="i" id="scooper" />
+    </div>
+  </div>
+
+  </section>

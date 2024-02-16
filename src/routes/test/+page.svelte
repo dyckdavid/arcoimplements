@@ -1,6 +1,6 @@
 <script lang="ts">
   import gsap from 'gsap';
-	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+  import { ScrollTrigger } from '$lib/gsap/index';
 	import { onMount } from 'svelte';
 	import homevideo from '$lib/videos/webistehomevideo.mp4';
 	import { IconShoppingCart } from '@tabler/icons-svelte';

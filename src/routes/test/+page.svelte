@@ -1,124 +1,121 @@
 <script lang="ts">
-	import gsap from 'gsap';
+	import { gsap } from '$lib/gsap';
 	import { ScrollTrigger } from '$lib/gsap/index';
+	import { parallax } from '$lib/actions/parallax';
+	
 	  import { onMount } from 'svelte';
 	  import homevideo from '$lib/videos/webistehomevideo.mp4';
 	  import { IconShoppingCart } from '@tabler/icons-svelte';
 	  import { IconPhone } from '@tabler/icons-svelte';
-  
+
+	  
+
+
 	  gsap.registerPlugin(ScrollTrigger);
-  
-	  let tl = gsap.timeline();
-  
-	  let imageRef: HTMLElement;
+
+let imageRef: HTMLElement;
 	let textRef: HTMLElement;
+
+	export let id = '';
+	export let src = '';
+	export let alt = '';
+
+
+	
+
+// Define the parallax function to accept a selector string.
+onMount(() => {
+
+	if (id) {
+    parallax(`#${id}`);
+  }
+
+	gsap.fromTo(
+    '#productbutton',
+    { opacity: 0, x: -90 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 2,
+  delay: .8,
+      scrollTrigger: {
+        trigger: '#productbutton',
+        start: 'top bottom',
+        scrub: false
+      }
+    }
+  );
+
+
+
+gsap.fromTo(
+    '#welcome-text',
+    { opacity: 0, x: -100 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: '#welcome-text',
+        start: 'top center'
+        // end: 'bottom 20%',
+        // scrub: true
+      }
+    }
+  );
+
+gsap.fromTo(
+    '#gate',
+    { opacity: 0, x: -100 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+  delay: .5,
+      scrollTrigger: {
+        trigger: '#gate',
+        start: 'top center'
+        // end: 'bottom 20%',
+        // scrub: true
+      }
+    }
+  );
+
   
-	onMount(() => {
-  
-	  gsap.fromTo(
-			  '#productbutton',
-			  { opacity: 0, x: -90 },
-			  {
-				  opacity: 1,
-				  x: 0,
-				  duration: 2,
-		  delay: .8,
-				  scrollTrigger: {
-					  trigger: '#productbutton',
-					  start: 'top bottom',
-					  scrub: false
-				  }
-			  }
-		  );
-	  
-	  
-  
-	  gsap.fromTo(
-			  '#welcome-text',
-			  { opacity: 0, x: -100 },
-			  {
-				  opacity: 1,
-				  x: 0,
-				  duration: 1,
-				  scrollTrigger: {
-					  trigger: '#welcome-text',
-					  start: 'top center'
-					  // end: 'bottom 20%',
-					  // scrub: true
-				  }
-			  }
-		  );
-  
-	  gsap.fromTo(
-			  '#gate',
-			  { opacity: 0, x: -100 },
-			  {
-				  opacity: 1,
-				  x: 0,
-				  duration: 1,
-		  delay: .5,
-				  scrollTrigger: {
-					  trigger: '#gate',
-					  start: 'top center'
-					  // end: 'bottom 20%',
-					  // scrub: true
-				  }
-			  }
-		  );
-  
-		  
-  
-	  gsap.fromTo(
-			  '#scooper',
-			  { opacity: 0, x: 100 },
-			  {
-				  opacity: 1,
-				  x: 0,
-				  duration: 1,
-				  scrollTrigger: {
-					  trigger: '#scooper',
-					  start: 'top center'
-					  // end: 'bottom 20%',
-					  // scrub: true
-				  }
-			  }
-		  );
-  
-		  gsap.fromTo(
-			  '#productstext',
-			  { opacity: 0, y: -50 },
-			  {
-				  opacity: 1,
-				  y: 0,
-				  duration: 1,
-				  scrollTrigger: {
-					  trigger: '#productstext',
-					  start: 'top center',
-					  end: 'bottom 20%',
-					  // scrub: true
-				  }
-			  }
-		  );
-  
-		  gsap.to(imageRef, {
-		yPercent: -40,
-		ease: "none",
-		scrollTrigger: {
-		  trigger: imageRef,
-		  scrub: true
-		},
-	  });
-  
-	  gsap.to(textRef, {
-		yPercent: 10,
-		ease: "none",
-		scrollTrigger: {
-		  trigger: textRef,
-		  scrub: true
-		},
-	  });
-	});
-  
+
+gsap.fromTo(
+    '#scooper',
+    { opacity: 0, x: 100 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: '#scooper',
+        start: 'top center'
+        // end: 'bottom 20%',
+        // scrub: true
+      }
+    }
+  );
+
+  gsap.fromTo(
+    '#productstext',
+    { opacity: 0, y: -50 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: '#productstext',
+        start: 'top center',
+        end: 'bottom 20%',
+        // scrub: true
+      }
+    }
+  );
+
+}) 
   
 	
   
@@ -131,11 +128,11 @@
 	  </svelte:head>
   
 	  <div class="video-background flex items-center justify-center h-screen parallax-section">
-		  <video bind:this={imageRef} autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
+		  <video bind:this={imageRef} id={id} autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
 			<source src={homevideo} type="video/mp4">
 		  </video>
 		  <div class="relative z-10">
-			<h1 bind:this={textRef} class="text-orange-500 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
+			<h1 class="text-orange-500 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
 		  </div>
 		</div>
   

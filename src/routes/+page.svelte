@@ -154,7 +154,7 @@ font-size: 2rem;
 
 .bg::after 
 {
-background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("../test/base.png");
+background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("../lib/images/Arcobuilding.jpg");
 background-size: cover;
 }
 

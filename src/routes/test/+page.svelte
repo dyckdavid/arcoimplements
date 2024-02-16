@@ -131,11 +131,11 @@
     </svelte:head>
 
 	<div class="video-background flex items-center justify-center h-screen parallax-section">
-		<video bind:this={imageRef} autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
+		<video autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
 		  <source src={homevideo} type="video/mp4">
 		</video>
 		<div class="relative z-10">
-		  <h1 bind:this={textRef} class="text-orange-500 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
+		  <h1  class="text-orange-500 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
 		</div>
 	  </div>
 

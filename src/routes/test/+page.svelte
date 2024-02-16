@@ -8,8 +8,6 @@
 
 	gsap.registerPlugin(ScrollTrigger);
 
-    let tl = gsap.timeline();
-
 	let imageRef: HTMLElement;
   let textRef: HTMLElement;
 
@@ -100,23 +98,7 @@
 			}
 		);
 
-		gsap.to(imageRef, {
-      yPercent: -40,
-      ease: "none",
-      scrollTrigger: {
-        trigger: imageRef,
-        scrub: true
-      },
-    });
-
-    gsap.to(textRef, {
-      yPercent: 10,
-      ease: "none",
-      scrollTrigger: {
-        trigger: textRef,
-        scrub: true
-      },
-    });
+	
   });
 
 
@@ -135,7 +117,7 @@
 		  <source src={homevideo} type="video/mp4">
 		</video>
 		<div class="relative z-10">
-		  <h1  class="text-orange-500 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
+		  <h1 class="text-orange-500 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
 		</div>
 	  </div>
 

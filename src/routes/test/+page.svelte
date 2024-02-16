@@ -1,19 +1,28 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import homevideo from '$lib/videos/webistehomevideo.mp4';
+  import { IconShoppingCart } from '@tabler/icons-svelte';
+  import { IconPhone } from '@tabler/icons-svelte';
   import gsap from 'gsap';
-  import { ScrollTrigger } from '$lib/gsap/index';
-	import { onMount } from 'svelte';
-	import homevideo from '$lib/videos/webistehomevideo.mp4';
-	import { IconShoppingCart } from '@tabler/icons-svelte';
-	import { IconPhone } from '@tabler/icons-svelte';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
-	gsap.registerPlugin(ScrollTrigger);
 
-	let imageRef: HTMLElement;
+  let imageRef: HTMLElement;
   let textRef: HTMLElement;
 
-  onMount(() => {
+  
 
-	gsap.fromTo(
+  onMount(async () => {
+
+	
+	if (typeof window !== 'undefined') {
+    try {
+      console.log(gsap); // Check if gsap is already defined
+      gsap.registerPlugin(ScrollTrigger);
+      console.log('GSAP and ScrollTrigger should be ready');
+
+
+	  gsap.fromTo(
 			'#productbutton',
 			{ opacity: 0, x: -90 },
 			{
@@ -115,8 +124,13 @@
         scrub: true
       },
     });
-  });
 
+      // Initialize your GSAP animations here
+} catch (error) {
+        console.error('Error importing GSAP or setting up animations:', error);
+      }
+    }
+  });
 
   
 
@@ -144,7 +158,10 @@
 		</div>
 
 		  
-
+		<div class="flex flex-col md:flex-row justify-center items-center">
+			<img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="imgsize w-3/4 md:w-auto lg:w-auto pt-24" alt="i" id="gate" />
+			<img src="https://cdn.sanity.io/images/hnzv88np/production/4f32216f9c1abdb1c0e98a2f5fe021faae990c3a-4032x2268.png" class="imgsize w-3/4 md:w-auto lg:w-auto pt-24" alt="i2" id="scooper" />
+		</div>
 		
 		
 

@@ -188,6 +188,7 @@
 	  z-index: -1;
 	  margin: 0;
 	  padding: 0;
+	  overflow-x: hidden;
 	}
   
 	.video-background video {
@@ -201,6 +202,7 @@
 	  transform: translate(-50%, -50%);
 	  margin: 0;
 	  padding: 0;
+	  overflow-x: hidden;
 	}
   
 	.parallax-section {
@@ -212,6 +214,7 @@
 	.imgsize {
 	  width: 90%;
 	  height: auto;
+	  overflow-x: hidden;
 	}
   
 	@media (min-width: 640px) {
@@ -226,5 +229,6 @@
 	  padding-top: 20px;
 	  margin: 0;
 	  padding: 0;
+	  overflow-x: hidden;
 	}
 	</style>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 	import { onMount } from 'svelte';
     import homevideo from '$lib/videos/webistehomevideo.mp4';
     import { IconShoppingCart, IconPhone } from '@tabler/icons-svelte';
@@ -57,17 +57,6 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
             }
         }
     ];
-
-    animations.forEach(({selector, from, to}) => {
-        gsap.fromTo(selector, from, {
-            ...to,
-            scrollTrigger: {
-                trigger: to.trigger,
-                start: to.start,
-                end: to.end || '',
-            }
-        });
-    });
 	})
 
 	

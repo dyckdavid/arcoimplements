@@ -9,54 +9,114 @@
 
 	onMount(() => {
 
-		 // Additional GSAP animations
-		 const animations = [
-        {
-            selector: '#productbutton',
-            from: { opacity: 0, x: -90 },
-            to: {
-                opacity: 1, x: 0, duration: 2, delay: .8,
-                trigger: '#productbutton',
-                start: 'top bottom'
-            }
-        },
-        {
-            selector: '#welcome-text',
-            from: { opacity: 0, x: -100 },
-            to: {
-                opacity: 1, x: 0, duration: 1,
-                trigger: '#welcome-text',
-                start: 'top center'
-            }
-        },
-        {
-            selector: '#gate',
-            from: { opacity: 0, x: -100 },
-            to: {
-                opacity: 1, x: 0, duration: 1, delay: .5,
-                trigger: '#gate',
-                start: 'top center'
-            }
-        },
-        {
-            selector: '#scooper',
-            from: { opacity: 0, x: 100 },
-            to: {
-                opacity: 1, x: 0, duration: 1,
-                trigger: '#scooper',
-                start: 'top center'
-            }
-        },
-        {
-            selector: '#productstext',
-            from: { opacity: 0, y: -50 },
-            to: {
-                opacity: 1, y: 0, duration: 1,
-                trigger: '#productstext',
-                start: 'top center', end: 'bottom 20%'
-            }
-        }
-    ];
+		gsap.registerPlugin(ScrollTrigger);
+
+		gsap.fromTo(
+			'#welcome-text',
+			{ opacity: 0, x: 100 },
+			{
+				opacity: 1,
+				x: 0,
+				delay: 0.5
+			}
+		);
+
+		gsap.fromTo(
+			'#left-banner',
+			{ opacity: 0, x: -100 },
+			{
+				opacity: 1,
+				x: 0,
+				duration: 1,
+				scrollTrigger: {
+					trigger: '#left-banner',
+					start: 'top center'
+					// end: 'bottom 20%',
+					// scrub: true
+				}
+			}
+		);
+
+		//right-banner
+		gsap.fromTo(
+			'#right-banner',
+			{ opacity: 0, x: 100 },
+			{
+				opacity: 1,
+				x: 0,
+				duration: 1,
+				scrollTrigger: {
+					trigger: '#right-banner',
+					start: 'top center'
+					// end: 'bottom 20%',
+					// scrub: true
+				}
+			}
+		);
+
+		//#region book
+		gsap.fromTo(
+			'#left-book',
+			{ opacity: 0, x: -100 },
+			{
+				opacity: 1,
+				x: 0,
+				duration: 1,
+				scrollTrigger: {
+					trigger: '#left-book',
+					start: 'top center'
+					// end: 'bottom 20%',
+					// scrub: true
+				}
+			}
+		);
+
+		gsap.fromTo(
+			'#first-service',
+			{ opacity: 0, y: 100 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 1,
+				scrollTrigger: {
+					trigger: '#all-services',
+					start: 'top center'
+					// end: 'bottom 20%',
+					// scrub: true
+				}
+			}
+		);
+
+		gsap.fromTo(
+			'#services-btn',
+			{ opacity: 0 },
+			{
+				opacity: 1,
+				duration: 1,
+				delay: 0.25,
+				scrollTrigger: {
+					trigger: '#all-services-',
+					start: 'top center'
+					// end: 'bottom 20%',
+					// scrub: true
+				}
+			}
+		);
+
+		gsap.fromTo(
+			'#blog-right',
+			{ opacity: 0, x: 100 },
+			{
+				opacity: 1,
+				duration: 1,
+				x: 0,
+				scrollTrigger: {
+					trigger: '#blog-right',
+					start: 'top center'
+				}
+			}
+		);
+
 	})
 
 	
@@ -81,19 +141,19 @@
 		<section class="px-2 lg:py-16 lg:px-0 pb-11" >
   
 		  <div>
-			<h1 class="text-center text-4xl" id="productstext">Products</h1>
+			<h1 class="text-center text-4xl" id="first-service">Products</h1>
 		  </div>
   
 			
 		  <div class="flex flex-col md:flex-row justify-center items-center">
-			  <img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="imgsize w-3/4 md:w-auto lg:w-auto pt-24" alt="i" id="gate" />
-			  <img src="https://cdn.sanity.io/images/hnzv88np/production/4f32216f9c1abdb1c0e98a2f5fe021faae990c3a-4032x2268.png" class="imgsize w-3/4 md:w-auto lg:w-auto pt-24" alt="i2" id="scooper" />
+			  <img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="imgsize w-3/4 md:w-auto lg:w-auto pt-24" alt="i" id="left-banner" />
+			  <img src="https://cdn.sanity.io/images/hnzv88np/production/4f32216f9c1abdb1c0e98a2f5fe021faae990c3a-4032x2268.png" class="imgsize w-3/4 md:w-auto lg:w-auto pt-24" alt="i2" id="right-banner" />
 		  </div>
 		  
 		  
   
-		  <div class="flex justify-center mt-8" id="productbutton">
-			  <a href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" >
+		  <div class="flex justify-center mt-8" >
+			  <a href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="left-book" >
 				<IconShoppingCart class="mr-2" />
 				Products
 			  </a>
@@ -101,9 +161,9 @@
 		 
 		</section>
   
-		<section class="section2">
-		  <div class="flex justify-center items-center h-full mt-8">
-			  <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" >
+		<section class="section2" >
+		  <div class="flex justify-center items-center h-full mt-8" >
+			  <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="services-btn" >
 				  <IconPhone class="mr-2" />
 				  Contact Us
 			  </a>

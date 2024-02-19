@@ -129,7 +129,7 @@
 		<meta name="description" content="Arco Implements designed by David Dyck and David Rempel" />
 	  </svelte:head>
   
-	  <div class="video-background flex items-center justify-center h-screen parallax-section">
+	  <div class="video-background flex items-center justify-center h-screen parallax-section overflow-x-hidden">
 		  <video autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
 			<source src={homevideo} type="video/mp4">
 		  </video>

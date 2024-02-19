@@ -172,6 +172,13 @@
 	  
   
 	<style>
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 	   .video-background {
 	  position: relative;
 	  top: 0;
@@ -192,6 +199,8 @@
 	  top: 50%;
 	  left: 50%;
 	  transform: translate(-50%, -50%);
+	  margin: 0;
+	  padding: 0;
 	}
   
 	.parallax-section {
@@ -215,5 +224,7 @@
 	  height: 100vh;
 	  background-color: rgb(32, 32, 32);
 	  padding-top: 20px;
+	  margin: 0;
+	  padding: 0;
 	}
 	</style>

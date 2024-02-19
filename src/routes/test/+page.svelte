@@ -72,20 +72,39 @@
 		);
 
 		gsap.fromTo(
-			'#first-service',
-			{ opacity: 0, y: 100 },
-			{
-				opacity: 1,
-				y: 0,
-				duration: 1,
-				scrollTrigger: {
-					trigger: '#all-services',
-					start: 'top center'
-					// end: 'bottom 20%',
-					// scrub: true
-				}
-			}
-		);
+  '#first-service',
+  { opacity: 0, y: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: 0, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#all-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#second-service',
+  { opacity: 0, y: -30 }, // Start above the original position
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: .9, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#all-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
 
 		gsap.fromTo(
 			'#services-btn',
@@ -93,10 +112,10 @@
 			{
 				opacity: 1,
 				duration: 1,
-				delay: 0.25,
+				delay: 0,
 				scrollTrigger: {
 					trigger: '#all-services-',
-					start: 'top center'
+					start: 'top center',
 					// end: 'bottom 20%',
 					// scrub: true
 				}
@@ -116,6 +135,180 @@
 				}
 			}
 		);
+
+
+		// product section gsap
+
+		gsap.fromTo(
+  '#first-product',
+  { opacity: 0, x: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    x: 0,
+    duration: 1,
+    delay: 0, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#first-products-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#second-product',
+  { opacity: 0, y: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: .10, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#first-products-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#third-product',
+  { opacity: 0, y: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: .25, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#first-products-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#fourt-product',
+  { opacity: 0, y: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: .40, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#first-products-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#first-product-two',
+  { opacity: 0, x: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    x: 0,
+    duration: 1,
+    delay: 0, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#second-products-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#second-product-two',
+  { opacity: 0, y: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: .10, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#second-products-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#third-product-two',
+  { opacity: 0, y: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: .25, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#second-products-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#fourt-product-two',
+  { opacity: 0, y: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: .40, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#second-products-services',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#button-1',
+  { opacity: 0, x: -100 }, // Start above the original position
+  {
+    opacity: 1,
+    x: 0,
+    duration: 1.25,
+    delay: .40, 
+    scrollTrigger: {
+      trigger: '#products-button-1',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#button-contact',
+  { opacity: 0, x: 100 }, // Start above the original position
+  {
+    opacity: 1,
+    x: 0,
+    duration: 1.25,
+    delay: .5, // Add a delay of 0.5 seconds
+    scrollTrigger: {
+      trigger: '#contacts-button-1',
+      start: 'top center'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
 
 	})
 
@@ -139,33 +332,68 @@
 			<h1 class="text-orange-500 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
 		  </div>
 		</div>
-  
-		<section class="px-2 lg:py-16 lg:px-0 pb-11" >
-  
-		  <div>
-			<h1 class="text-center text-4xl" id="first-service">Products</h1>
+
+
+		<section class="">
+
+		<div id="all-services"  class="pt-9"> 
+		<div id="first-service">
+			<h1 class="text-center text-4xl">Products</h1>
+		</div>
+		<div id="second-service">
+			<p class="text-center pt-2 text-lg pl-2 pr-2">The best place to find amazing products at affordable prices</p>
+		</div>
 		  </div>
-  
-			
-		  <div class="flex flex-col md:flex-row justify-center items-center">
-			  <img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="imgsize w-3/4 md:w-auto lg:w-auto pt-24" alt="i" id="left-banner" />
-			  <img src="https://cdn.sanity.io/images/hnzv88np/production/4f32216f9c1abdb1c0e98a2f5fe021faae990c3a-4032x2268.png" class="imgsize w-3/4 md:w-auto lg:w-auto pt-24" alt="i2" id="right-banner" />
-		  </div>
-		  
-		  
-  
-		  <div class="flex justify-center mt-8" >
-			  <a href="/products" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="left-book" >
-				<IconShoppingCart class="mr-2" />
-				Products
-			  </a>
+
+		  <div class="container mx-auto px-4 pt-5 pb-5 " >
+
+			<!-- Product 1: Image on the Left -->
+			<div class="flex flex-col md:flex-row items-center md:items-start py-6" id="first-products-services">
+			  <div class="md:w-1/3" id="first-product">
+				<img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
+			  </div>
+			  <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
+				<h2 class="text-2xl font-semibold pl-9" id="second-product">Product 1 Title</h2>
+				<p class="mt-2 pl-9" id="third-product">This is the description for Product 1. It intelligently breaks depending on the line length to ensure readability. This is the description for Product 1. It intelligently breaks depending on the line length to ensure readability.</p>
+				<a href="/products/gatesdetail" class="inline-block mt-4 bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 ml-8" id="fourt-product">View More</a>
+			  </div>
 			</div>
-		 
+
+		</div>
+
+			<div class="container mx-auto px-4 pt-5 pb-5 " >
+		  
+			<!-- Product 2: Image on the Right -->
+			<div class="flex flex-col md:flex-row items-center md:items-start py-6" id="second-products-services">
+				<div class="md:w-1/3" id="first-product-two">
+				  <img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
+				</div>
+				<div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
+				  <h2 class="text-2xl font-semibold pl-9" id="second-product-two">Product 2 Title</h2>
+				  <p class="mt-2 pl-9" id="third-product-two">This is the description for Product 2. It intelligently breaks depending on the line length to ensure readability.</p>
+				  <a href="/products/scooperdetail" class="inline-block mt-4 bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 ml-8" id="fourt-product-two">View More</a>
+				</div>
+			  </div>
+
+
+		  
+		  </div>
+
+		  <div class="flex justify-center" id="products-button-1">
+
+		  <a href="/products" class="inline-block mx-auto bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 mb-5" id="button-1">All Products</a>
+		</div>
+		  
+		  
+
+
+  
+
 		</section>
   
 		<section class="section2" >
-		  <div class="flex justify-center items-center h-full mt-8" >
-			  <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="services-btn" >
+		  <div class="flex justify-center items-center h-full mt-8" id="contacts-button-1">
+			  <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="button-contact">
 				  <IconPhone class="mr-2" />
 				  Contact Us
 			  </a>
@@ -214,18 +442,7 @@
 	  position: relative;
 	  overflow: hidden;
 	}
-  
-	.imgsize {
-	  width: 90%;
-	  height: auto;
-	  overflow-x: hidden;
-	}
-  
-	@media (min-width: 640px) {
-	  .imgsize {
-		  width: 40%;
-	  }
-  }
+
   
 	.section2 {
 	  height: 100vh;

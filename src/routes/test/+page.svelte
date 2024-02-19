@@ -1,122 +1,74 @@
 <script lang="ts">
-	import { gsap } from '$lib/gsap';
-	import { ScrollTrigger } from '$lib/gsap/index';
-	import { parallax } from '$lib/actions/parallax';
-	
-	  import { onMount } from 'svelte';
-	  import homevideo from '$lib/videos/webistehomevideo.mp4';
-	  import { IconShoppingCart } from '@tabler/icons-svelte';
-	  import { IconPhone } from '@tabler/icons-svelte';
-
-	  
-
-
-	  gsap.registerPlugin(ScrollTrigger);
-
-let imageRef: HTMLElement;
-	let textRef: HTMLElement;
-
-	export let id = '';
-	export let src = '';
-	export let alt = '';
-
-
-	
-
-// Define the parallax function to accept a selector string.
-onMount(() => {
-
-	if (id) {
-    parallax(`#${id}`);
-  }
-
-	gsap.fromTo(
-    '#productbutton',
-    { opacity: 0, x: -90 },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 2,
-  delay: .8,
-      scrollTrigger: {
-        trigger: '#productbutton',
-        start: 'top bottom',
-        scrub: false
-      }
-    }
-  );
+	import gsap from 'gsap';
+	import { onMount } from 'svelte';
+    import homevideo from '$lib/videos/webistehomevideo.mp4';
+    import { IconShoppingCart, IconPhone } from '@tabler/icons-svelte';
 
 
 
-gsap.fromTo(
-    '#welcome-text',
-    { opacity: 0, x: -100 },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: '#welcome-text',
-        start: 'top center'
-        // end: 'bottom 20%',
-        // scrub: true
-      }
-    }
-  );
+	onMount(() => {
 
-gsap.fromTo(
-    '#gate',
-    { opacity: 0, x: -100 },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 1,
-  delay: .5,
-      scrollTrigger: {
-        trigger: '#gate',
-        start: 'top center'
-        // end: 'bottom 20%',
-        // scrub: true
-      }
-    }
-  );
+		 // Additional GSAP animations
+		 const animations = [
+        {
+            selector: '#productbutton',
+            from: { opacity: 0, x: -90 },
+            to: {
+                opacity: 1, x: 0, duration: 2, delay: .8,
+                trigger: '#productbutton',
+                start: 'top bottom'
+            }
+        },
+        {
+            selector: '#welcome-text',
+            from: { opacity: 0, x: -100 },
+            to: {
+                opacity: 1, x: 0, duration: 1,
+                trigger: '#welcome-text',
+                start: 'top center'
+            }
+        },
+        {
+            selector: '#gate',
+            from: { opacity: 0, x: -100 },
+            to: {
+                opacity: 1, x: 0, duration: 1, delay: .5,
+                trigger: '#gate',
+                start: 'top center'
+            }
+        },
+        {
+            selector: '#scooper',
+            from: { opacity: 0, x: 100 },
+            to: {
+                opacity: 1, x: 0, duration: 1,
+                trigger: '#scooper',
+                start: 'top center'
+            }
+        },
+        {
+            selector: '#productstext',
+            from: { opacity: 0, y: -50 },
+            to: {
+                opacity: 1, y: 0, duration: 1,
+                trigger: '#productstext',
+                start: 'top center', end: 'bottom 20%'
+            }
+        }
+    ];
 
-  
+    animations.forEach(({selector, from, to}) => {
+        gsap.fromTo(selector, from, {
+            ...to,
+            scrollTrigger: {
+                trigger: to.trigger,
+                start: to.start,
+                end: to.end || '',
+            }
+        });
+    });
+	})
 
-gsap.fromTo(
-    '#scooper',
-    { opacity: 0, x: 100 },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: '#scooper',
-        start: 'top center'
-        // end: 'bottom 20%',
-        // scrub: true
-      }
-    }
-  );
-
-  gsap.fromTo(
-    '#productstext',
-    { opacity: 0, y: -50 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: '#productstext',
-        start: 'top center',
-        end: 'bottom 20%',
-        // scrub: true
-      }
-    }
-  );
-
-}) 
-  
 	
   
   
@@ -128,7 +80,7 @@ gsap.fromTo(
 	  </svelte:head>
   
 	  <div class="video-background flex items-center justify-center h-screen parallax-section">
-		  <video bind:this={imageRef} id={id} autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
+		  <video autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
 			<source src={homevideo} type="video/mp4">
 		  </video>
 		  <div class="relative z-10">

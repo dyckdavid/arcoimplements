@@ -54,7 +54,7 @@
 			}
 		);
 
-		//#region book
+		
 		gsap.fromTo(
 			'#left-book',
 			{ opacity: 0, x: -100 },
@@ -73,12 +73,12 @@
 
 		gsap.fromTo(
   '#first-service',
-  { opacity: 0, y: -100 }, // Start above the original position
+  { opacity: 0, y: -100 }, 
   {
     opacity: 1,
     y: 0,
     duration: 1,
-    delay: 0, // Add a delay of 0.5 seconds
+    delay: 0, 
     scrollTrigger: {
       trigger: '#all-services',
       start: 'top bottom'
@@ -90,12 +90,12 @@
 
 gsap.fromTo(
   '#second-service',
-  { opacity: 0, y: -30 }, // Start above the original position
+  { opacity: 0, y: -30 }, 
   {
     opacity: 1,
     y: 0,
     duration: 1,
-    delay: .9, // Add a delay of 0.5 seconds
+    delay: .9, 
     scrollTrigger: {
       trigger: '#all-services',
       start: 'top bottom'
@@ -141,12 +141,12 @@ gsap.fromTo(
 
 		gsap.fromTo(
   '#first-product',
-  { opacity: 0, x: -100 }, // Start above the original position
+  { opacity: 0, x: -100 }, 
   {
     opacity: 1,
     x: 0,
     duration: 1,
-    delay: 0, // Add a delay of 0.5 seconds
+    delay: 0, 
     scrollTrigger: {
       trigger: '#first-products-services',
       start: 'top bottom'
@@ -158,12 +158,12 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#second-product',
-  { opacity: 0, y: -100 }, // Start above the original position
+  { opacity: 0, x: 100 }, 
   {
     opacity: 1,
-    y: 0,
+    x: 0,
     duration: 1,
-    delay: .10, // Add a delay of 0.5 seconds
+    delay: .10, 
     scrollTrigger: {
       trigger: '#second-product',
       start: 'top bottom'
@@ -175,12 +175,12 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#third-product',
-  { opacity: 0, y: -100 }, // Start above the original position
+  { opacity: 0, x: 100 }, 
   {
     opacity: 1,
-    y: 0,
+    x: 0,
     duration: 1,
-    delay: .25, // Add a delay of 0.5 seconds
+    delay: .25, 
     scrollTrigger: {
       trigger: '#third-product',
       start: 'top bottom'
@@ -192,12 +192,12 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#fourt-product',
-  { opacity: 0, y: -100 }, // Start above the original position
+  { opacity: 0, x: 100 }, 
   {
     opacity: 1,
-    y: 0,
+    x: 0,
     duration: 1,
-    delay: .40, // Add a delay of 0.5 seconds
+    delay: .40, 
     scrollTrigger: {
       trigger: '#fourt-product',
       start: 'top bottom'
@@ -209,12 +209,12 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#first-product-two',
-  { opacity: 0, x: -100 }, // Start above the original position
+  { opacity: 0, x: -100 }, 
   {
     opacity: 1,
     x: 0,
     duration: 1,
-    delay: 0, // Add a delay of 0.5 seconds
+    delay: 0, 
     scrollTrigger: {
       trigger: '#second-products-services',
       start: 'top bottom'
@@ -226,12 +226,12 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#second-product-two',
-  { opacity: 0, y: -100 }, // Start above the original position
+  { opacity: 0, x: 100 }, 
   {
     opacity: 1,
-    y: 0,
+    x: 0,
     duration: 1,
-    delay: .10, // Add a delay of 0.5 seconds
+    delay: .10, 
     scrollTrigger: {
       trigger: '#second-product-two',
       start: 'top bottom'
@@ -243,12 +243,12 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#third-product-two',
-  { opacity: 0, y: -100 }, // Start above the original position
+  { opacity: 0, x: 100 }, 
   {
     opacity: 1,
-    y: 0,
+    x: 0,
     duration: 1,
-    delay: .25, // Add a delay of 0.5 seconds
+    delay: .25, 
     scrollTrigger: {
       trigger: '#third-product-two',
       start: 'top bottom'
@@ -260,12 +260,12 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#fourt-product-two',
-  { opacity: 0, y: -100 }, // Start above the original position
+  { opacity: 0, x: 100 }, 
   {
     opacity: 1,
-    y: 0,
+    x: 0,
     duration: 1,
-    delay: .40, // Add a delay of 0.5 seconds
+    delay: .40, 
     scrollTrigger: {
       trigger: '#fourt-product-two',
       start: 'top bottom'
@@ -277,7 +277,7 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#button-1',
-  { opacity: 0, x: -100 }, // Start above the original position
+  { opacity: 0, x: -100 }, 
   {
     opacity: 1,
     x: 0,
@@ -294,12 +294,12 @@ gsap.fromTo(
 
 gsap.fromTo(
   '#button-contact',
-  { opacity: 0, x: 100 }, // Start above the original position
+  { opacity: 0, x: 100 }, 
   {
     opacity: 1,
     x: 0,
     duration: 1.25,
-    delay: .5, // Add a delay of 0.5 seconds
+    delay: .5, 
     scrollTrigger: {
       trigger: '#contacts-button-1',
       start: 'top center'

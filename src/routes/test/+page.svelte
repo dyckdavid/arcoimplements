@@ -165,7 +165,7 @@ gsap.fromTo(
     duration: 1,
     delay: .10, // Add a delay of 0.5 seconds
     scrollTrigger: {
-      trigger: '#first-products-services',
+      trigger: '#second-product',
       start: 'top bottom'
       // end: 'bottom 20%',
       // scrub: true
@@ -182,7 +182,7 @@ gsap.fromTo(
     duration: 1,
     delay: .25, // Add a delay of 0.5 seconds
     scrollTrigger: {
-      trigger: '#first-products-services',
+      trigger: '#third-product',
       start: 'top bottom'
       // end: 'bottom 20%',
       // scrub: true
@@ -199,7 +199,7 @@ gsap.fromTo(
     duration: 1,
     delay: .40, // Add a delay of 0.5 seconds
     scrollTrigger: {
-      trigger: '#first-products-services',
+      trigger: '#fourt-product',
       start: 'top bottom'
       // end: 'bottom 20%',
       // scrub: true
@@ -233,7 +233,7 @@ gsap.fromTo(
     duration: 1,
     delay: .10, // Add a delay of 0.5 seconds
     scrollTrigger: {
-      trigger: '#second-products-services',
+      trigger: '#second-product-two',
       start: 'top bottom'
       // end: 'bottom 20%',
       // scrub: true
@@ -250,7 +250,7 @@ gsap.fromTo(
     duration: 1,
     delay: .25, // Add a delay of 0.5 seconds
     scrollTrigger: {
-      trigger: '#second-products-services',
+      trigger: '#third-product-two',
       start: 'top bottom'
       // end: 'bottom 20%',
       // scrub: true
@@ -267,7 +267,7 @@ gsap.fromTo(
     duration: 1,
     delay: .40, // Add a delay of 0.5 seconds
     scrollTrigger: {
-      trigger: '#second-products-services',
+      trigger: '#fourt-product-two',
       start: 'top bottom'
       // end: 'bottom 20%',
       // scrub: true
@@ -353,8 +353,8 @@ gsap.fromTo(
 				<img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
 			  </div>
 			  <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
-				<h2 class="text-2xl font-semibold pl-9" id="second-product">Product 1 Title</h2>
-				<p class="mt-2 pl-9" id="third-product">This is the description for Product 1. It intelligently breaks depending on the line length to ensure readability. This is the description for Product 1. It intelligently breaks depending on the line length to ensure readability.</p>
+				<h2 class="text-2xl font-semibold pl-9" id="second-product">Gates (4, 6, 8, 10, 12, 14 and 16 feet)</h2>
+				<p class="mt-2 pl-9" id="third-product">The longest lasting gates on the market are our hot dipped pasture gates. They are made from 1 ⅝” 18 gauge tubing and are hot dipped inside and out, guaranteeing many years of use. Gates are available in 5 or 6 bars and come with two ¾”x 12” bolt hooks and heavy duty adjustable hinges. Gates 8’ and longer come standard with our heavy duty double strap system.</p>
 				<a href="/products/gatesdetail" class="inline-block mt-4 bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 ml-8" id="fourt-product">View More</a>
 			  </div>
 			</div>
@@ -366,11 +366,11 @@ gsap.fromTo(
 			<!-- Product 2: Image on the Right -->
 			<div class="flex flex-col md:flex-row items-center md:items-start py-6" id="second-products-services">
 				<div class="md:w-1/3" id="first-product-two">
-				  <img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
+				  <img src="https://cdn.sanity.io/images/hnzv88np/production/6b581920da9590dc8546d944ff74150f1ba77928-4032x2268.jpg" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
 				</div>
 				<div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
-				  <h2 class="text-2xl font-semibold pl-9" id="second-product-two">Product 2 Title</h2>
-				  <p class="mt-2 pl-9" id="third-product-two">This is the description for Product 2. It intelligently breaks depending on the line length to ensure readability.</p>
+				  <h2 class="text-2xl font-semibold pl-9" id="second-product-two">Square Bale scooper</h2>
+				  <p class="mt-2 pl-9" id="third-product-two">Apple Orchard Transportation Equipment Trailer</p>
 				  <a href="/products/scooperdetail" class="inline-block mt-4 bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 ml-8" id="fourt-product-two">View More</a>
 				</div>
 			  </div>
@@ -392,7 +392,7 @@ gsap.fromTo(
 		</section>
   
 		<section class="section2" >
-		  <div class="flex justify-center items-center h-full mt-8" id="contacts-button-1">
+		  <div class="flex justify-center items-center h-full w-full" id="contacts-button-1">
 			  <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="button-contact">
 				  <IconPhone class="mr-2" />
 				  Contact Us
@@ -447,9 +447,8 @@ gsap.fromTo(
 	.section2 {
 	  height: 100vh;
 	  background-color: rgb(32, 32, 32);
-	  padding-top: 20px;
-	  margin: 0;
-	  padding: 0;
+
 	  overflow-x: hidden;
+	  width: 100%;
 	}
 	</style>

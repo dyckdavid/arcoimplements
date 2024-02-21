@@ -1,5 +1,6 @@
 <script>
   import Navbar from "$lib/components/navbar/Navbar.svelte";
+  import Footer from "$lib/components/footer/Footer.svelte";
   import { IconArrowRight, IconArrowLeft } from "@tabler/icons-svelte";
   import "./styles.css";
 </script>
@@ -38,6 +39,8 @@
     <slot />
   </main>
 
+
+  <Footer />
 
 </div>
 

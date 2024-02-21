@@ -1,0 +1,52 @@
+<script>
+        import { IconShoppingCart, IconPhone, IconMail, IconWorldWww, IconBrandX, IconBrandFacebook, IconBrandYoutube } from '@tabler/icons-svelte';
+
+</script>
+
+<footer class="bg-black text-white">
+    <div class="container mx-auto px-4 py-8 md:flex md:justify-between md:items-start">
+      
+      <!-- Logo and name aligned to the left -->
+      <div class="mb-8 md:mb-0">
+        <img src="https://www.arcoimplements.com/_app/immutable/assets/Arco.b39709fd.png" alt="Arco Implements Logo" class="h-20 mb-3">
+        <p class="text-xl font-semibold">Arco Implements</p>
+      </div>
+      
+      <!-- Quick Links and Social Media Links aligned to the right -->
+      <div class="space-y-6">
+        <!-- Quick Links -->
+        <div class="bg-gray-800 p-4 rounded-lg">
+          <p class="font-semibold text-lg mb-3">Quick Links</p>
+          <ul class="space-y-2">
+            <li><a href="/" class="hover:text-gray-400 transition-colors">Home</a></li>
+            <li><a href="/products" class="hover:text-gray-400 transition-colors">Products</a></li>
+            <li><a href="/contact" class="hover:text-gray-400 transition-colors">Contact</a></li>
+            <li><a href="/about" class="hover:text-gray-400 transition-colors">About</a></li>
+          </ul>
+        </div>
+  
+        <!-- Social Media Links -->
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <p class="font-semibold text-lg mb-3">Follow Us</p>
+          <div class="flex">
+            <!-- Insert actual links and icon classes for your social media -->
+            <a href="https://x.com/estufaselarco?s=11&t=qPAIaImaGQFpGgE-xRfJYQ" class="hover:text-gray-400 transition-colors mx-2 ">
+              <IconBrandX class="w-4 h-4"  />
+            </a>
+            <a href="https://www.facebook.com/estufas.arco?mibextid=ZbWKwL" class="hover:text-gray-400 transition-colors mx-2">
+                <IconBrandFacebook class="w-4 h-4"  />
+            </a>
+            <a href="https://youtube.com/@daviddyck04?si=iCOKhBT5oNvAA738" class="hover:text-gray-400 transition-colors mx-2">
+                <IconBrandYoutube class="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  
+    <!-- Copyright section -->
+    <div class="text-center p-4 text-sm md:text-base">
+      <p>©2024 Arco Implements</p>
+    </div>
+  </footer>

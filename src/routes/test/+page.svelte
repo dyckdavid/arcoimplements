@@ -3,7 +3,7 @@
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 	import { onMount } from 'svelte';
     import homevideo from '$lib/videos/webistehomevideo.mp4';
-    import { IconShoppingCart, IconPhone, IconMail, IconWorldWww } from '@tabler/icons-svelte';
+    import { IconShoppingCart, IconPhone, IconMail, IconWorldWww, IconBrandX, IconBrandFacebook, IconBrandYoutube } from '@tabler/icons-svelte';
 
 
 
@@ -15,7 +15,7 @@
 			'#welcome-text',
 			{ opacity: 0, x: -100 },
 			{
-				opacity: 1,
+				opacity: 1, 
 				x: 0,
 				delay: 0,
 				duration: 1.5
@@ -596,5 +596,6 @@ gsap.fromTo(
     overflow-x: hidden;
     width: 100%;
   }
+  
 
 	</style>

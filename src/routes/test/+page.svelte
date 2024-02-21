@@ -3,7 +3,7 @@
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 	import { onMount } from 'svelte';
     import homevideo from '$lib/videos/webistehomevideo.mp4';
-    import { IconShoppingCart, IconPhone } from '@tabler/icons-svelte';
+    import { IconShoppingCart, IconPhone, IconMail, IconWorldWww } from '@tabler/icons-svelte';
 
 
 
@@ -13,11 +13,12 @@
 
 		gsap.fromTo(
 			'#welcome-text',
-			{ opacity: 0, x: 100 },
+			{ opacity: 0, x: -100 },
 			{
 				opacity: 1,
 				x: 0,
-				delay: 0.5
+				delay: 0,
+				duration: 1.5
 			}
 		);
 
@@ -309,6 +310,109 @@ gsap.fromTo(
   }
 );
 
+gsap.fromTo(
+  '#contact-page-title',
+  { opacity: 0, y: -100 }, 
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1.1,
+    delay: .25, 
+    scrollTrigger: {
+      trigger: '#contact-page-title',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#conatct-welcome-text',
+  { opacity: 0, y: -30 }, 
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: .9, 
+    scrollTrigger: {
+      trigger: '#conatct-welcome-text',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+
+gsap.fromTo(
+  '#phone-no',
+  { opacity: 0, y: -100 }, 
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1.1,
+    delay: .25, 
+    scrollTrigger: {
+      trigger: '#phone-no',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#mail',
+  { opacity: 0, y: -100 }, 
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1.1,
+    delay: .50, 
+    scrollTrigger: {
+      trigger: '#mail',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+
+gsap.fromTo(
+  '#web',
+  { opacity: 0, y: -100 }, 
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1.1,
+    delay: .75, 
+    scrollTrigger: {
+      trigger: '#web',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
+
+gsap.fromTo(
+  '#maps-iframe',
+  { opacity: 0, x: 100 }, 
+  {
+    opacity: 1,
+    x: 0,
+    duration: 1,
+    delay: 0, 
+    scrollTrigger: {
+      trigger: '#maps-iframe',
+      start: 'top bottom'
+      // end: 'bottom 20%',
+      // scrub: true
+    }
+  }
+);
 
 	})
 
@@ -391,14 +495,53 @@ gsap.fromTo(
 
 		</section>
   
-		<section class="section2" >
-		  <div class="flex justify-center items-center h-full w-full" id="contacts-button-1">
-			  <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="button-contact">
-				  <IconPhone class="mr-2" />
-				  Contact Us
-			  </a>
-		  </div>
-	  </section>
+		<section class="section2 flex flex-col items-center justify-center text-white py-8">
+			<div class="container mx-auto px-4">
+			  <!-- Contact Header -->
+			  <div class="text-center mb-8">
+				<h1 class="text-4xl font-bold mb-2" id="contact-page-title">Contact Us</h1>
+				<p class="text-lg mb-4" id="conatct-welcome-text">Get more info at our contact page</p>
+				<!-- Styled button -->
+				<div class="flex justify-center items-center h-full w-full" id="contacts-button-1">
+					<a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="button-contact">
+						<IconPhone class="mr-2" />
+						Contact Us
+					</a>
+				</div>
+			  </div>
+		  
+			  <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-8 w-full">
+				<!-- Contact Information with Icons -->
+				<div class="w-full md:w-1/2 space-y-4">
+				  <div class="flex items-center justify-center md:justify-start" id="phone-no">
+					<i class="fas fa-phone-alt text-xl mr-2"><IconPhone class="mr-2" /></i> <!-- Replace with actual phone icon -->
+					<p class="text-lg"><span class="font-semibold cursor-pointer" ><a href="tel:+6255943429">Phone: 625 594-3429</a></span>
+				  </div>
+				  <div class="flex items-center justify-center md:justify-start" id="mail">
+					<i class="fas fa-envelope text-xl mr-2"><IconMail class="mr-2" /></i> <!-- Replace with actual email icon -->
+					<p class="text-lg"><span class="font-semibold cursor-pointer"><a href="mailto:estufaselarco@gmail.com">Email: estufaselarco@gmail.com</a></span> </p>
+				  </div>
+				  <div class="flex items-center justify-center md:justify-start" id="web">
+					<i class="fas fa-globe text-xl mr-2"><IconWorldWww class="mr-2" /></i> <!-- Replace with actual website icon -->
+					<p class="text-lg"><span class="font-semibold cursor-pointer"><a href="www.arcoimplements.com">Website: www.arcoimplements.com</a></span> </p>
+				  </div>
+				</div>
+		  
+				<!-- Map iframe -->
+				<div class="w-full md:w-1/2 h-auto overflow-hidden rounded-lg shadow-lg" id="maps-iframe">
+				  <!-- svelte-ignore a11y-missing-attribute -->
+				  <iframe
+				    
+					class="w-full"
+					style="min-height: 300px;"
+					frameborder="0"
+					allowfullscreen
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22270.87552797161!2d-106.85868869708742!3d28.466205065926044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86c1c9267981e2c3%3A0xf4f6dd51f411e669!2sEstufas%20El%20Arco!5e0!3m2!1sen!2smx!4v1699309386795!5m2!1sen!2smx">
+				  </iframe>
+				</div>
+			  </div>
+			</div>
+		  </section>
 
 	</main>
 	  
@@ -445,10 +588,13 @@ gsap.fromTo(
 
   
 	.section2 {
-	  height: 100vh;
-	  background-color: rgb(32, 32, 32);
+    min-height: 70vh;
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-x: hidden;
+    width: 100%;
+  }
 
-	  overflow-x: hidden;
-	  width: 100%;
-	}
 	</style>

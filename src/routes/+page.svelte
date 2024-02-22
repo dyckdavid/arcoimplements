@@ -451,7 +451,7 @@ gsap.fromTo(
 
 		  <div class="container mx-auto px-4 pt-5 pb-5 " >
 
-			<!-- Product 1: Image on the Left -->
+			
 			<div class="flex flex-col md:flex-row items-center md:items-start py-6" id="first-products-services">
 			  <div class="md:w-1/3" id="first-product">
 				<img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
@@ -467,7 +467,7 @@ gsap.fromTo(
 
 			<div class="container mx-auto px-4 pt-5 pb-5 " >
 		  
-			<!-- Product 2: Image on the Right -->
+			
 			<div class="flex flex-col md:flex-row items-center md:items-start py-6" id="second-products-services">
 				<div class="md:w-1/3" id="first-product-two">
 				  <img src="https://cdn.sanity.io/images/hnzv88np/production/6b581920da9590dc8546d944ff74150f1ba77928-4032x2268.jpg" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
@@ -497,11 +497,11 @@ gsap.fromTo(
   
 		<section class="section2 flex flex-col items-center justify-center text-white py-8">
 			<div class="container mx-auto px-4">
-			  <!-- Contact Header -->
+			  
 			  <div class="text-center mb-8">
 				<h1 class="text-4xl font-bold mb-2" id="contact-page-title">Contact Us</h1>
 				<p class="text-lg mb-4" id="conatct-welcome-text">Get more info at our contact page</p>
-				<!-- Styled button -->
+				
 				<div class="flex justify-center items-center h-full w-full" id="contacts-button-1">
 					<a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="button-contact">
 						<IconPhone class="mr-2" />
@@ -511,23 +511,23 @@ gsap.fromTo(
 			  </div>
 		  
 			  <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-8 w-full">
-				<!-- Contact Information with Icons -->
+				
 				<div class="w-full md:w-1/2 space-y-4">
 				  <div class="flex items-center justify-center md:justify-start" id="phone-no">
-					<i class="fas fa-phone-alt text-xl mr-2"><IconPhone class="mr-2" /></i> <!-- Replace with actual phone icon -->
+					<i class="fas fa-phone-alt text-xl mr-2"><IconPhone class="mr-2" /></i> 
 					<p class="text-lg"><span class="font-semibold cursor-pointer" ><a href="tel:+6255943429">Phone: 625 594-3429</a></span>
 				  </div>
 				  <div class="flex items-center justify-center md:justify-start" id="mail">
-					<i class="fas fa-envelope text-xl mr-2"><IconMail class="mr-2" /></i> <!-- Replace with actual email icon -->
+					<i class="fas fa-envelope text-xl mr-2"><IconMail class="mr-2" /></i> 
 					<p class="text-lg"><span class="font-semibold cursor-pointer"><a href="mailto:estufaselarco@gmail.com">Email: estufaselarco@gmail.com</a></span> </p>
 				  </div>
 				  <div class="flex items-center justify-center md:justify-start" id="web">
-					<i class="fas fa-globe text-xl mr-2"><IconWorldWww class="mr-2" /></i> <!-- Replace with actual website icon -->
+					<i class="fas fa-globe text-xl mr-2"><IconWorldWww class="mr-2" /></i> 
 					<p class="text-lg"><span class="font-semibold cursor-pointer"><a href="www.arcoimplements.com">Website: www.arcoimplements.com</a></span> </p>
 				  </div>
 				</div>
 		  
-				<!-- Map iframe -->
+				
 				<div class="w-full md:w-1/2 h-auto overflow-hidden rounded-lg shadow-lg" id="maps-iframe">
 				  <!-- svelte-ignore a11y-missing-attribute -->
 				  <iframe

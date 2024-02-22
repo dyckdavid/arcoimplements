@@ -523,7 +523,7 @@ gsap.fromTo(
 				  </div>
 				  <div class="flex items-center justify-center md:justify-start" id="web">
 					<i class="fas fa-globe text-xl mr-2"><IconWorldWww class="mr-2" /></i> 
-					<p class="text-lg"><span class="font-semibold cursor-pointer"><a href="www.arcoimplements.com">Website: www.arcoimplements.com</a></span> </p>
+					<p class="text-lg"><span class="font-semibold cursor-pointer"><a href="/">Website: www.arcoimplements.com</a></span> </p>
 				  </div>
 				</div>
 		  

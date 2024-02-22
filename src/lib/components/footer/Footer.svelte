@@ -13,7 +13,7 @@
       </div>
       
       <!-- Quick Links and Social Media Links aligned to the right -->
-      <div class="space-y-6">
+      <div class="space-y-6 w-auto md:w-60">
         <!-- Quick Links -->
         <div class="bg-gray-800 p-4 rounded-lg">
           <p class="font-semibold text-lg mb-3">Quick Links</p>

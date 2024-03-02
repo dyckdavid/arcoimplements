@@ -458,7 +458,7 @@ gsap.fromTo(
 			  </div>
 			  <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
 				<h2 class="text-2xl font-semibold pl-9" id="second-product">Gates (4, 6, 8, 10, 12, 14 and 16 feet)</h2>
-				<p class="mt-2 pl-9" id="third-product">The longest lasting gates on the market are our hot dipped pasture gates. They are made from 1 ⅝” 18 gauge tubing and are hot dipped inside and out, guaranteeing many years of use. Gates are available in 5 or 6 bars and come with two ¾”x 12” bolt hooks and heavy duty adjustable hinges. Gates 8’ and longer come standard with our heavy duty double strap system.</p>
+				<p class="mt-2 pl-9" id="third-product">The longest lasting gates on the market are our hot dipped pasture gates. Gates 8’ and longer come standard with our heavy duty double strap system.</p>
 				<a href="/products/gatesdetail" class="inline-block mt-4 bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 ml-8" id="fourt-product">View More</a>
 			  </div>
 			</div>

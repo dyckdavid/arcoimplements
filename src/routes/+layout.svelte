@@ -13,13 +13,14 @@
     >
       <li />
       <li class="cj-item-menu"><a href="/">Home</a></li>
-      <li class="cj-item-menu has-submenu flex gap-2">
+      <!-- <li class="cj-item-menu has-submenu flex gap-2">
         <a href="/products">Products</a><IconArrowRight class="md:hidden" />
-      </li>
+      </li> -->
+      <li class="cj-item-menu"><a href="/products">Products</a></li>
       <li class="cj-item-menu"><a href="/about">About</a></li>
       <li class="cj-item-menu"><a href="/contact">Contact</a></li>
     </ul>
-    <div slot="secondary-content" class="cj-secondary-content">
+    <!-- <div slot="secondary-content" class="cj-secondary-content">
       <ul
         data-submenu="2"
         class="cj-submenu pt-16 md:pt-0 flex flex-col gap-4 md:gap-2 md:p-4 items-center md:items-start"
@@ -32,7 +33,7 @@
         <li class="cj-item-menu"><a href="/products/gates">Gates</a></li>
         <li class="cj-item-menu"><a href="/products/other">Other</a></li>
       </ul>
-    </div>
+    </div> -->
   </Navbar>
 
   <main>

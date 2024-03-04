@@ -10,6 +10,7 @@
     dataset: 'production',
     useCdn: true,
     apiVersion: '2021-03-25',
+    
   });
 
   const builder = imageUrlBuilder(sanityClient);

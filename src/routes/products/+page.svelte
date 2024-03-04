@@ -239,7 +239,6 @@
 
          <div class="p-4 text-left">
            <h2 class="text-2xl font-bold mb-2">{product.name}</h2>
-           <p class="text-lg text-red-500 mb-4">Price: {product.price}</p>
            <div class="view-more">
              <!-- svelte-ignore illegal-attribute-character -->
              <a href={`/products/${product.id}`} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

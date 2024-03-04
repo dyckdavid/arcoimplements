@@ -457,8 +457,8 @@ gsap.fromTo(
 				<img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
 			  </div>
 			  <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
-				<h2 class="text-2xl font-semibold pl-9" id="second-product">Gates (4, 6, 8, 10, 12, 14 and 16 feet)</h2>
-				<p class="mt-2 pl-9" id="third-product">The longest lasting gates on the market are our hot dipped pasture gates. Gates 8’ and longer come standard with our heavy duty double strap system.</p>
+				<h2 class="text-2xl font-semibold pl-9" id="second-product">Gates (4 - 16 feet) long</h2>
+				<p class="mt-2 pl-9" id="third-product">Our pasture gates represent the pinnacle of longevity in the market. For gates that are 12 feet in length or longer, we incorporate our superior heavy-duty double strap system as a standard feature to ensure unmatched durability and strength.</p>
 				<a href="/products/gatesdetail" class="inline-block mt-4 bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 ml-8" id="fourt-product">View More</a>
 			  </div>
 			</div>
@@ -502,8 +502,8 @@ gsap.fromTo(
 				<h1 class="text-4xl font-bold mb-2" id="contact-page-title">Contact Us</h1>
 				<p class="text-lg mb-4" id="conatct-welcome-text">Get more info at our contact page</p>
 				
-				<div class="flex justify-center items-center h-full w-full" id="contacts-button-1">
-					<a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" id="button-contact">
+				<div class="flex justify-center items-center h-full w-full" id="button-contact">
+					<a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" >
 						<IconPhone class="mr-2" />
 						Contact Us
 					</a>

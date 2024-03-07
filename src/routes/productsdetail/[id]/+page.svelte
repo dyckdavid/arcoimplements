@@ -6,25 +6,6 @@
   import {PortableText} from '@portabletext/svelte'
   import emblaCarouselSvelte from 'embla-carousel-svelte'
   import type { EmblaCarouselType } from 'embla-carousel';
-  import Carousel from '$lib/components/imagecarousel/Carousel.svelte';
-
-
-  // Ensure the interface is correctly declared
-  interface ImageAsset {
-    _ref: string;
-  }
-
-  interface Image {
-    asset: ImageAsset;
-  }
-
-  interface Product {
-    name: string;
-    description: string;
-    price: number;
-    images: Image[];
-    instructions: any; // Adjust as needed for your actual data structure
-  }
 
   const sanityClient = createClient({
     projectId: 'hnzv88np',
@@ -42,8 +23,7 @@
     return builder.image(assetRef).url();
   }
 
-  let images: string[] = [];
-  let product: Product | null = null;
+  let product: { name: any; description: any; price: any; images: any; instructions: any; } | null = null;
   let currentIndex = 0; // Current image index
   let embla: EmblaCarouselType;
 
@@ -55,13 +35,7 @@
       const query = `*[_type == "products" && _id == "${productId}"]`;
       const fetchedProducts = await sanityClient.fetch(query);
       if (fetchedProducts && fetchedProducts.length > 0) {
-        
         product = fetchedProducts[0];
-
-        if (product) {
-        images = product.images.map((img: Image) => urlFor(img.asset._ref));
-      }
-  
       } else {
         console.error('No product found with the provided ID.');
         product = null;
@@ -93,20 +67,22 @@
 </script>
   
   {#if product}
-  <div class="flex flex-col md:flex-row p-20 gap-8 ">
-    <div class="md:w-1/2 flex justify-center items-center relative ">
+  <div class="flex flex-col md:flex-row p-20 gap-8 embla__viewport">
+    <div class="md:w-1/2 flex justify-center items-center relative embla" use:emblaCarouselSvelte>
 
-      <div class="">
+      <div class="embla__container embla__slide">
 
-       
-          <Carousel {images} />
-        
+        {#each product.images as image, index}
+          <img src={urlFor(image.asset._ref)} alt={`Image of ${product.name}`} class="w-full h-auto rounded-lg shadow-lg">
+        {/each}
 
       <!-- Only display the current image -->
       <!-- <img src={urlFor(product.images[currentIndex].asset._ref)} alt={`Image of ${product.name}`} class="w-full md:w-4/5 h-auto rounded-lg shadow-lg"> -->
       </div>
     </div>
  
+    <button class="absolute top-1/2 left-4 z-10 p-2 m-2 bg-gray-700 text-white rounded-full transform -translate-y-1/2" on:click={() => navigate(-1)}>&lt;</button>
+    <button class="absolute top-1/2 right-4 z-10 p-2 m-2 bg-gray-700 text-white rounded-full transform -translate-y-1/2" on:click={() => navigate(1)}>&gt;</button>
 
     <div class="md:w-1/2 p-4">
       <h1 class="text-2xl md:text-4xl text-primary font-bold">{product.name}</h1>
@@ -129,3 +105,21 @@
 {:else}
   <p class="pt-20">Loading product details...</p>
 {/if}
+  
+
+<style>
+  .embla {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+  }
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+  .embla__viewport {
+    overflow: hidden;
+    position: relative;
+  }
+</style>

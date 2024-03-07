@@ -215,7 +215,7 @@
                </div>
              {/each}
            </div>
-         </div>
+         </div> 
          
 
          {#if product.images.length > 1}

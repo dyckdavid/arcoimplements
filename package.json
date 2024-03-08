@@ -29,6 +29,7 @@
 		"@sanity/client": "^6.7.1",
 		"@sanity/image-url": "^1.0.2",
 		"@tabler/icons-svelte": "^2.29.0",
+		"@tailwindcss/typography": "^0.5.10",
 		"embla-carousel-autoplay": "^8.0.0-rc14",
 		"embla-carousel-svelte": "^8.0.0-rc14",
 		"firebase": "^10.1.0",

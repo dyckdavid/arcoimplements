@@ -40,8 +40,8 @@
       </a>
     </div>
   </div>
-  <div class="mt-4 p-4 bg-gray-800 text-black h-screen">
-    <div class="bg-gray-200 p-2 rounded pb-2 h-full">
+  <div class="mt-4 p-4 bg-gray-800 text-black ">
+    <div class="bg-gray-200 p-2 rounded pb-2 h-full prose m-auto min-h-[40vh]">
       {#if product.instructions}
         <PortableText value={product.instructions} components={{}} />
       {:else}
@@ -50,5 +50,5 @@
     </div>
   </div>
 {:else}
-  <p class="pt-20">Loading product details...</p>
+  <p class="pt-20">Could no find product.</p>
 {/if}

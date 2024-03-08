@@ -12,6 +12,7 @@ type Product = {
   name: string;
   description: string;
   price: number;
+  instructions?: any;
   imageUrls: string[];
 };
 
@@ -38,7 +39,7 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProductById(id: string): Promise<Product> {
   const product = await sanityClient.fetch(
-    '*[_type == "products" && _id == $id]{_id, name, description, price, "imageUrls": images[].asset->url}',
+    '*[_type == "products" && _id == $id]{_id, name, description, price, instructions, "imageUrls": images[].asset->url}',
     { id }
   );
 

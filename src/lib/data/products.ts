@@ -31,11 +31,19 @@ export function urlFor(assetRef: string) {
 
 export async function getProducts(): Promise<Product[]> {
   const products = await sanityClient.fetch(
-    '*[_type == "products"]{_id, name, description, price, "imageUrls": images[].asset->url}'
+    `*[_type == "products"] | order(_createdAt desc) {
+      _id, 
+      name, 
+      description, 
+      price, 
+      createdAt,
+      "imageUrls": images[].asset->url
+    }`
   );
 
   return products;
 }
+
 
 export async function getProductById(id: string): Promise<Product> {
   const product = await sanityClient.fetch(

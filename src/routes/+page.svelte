@@ -68,7 +68,7 @@
 			
 			<div class="flex flex-col md:flex-row items-center md:items-start py-6" id="second-products-services">
 				<div class="md:w-1/3" id="first-product-two">
-				  <img src="https://cdn.sanity.io/images/hnzv88np/production/a6bd2e50251d0fa5cca584418ff8ea5883c59203-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
+				  <img src="https://cdn.sanity.io/images/hnzv88np/production/187cc449ab6d54ff958c5f22cc5152c3494aaa37-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
 				</div>
 				<div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
 				  <h2 class="text-2xl font-semibold pl-9" id="second-product-two">Automatic Headgate Chute</h2>

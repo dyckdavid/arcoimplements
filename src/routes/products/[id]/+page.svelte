@@ -1,11 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, onMount } from "svelte";
-  import { page } from "$app/stores";
-  import { createClient } from "@sanity/client";
-  import imageUrlBuilder from "@sanity/image-url";
   import { PortableText } from "@portabletext/svelte";
-  import type { EmblaCarouselType } from "embla-carousel";
-  import Carousel from "$lib/components/imagecarousel/Carousel.svelte";
   import type { PageData } from "./$types";
   import Carousel2 from "$lib/components/imagecarousel/Carousel2.svelte";
 
@@ -19,9 +13,6 @@
     <div class="md:w-1/2 flex justify-center items-center relative">
       <div class="">
         <Carousel2 images={product.imageUrls} />
-
-        <!-- Only display the current image -->
-        <!-- <img src={urlFor(product.images[currentIndex].asset._ref)} alt={`Image of ${product.name}`} class="w-full md:w-4/5 h-auto rounded-lg shadow-lg"> -->
       </div>
     </div>
 

@@ -1,5 +1,5 @@
 <script>
-        import { IconShoppingCart, IconPhone, IconMail, IconWorldWww, IconBrandX, IconBrandFacebook, IconBrandYoutube } from '@tabler/icons-svelte';
+        import { IconBrandX, IconBrandFacebook, IconBrandYoutube } from '@tabler/icons-svelte';
 
 </script>
 

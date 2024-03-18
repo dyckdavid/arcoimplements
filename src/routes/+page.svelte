@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 	import { onMount } from 'svelte';
     import homevideo from '$lib/videos/webistehomevideo.mp4';
-    import { IconShoppingCart, IconPhone, IconMail, IconWorldWww, IconBrandX, IconBrandFacebook, IconBrandYoutube } from '@tabler/icons-svelte';
+    import { IconPhone, IconMail, IconWorldWww } from '@tabler/icons-svelte';
     import { initAnimations } from '$lib/animations';
 
 
@@ -57,7 +55,6 @@
 			  <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
 				<h2 class="text-2xl font-semibold pl-9" id="second-product">Gates (4 - 16 feet) long</h2>
 				<p class="mt-2 pl-9" id="third-product">Our gates represent the pinnacle of longevity in the market. For gates that are 12 feet in length or longer, we incorporate our superior heavy-duty double strap system as a standard feature to ensure unmatched durability and strength.</p>
-				<!-- <a href="/products/gatesdetail" class="inline-block mt-4 bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 ml-8" id="fourt-product">View More</a> -->
 			  </div>
 			</div>
 
@@ -73,7 +70,6 @@
 				<div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
 				  <h2 class="text-2xl font-semibold pl-9" id="second-product-two">Automatic Headgate Chute</h2>
 				  <p class="mt-2 pl-9" id="third-product-two">Automatic Head Gate Chute!</p>
-				  <!-- <a href="/products/scooperdetail" class="inline-block mt-4 bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 ml-8" id="fourt-product-two">View More</a> -->
 				</div>
 			  </div>
 

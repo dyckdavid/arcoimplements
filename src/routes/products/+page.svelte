@@ -47,9 +47,6 @@
   {/if}
 </section>
 
-<!-- Rest of your HTML and CSS remains the same -->
-
-<!-- Tailwind CSS for responsiveness -->
 <style>
   .product-card {
     @apply border border-gray-300 rounded-lg overflow-hidden shadow transition-shadow duration-300 ease-in-out;
@@ -59,7 +56,6 @@
     @apply shadow-lg;
   }
 
-  /* Ensure the "View More" button is centered */
   .view-more {
     @apply w-full flex justify-center;
   }

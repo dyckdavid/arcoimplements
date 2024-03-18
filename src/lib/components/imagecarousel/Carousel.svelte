@@ -67,7 +67,6 @@
 </div>
 
 <style>
-  /* Ensure your icon scales as needed and is aligned properly */
   :global(svg.tabler-icon) {
     width: 2.5rem;
     height: 2.5rem;

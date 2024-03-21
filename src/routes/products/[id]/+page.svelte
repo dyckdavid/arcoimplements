@@ -1,3 +1,14 @@
+<script lang="ts" context="module">
+  // If MediaItem is used outside this component, otherwise, move it inside the other <script> tag without export
+    export interface MediaItem {
+  src: string;
+  type: 'image' | 'video';
+  title: string;
+}
+  
+</script>
+
+
 <script lang="ts">
   import { PortableText } from "@portabletext/svelte";
   import type { PageData } from "./$types";
@@ -6,14 +17,26 @@
   export let data: PageData;
 
   let product = data.product;
+
+  // Function to transform URLs into the expected format for Carousel2
+  const transformMediaUrls = (urls: string[]): MediaItem[] => {
+    return urls.map(url => ({
+      src: url,
+      // Use a type assertion here to ensure 'type' is correctly typed
+      type: url.match(/\.(mp4|mov|wmv)$/) ? 'video' : 'image' as 'video' | 'image',
+      title: 'A descriptive title' // Adjust as necessary for dynamic titles
+    }));
+  };
+
+  let mediaItems: MediaItem[] = product ? transformMediaUrls(product.imageUrls) : [];
+
 </script>
 
 {#if product}
   <div class="flex flex-col md:flex-row p-20 gap-8">
     <div class="md:w-1/2 flex justify-center items-center relative">
       <div class="">
-        <Carousel2 images={product.imageUrls} />
-      </div>
+        <Carousel2 images={mediaItems} />      </div>
     </div>
 
     <div class="md:w-1/2 p-4">

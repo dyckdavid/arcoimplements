@@ -21,8 +21,8 @@
     <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {#each products as product}
         <div class="product-card group">
-          <div class="h-64">
-            <Carousel2 images={product.imageUrls} alt={product.name} />
+          <div class="">
+            <img src={product.mainImage} alt={product.name} class="h-full">
           </div>
 
           <div class="p-4 text-left">

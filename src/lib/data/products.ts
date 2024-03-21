@@ -14,6 +14,7 @@ type Product = {
   price: number;
   instructions?: any;
   imageUrls: string[];
+  mainImage: string;
 };
 
 const sanityClient = createClient({
@@ -34,7 +35,8 @@ export async function getProducts(): Promise<Product[]> {
     `*[_type == "products"] | order(_createdAt desc) {
       _id, 
       name, 
-      description, 
+      description,
+      "mainImage": mainImage.asset->url, 
       price, 
       createdAt,
       "imageUrls": images[].asset->url
@@ -47,7 +49,7 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProductById(id: string): Promise<Product> {
   const product = await sanityClient.fetch(
-    '*[_type == "products" && _id == $id]{_id, name, description, price, instructions, "imageUrls": images[].asset->url}',
+    '*[_type == "products" && _id == $id]{_id, name, description, price, instructions, mainImage, "imageUrls": images[].asset->url}',
     { id }
   );
 

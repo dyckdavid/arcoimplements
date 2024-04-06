@@ -22,7 +22,7 @@
       {#each products as product}
         <div class="product-card group">
           <div class="">
-            <img src={product.mainImage} alt={product.name} class="h-full">
+            <img src={product.mainImage} alt={product.name} class="">
           </div>
 
           <div class="p-4 text-left">

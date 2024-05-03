@@ -1,7 +1,5 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import Carousel2 from "$lib/components/imagecarousel/Carousel2.svelte";
-
   export let data: PageData;
 
   let products = data.products;

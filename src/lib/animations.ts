@@ -21,72 +21,72 @@ export const initAnimations = () => {
         }
     );
 
-    gsap.fromTo(
-        '#left-banner',
-        { opacity: 0, x: -100 },
-        {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            scrollTrigger: {
-                trigger: '#left-banner',
-                start: 'top center'
-                // end: 'bottom 20%',
-                // scrub: true
-            }
-        }
-    );
+    // gsap.fromTo(
+    //     '#left-banner',
+    //     { opacity: 0, x: -100 },
+    //     {
+    //         opacity: 1,
+    //         x: 0,
+    //         duration: 1,
+    //         scrollTrigger: {
+    //             trigger: '#left-banner',
+    //             start: 'top center'
+    //             // end: 'bottom 20%',
+    //             // scrub: true
+    //         }
+    //     }
+    // );
 
     //right-banner
-    gsap.fromTo(
-        '#right-banner',
-        { opacity: 0, x: 100 },
-        {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            scrollTrigger: {
-                trigger: '#right-banner',
-                start: 'top center'
-                // end: 'bottom 20%',
-                // scrub: true
-            }
-        }
-    );
+    // gsap.fromTo(
+    //     '#right-banner',
+    //     { opacity: 0, x: 100 },
+    //     {
+    //         opacity: 1,
+    //         x: 0,
+    //         duration: 1,
+    //         scrollTrigger: {
+    //             trigger: '#right-banner',
+    //             start: 'top center'
+    //             // end: 'bottom 20%',
+    //             // scrub: true
+    //         }
+    //     }
+    // );
 
     
-    gsap.fromTo(
-        '#left-book',
-        { opacity: 0, x: -100 },
-        {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            scrollTrigger: {
-                trigger: '#left-book',
-                start: 'top center'
-                // end: 'bottom 20%',
-                // scrub: true
-            }
-        }
-    );
+    // gsap.fromTo(
+    //     '#left-book',
+    //     { opacity: 0, x: -100 },
+    //     {
+    //         opacity: 1,
+    //         x: 0,
+    //         duration: 1,
+    //         scrollTrigger: {
+    //             trigger: '#left-book',
+    //             start: 'top center'
+    //             // end: 'bottom 20%',
+    //             // scrub: true
+    //         }
+    //     }
+    // );
 
-    gsap.fromTo(
-'#first-service',
-{ opacity: 0, y: -100 }, 
-{
-opacity: 1,
-y: 0,
-duration: 1,
-delay: 0, 
-scrollTrigger: {
-  trigger: '#all-services',
-  start: 'top bottom'
-  // end: 'bottom 20%',
-  // scrub: true
-}
-}
-);
+//     gsap.fromTo(
+// '#first-service',
+// { opacity: 0, y: -100 }, 
+// {
+// opacity: 1,
+// y: 0,
+// duration: 1,
+// delay: 0, 
+// scrollTrigger: {
+//   trigger: '#all-services',
+//   start: 'top bottom'
+//   // end: 'bottom 20%',
+//   // scrub: true
+// }
+// }
+// );
 
 gsap.fromTo(
 '#second-service',
@@ -106,35 +106,35 @@ scrollTrigger: {
 );
 
 
-    gsap.fromTo(
-        '#services-btn',
-        { opacity: 0 },
-        {
-            opacity: 1,
-            duration: 1,
-            delay: 0,
-            scrollTrigger: {
-                trigger: '#all-services-',
-                start: 'top center',
-                // end: 'bottom 20%',
-                // scrub: true
-            }
-        }
-    );
+    // gsap.fromTo(
+    //     '#services-btn',
+    //     { opacity: 0 },
+    //     {
+    //         opacity: 1,
+    //         duration: 1,
+    //         delay: 0,
+    //         scrollTrigger: {
+    //             trigger: '#all-services-',
+    //             start: 'top center',
+    //             // end: 'bottom 20%',
+    //             // scrub: true
+    //         }
+    //     }
+    // );
 
-    gsap.fromTo(
-        '#blog-right',
-        { opacity: 0, x: 100 },
-        {
-            opacity: 1,
-            duration: 1,
-            x: 0,
-            scrollTrigger: {
-                trigger: '#blog-right',
-                start: 'top center'
-            }
-        }
-    );
+    // gsap.fromTo(
+    //     '#blog-right',
+    //     { opacity: 0, x: 100 },
+    //     {
+    //         opacity: 1,
+    //         duration: 1,
+    //         x: 0,
+    //         scrollTrigger: {
+    //             trigger: '#blog-right',
+    //             start: 'top center'
+    //         }
+    //     }
+    // );
 
 
     // product section gsap
@@ -190,22 +190,22 @@ scrollTrigger: {
 }
 );
 
-gsap.fromTo(
-'#fourt-product',
-{ opacity: 0, x: 100 }, 
-{
-opacity: 1,
-x: 0,
-duration: 1,
-delay: .40, 
-scrollTrigger: {
-  trigger: '#fourt-product',
-  start: 'top bottom'
-  // end: 'bottom 20%',
-  // scrub: true
-}
-}
-);
+// gsap.fromTo(
+// '#fourt-product',
+// { opacity: 0, x: 100 }, 
+// {
+// opacity: 1,
+// x: 0,
+// duration: 1,
+// delay: .40, 
+// scrollTrigger: {
+//   trigger: '#fourt-product',
+//   start: 'top bottom'
+//   // end: 'bottom 20%',
+//   // scrub: true
+// }
+// }
+// );
 
 gsap.fromTo(
 '#first-product-two',
@@ -258,22 +258,22 @@ scrollTrigger: {
 }
 );
 
-gsap.fromTo(
-'#fourt-product-two',
-{ opacity: 0, x: 100 }, 
-{
-opacity: 1,
-x: 0,
-duration: 1,
-delay: .40, 
-scrollTrigger: {
-  trigger: '#fourt-product-two',
-  start: 'top bottom'
-  // end: 'bottom 20%',
-  // scrub: true
-}
-}
-);
+// gsap.fromTo(
+// '#fourt-product-two',
+// { opacity: 0, x: 100 }, 
+// {
+// opacity: 1,
+// x: 0,
+// duration: 1,
+// delay: .40, 
+// scrollTrigger: {
+//   trigger: '#fourt-product-two',
+//   start: 'top bottom'
+//   // end: 'bottom 20%',
+//   // scrub: true
+// }
+// }
+// );
 
 gsap.fromTo(
 '#button-1',
@@ -292,22 +292,23 @@ scrollTrigger: {
 }
 );
 
+
 gsap.fromTo(
-'#button-contact',
-{ opacity: 0, x: 100 }, 
-{
-opacity: 1,
-x: 0,
-duration: 1.25,
-delay: .5, 
-scrollTrigger: {
-  trigger: '#button-contact',
-  start: 'top center'
-  // end: 'bottom 20%',
-  // scrub: true
-}
-}
-);
+  '#button-contact',
+  { opacity: 0, y: -100 }, 
+  {
+  opacity: 1,
+  y: 0,
+  duration: 1.1,
+  delay: .28, 
+  scrollTrigger: {
+    trigger: '#button-contact',
+    start: 'top bottom'
+    // end: 'bottom 20%',
+    // scrub: true
+  }
+  }
+  );
 
 gsap.fromTo(
 '#contact-page-title',

@@ -155,7 +155,7 @@
         <!-- svelte-ignore a11y-missing-attribute -->
         <iframe
         class="w-full"
-        style="height: 20rem; border:0;"
+        style="height: 21.5rem; border:0;"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22270.87552797161!2d-106.85868869708742!3d28.466205065926044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86c1c9267981e2c3%3A0xf4f6dd51f411e669!2sEstufas%20El%20Arco!5e0!3m2!1sen!2smx!4v1699309386795!5m2!1sen!2smx"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"

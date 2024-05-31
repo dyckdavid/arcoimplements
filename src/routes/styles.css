@@ -5,3 +5,9 @@
 :root {
     --arco-orange: #d2582d;
 }
+
+@layer base {
+    body {
+      @apply bg-dark-background text-dark-text;
+    }
+  }

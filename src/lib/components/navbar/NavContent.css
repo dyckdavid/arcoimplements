@@ -54,7 +54,7 @@
   }
 
   .cj-main-list a:hover {
-    background: rgba(0, 0, 0, 0.13);
+    background: rgb(87, 87, 87);
     border-radius: 5px;
     transition: all 0.2s linear;
   }

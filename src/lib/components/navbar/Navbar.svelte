@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import logo from "$lib/images/Arco.png";
+  import logo from "$lib/images/implementslogo.png";
   import { afterNavigate } from "$app/navigation";
   import "./Navbar.css";
   import "./ListAnimations.css";

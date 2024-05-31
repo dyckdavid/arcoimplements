@@ -75,17 +75,37 @@
 </div>
 
 <style>
-  .embla {
+ .embla {
     overflow: hidden;
+    position: relative;
     height: 100%;
-  }
-  .embla__container {
-    display: flex;
     width: 100%;
+}
+
+.embla__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     height: 100%;
-  }
-  .embla__slide {
+    width: 100%;
+}
+
+.embla__slide {
     flex: 0 0 100%;
-    min-width: 0;
-  }
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.embla__slide img, .embla__slide video {
+    height: 300px;  /* Fixed height for all images */
+    width: 400px;  /* Fixed width for all images */
+    object-fit: contain;  /* Keeps the original aspect ratio within the given dimensions */
+}
+
+
+
+  
 </style>

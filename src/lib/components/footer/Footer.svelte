@@ -3,7 +3,7 @@
 
 </script>
 
-<footer class="bg-black text-white">
+<footer class="bg-gray-800 text-white">
     <div class="container mx-auto px-4 py-8 md:flex md:justify-between md:items-start">
       
       

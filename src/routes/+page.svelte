@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
     import homevideo from '$lib/videos/webistehomevideo.mp4';
+	import homeimage from '$lib/images/Arcobuilding.jpg';
     import { IconPhone, IconMail, IconWorldWww } from '@tabler/icons-svelte';
     import { initAnimations } from '$lib/animations';
 
@@ -16,20 +17,23 @@
   
   
   </script>
+
 	  
 	  <svelte:head>
 		<title>Arco Implements</title>
 		<meta name="description" content="Arco Implements designed by David Dyck and David Rempel" />
 	  </svelte:head>
+	  <div class="dark">
 
 	  <main class="overflow-x-hidden">
   
 	  <div class="video-background flex items-center justify-center h-screen parallax-section overflow-x-hidden">
-		  <video autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
+		  <!-- <video autoplay muted playsinline loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
 			<source src={homevideo} type="video/mp4">
-		  </video>
+		  </video> -->
+		  <img src={homeimage} alt="Homeimage" class="absolute top-0 left-0 w-full h-full object-cover z-0">
 		  <div class="relative z-10">
-			<h1 class="text-orange-500 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
+			<h1 class="text-blue-500 bg-opacity-70 rounded-2xl text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text" >Welcome to Arco Implements</h1>
 		  </div>
 		</div>
 
@@ -135,10 +139,11 @@
 				</div>
 			  </div>
 			</div>
+
 		  </section>
 
 	</main>
-	  
+</div>
   
 	<style>
 
@@ -160,19 +165,6 @@
 	  overflow-x: hidden;
 	}
   
-	.video-background video {
-	  min-width: 100%;
-	  min-height: 100%;
-	  width: auto;
-	  height: auto;
-	  position: absolute;
-	  top: 50%;
-	  left: 50%;
-	  transform: translate(-50%, -50%);
-	  margin: 0;
-	  padding: 0;
-	  overflow-x: hidden;
-	}
   
 	.parallax-section {
 	  height: 100vh; 

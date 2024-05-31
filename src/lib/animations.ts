@@ -10,6 +10,17 @@ export const initAnimations = () => {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    let words: gsap.TweenTarget = [];
+    
+    gsap.from(words, {
+      y: -100, // Animates from above the final position
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "elastic.out(1, 0.75)" // Easing for a dynamic entry
+    });
+
+
     gsap.fromTo(
         '#welcome-text',
         { opacity: 0, x: -100 },

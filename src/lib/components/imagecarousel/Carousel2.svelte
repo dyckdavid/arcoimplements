@@ -48,9 +48,6 @@
           <!-- svelte-ignore missing-declaration -->
           <!-- svelte-ignore a11y-media-has-caption -->
           <video {src} class="w-full h-full object-cover" controls aria-label={title}>
-            <!-- Example track element, replace with your own subtitle track if available -->
-            <!-- <track kind="captions" src="path/to/captions.vtt" srclang="en" label="English"> -->
-            <!-- No captions available -->
           </video>          {/if}
         </div>
       {/each}

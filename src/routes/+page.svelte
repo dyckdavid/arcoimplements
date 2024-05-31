@@ -32,7 +32,7 @@
 			<source src={homevideo} type="video/mp4">
 		  </video> -->
 		  <img src={homeimage} alt="Homeimage" class="absolute top-0 left-0 w-full h-full object-cover z-0">
-		  <div class="relative z-10">
+		  <div class="relative z-10 p-5">
 			<h1 class="text-white-500 p-8 bg-black bg-opacity-75 rounded-2xl text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text">Welcome to Arco Implements</h1>
 		  </div>
 		</div>

@@ -13,8 +13,11 @@
   import { PortableText } from "@portabletext/svelte";
   import type { PageData } from "./$types";
   import Carousel2 from "$lib/components/imagecarousel/Carousel2.svelte";
+  
 
   export let data: PageData;
+
+
 
   let product = data.product;
 
@@ -66,3 +69,42 @@
 {:else}
   <p class="pt-20">Could no find product.</p>
 {/if}
+
+
+<!-- <style>
+  .modal {
+  position: fixed;
+  z-index: 100;
+  background: white;
+  border-radius: 10px;
+  width: 80%;
+  top: 30vh;
+  left: 10%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  display: none;
+}
+
+.modal.visible {
+  display: block;
+  animation: fade-slide-in 0.3s ease-out forwards;
+}
+
+.modal .modal__title {
+  margin: 0;
+  padding: 1rem;
+  border-bottom: 1px solid #00329e;
+  background: #00329e;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+.modal .modal__content {
+  padding: 1rem;
+}
+
+.modal .modal__actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+</style> -->

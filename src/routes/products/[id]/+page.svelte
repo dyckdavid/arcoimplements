@@ -33,7 +33,7 @@
 </script>
 
 {#if product}
-  <div class="flex flex-col md:flex-row p-20 gap-8">
+  <div class="flex flex-col md:flex-row p-5 pt-20 gap-8">
     <div class="md:w-1/2 flex justify-center items-center relative">
       <div class="">
         <Carousel2 images={mediaItems} />      </div>

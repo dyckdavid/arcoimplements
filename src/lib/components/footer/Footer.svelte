@@ -34,7 +34,7 @@
             <a href="https://x.com/estufaselarco?s=11&t=qPAIaImaGQFpGgE-xRfJYQ" class="hover:text-gray-400 transition-colors mx-2 ">
               <IconBrandX class="w-4 h-4"  />
             </a>
-            <a href="https://www.facebook.com/estufas.arco?mibextid=ZbWKwL" class="hover:text-gray-400 transition-colors mx-2">
+            <a href="https://www.facebook.com/share/DCVvFX3nnoyu6iiz/?mibextid=JRoKGi" class="hover:text-gray-400 transition-colors mx-2">
                 <IconBrandFacebook class="w-4 h-4"  />
             </a>
             <a href="https://youtube.com/@daviddyck04?si=iCOKhBT5oNvAA738" class="hover:text-gray-400 transition-colors mx-2">

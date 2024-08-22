@@ -27,73 +27,55 @@
 
   export const showModal = writable(false);
 
-  const openModal = () => {
-    showModal.set(true);
-  };
+  // const openModal = () => {
+  //   showModal.set(true);
+  // };
 
-  const closeModal = () => {
-    showModal.set(false);
-  };
+  // const closeModal = () => {
+  //   showModal.set(false);
+  // };
 </script>
 
 {#if product}
-  <div class="flex flex-col md:flex-row p-5 pt-20 gap-8">
-    <div class="md:w-1/2 flex justify-center items-center relative">
-      <div class="flex flex-col items-center"> <!-- Updated to center content -->
+<div class="flex flex-col md:flex-row h-screen">
+    <!-- Large Image Section -->
+    <div class="flex-shrink-0 md:flex-3 bg-gray-200 flex items-center justify-center w-full md:w-3/4 fixed md:static h-screen">
+      <div class="w-full h-full object-cover">
         <Carousel2 images={mediaItems} />
-        <button
-          class="mt-4 px-4 py-2 bg-primary text-white bg-orange-500 font-bold rounded hover:bg-primary-dark transition-colors duration-300 ease-in-out"
-          on:click={openModal}
-        >
-          Larger Image
-        </button> 
       </div>
     </div>
-    <div class="md:w-1/2 p-4">
-      <h1 class="text-2xl md:text-4xl text-primary font-bold">
-        {product.name}
-      </h1>
-      <p class="mt-2 text-base md:text-lg">{product.description}</p>
-      <a
-        href="mailto:estufaselarco@gmail.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}%20!"
-      >
-        <button
-          class="mt-4 px-4 py-2 bg-primary text-white bg-orange-500 font-bold rounded hover:bg-primary-dark transition-colors duration-300 ease-in-out"
-        >
-          Request Quote
-        </button>
-      </a>
-    </div>
-  </div>
-  <div class="mt-4 p-4 bg-gray-800 text-black">
-    <div class="bg-gray-200 p-2 rounded pb-2 h-full prose m-auto min-h-[40vh]">
-      {#if product.instructions}
-        <PortableText value={product.instructions} components={{}} />
-      {:else}
-        <p class="text-sm md:text-base text-black">No instructions provided.</p>
-      {/if}
+  
+    <!-- Scrollable Content Section -->
+    <div class="flex-1 h-screen overflow-y-auto p-4 ml-auto md:w-1/4">
+      <h1 class="text-2xl font-bold">Scrollable Text Section</h1>
+      <p class="mt-4">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.
+      </p>
+      <p class="mt-4">
+        Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      </p>
+      <p class="mt-4">
+        Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+      </p>
+      <p class="mt-4">
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.
+      </p>
+      <p class="mt-4">
+        Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec.
+      </p>
+      <p class="mt-4">
+        Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+      </p>
+      <p class="mt-4">
+        Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+      </p>
+      <p class="mt-4">
+        Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+      </p>
     </div>
   </div>
 {:else}
   <p class="pt-20">Could not find product.</p>
 {/if}
 
-{#if $showModal}
-  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-white p-4 rounded-lg shadow-lg relative w-11/12 h-5/6 md:w-4/5 md:h-4/5">
-      <!-- Close Button -->
-      <button
-        class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-        on:click={closeModal}
-      >
-        &times;
-      </button>
-      <!-- Wrapper div to control Carousel2 sizing -->
-      <div class="w-full h-full flex items-center justify-center">
-        <div class="w-full h-full">
-          <Carousel2 images={mediaItems} />
-        </div>
-      </div>
-    </div>
-  </div>
-{/if}
+

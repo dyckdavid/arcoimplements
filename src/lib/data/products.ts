@@ -39,6 +39,8 @@ export async function getProducts(): Promise<Product[]> {
       "mainImage": mainImage.asset->url, 
       price, 
       createdAt,
+      specDetails, 
+      featureDetails,
       "imageUrls": images[].asset->url
     }`
   );

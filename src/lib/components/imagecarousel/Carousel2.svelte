@@ -97,8 +97,7 @@
 }
 
 .embla__slide img, .embla__slide video {
-    height: 300px;  /* Fixed height for all images */
-    width: 400px;  /* Fixed width for all images */
+
     object-fit: contain;  /* Keeps the original aspect ratio within the given dimensions */
 }
 

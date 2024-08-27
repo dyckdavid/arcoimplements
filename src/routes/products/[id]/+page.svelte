@@ -12,6 +12,7 @@
   import type { PageData } from "./$types";
   import Carousel2 from "$lib/components/imagecarousel/Carousel2.svelte";
   import { writable } from 'svelte/store';
+  import Button from '$lib/components/button/Button.svelte';
 
   export let data: PageData;
   let product = data.product;
@@ -81,6 +82,13 @@
                 </h1><br>
                 <div class="justify-center pl-5">
 
+                  <!-- <Button text="Quote" /> -->
+                 
+                  <button class="bg-orange-500 text-white flex items-center px-4 py-2 rounded-none relative overflow-hidden w-1/2">
+                    <span class="mr-2">Quote</span>
+                    <div class="absolute right-0 top-0 h-full w-full bg-white transform rotate-45 translate-x-1/2 -translate-y-1/2"></div>
+                </button>   
+
                   {#if product.instructions}
                   <PortableText value={product.instructions} components={{}} />
                 {:else}
@@ -97,3 +105,17 @@
 <p class="pt-20">Could not find product.</p>
 
 {/if}
+
+<style>
+  button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f97316; /* Orange background color */
+      transform: translateX(50%);
+      transform-origin: top right;
+  }
+  </style>

@@ -1,37 +1,21 @@
-<script>
-    export let text = 'Quote';
-  </script>
-  
-  <button class="button-style">
-    {text}
-    <span class="triangle"></span>
-  </button>
-  
-  <style>
-    .button-style {
-      background-color: #FF7A00; /* Specific shade of orange */
-      color: white;
-      font-weight: bold;
-      position: relative;
-      padding: 8px 36px 8px 16px; /* Right padding adjusted to prevent text overlap */
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden; /* Keeps triangle within button boundary */
-    }
+<script lang="ts">
+  // No props needed, direct usage in component
+</script>
 
-    .triangle {
-      position: absolute;
-      right: 1px; /* Small adjustment to create space at the cut edge */
-      top: 0;
-      bottom: 0;
-      width: 20px; /* Maintain triangle width */
-      background-color: white;
-      clip-path: polygon(100% 0, 4px 50%, 100% 100%);
-      /* Adjusted clip-path to start slightly away from the button edge, creating a gap only along the cut */
-    }
-  </style>
-  
+<div class="flex justify-center items-center" style="height: 100vh;">
+  <button class="relative bg-[#FF8500] text-white font-bold text-lg uppercase tracking-widest overflow-hidden" style="border: none; outline: none; width: 320px; height: 50px; padding: 0 20px; box-sizing: border-box;">
+    Quote
+    <div style="position: absolute; inset-y-0 right-0; width: 20%; min-width: 60px; background: white; clip-path: polygon(100% 0, 0 50%, 100% 100%);">
+      <!-- Ensuring the triangle maintains proportion across sizes -->
+    </div>
+  </button>
+</div>
+
+<style>
+  button {
+    font-family: 'Arial', sans-serif; /* Ensuring text consistency */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures text and triangle do not overlap */
+  }
+</style>

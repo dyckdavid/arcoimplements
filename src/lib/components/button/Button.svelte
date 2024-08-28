@@ -1,21 +1,138 @@
 <script lang="ts">
-  // No props needed, direct usage in component
+  export let text = '';
 </script>
 
-<div class="flex justify-center items-center" style="height: 100vh;">
-  <button class="relative bg-[#FF8500] text-white font-bold text-lg uppercase tracking-widest overflow-hidden" style="border: none; outline: none; width: 320px; height: 50px; padding: 0 20px; box-sizing: border-box;">
-    Quote
-    <div style="position: absolute; inset-y-0 right-0; width: 20%; min-width: 60px; background: white; clip-path: polygon(100% 0, 0 50%, 100% 100%);">
-      <!-- Ensuring the triangle maintains proportion across sizes -->
-    </div>
-  </button>
+<div>
+  <a class="button button-request" href="/">
+    <span>
+      {text}
+    </span>
+    
+    
+   </a>
 </div>
 
 <style>
-  button {
-    font-family: 'Arial', sans-serif; /* Ensuring text consistency */
+  .button.button-request {
+        width: 21.4rem;
+        height: 5.2rem;
+        margin: inherit;
+        cursor: pointer;
+
+
+    }
+
+    .button {
+    caret-color: transparent;
+    height: 5.2rem;
+    width: 20.2rem;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Ensures text and triangle do not overlap */
-  }
-</style>
+    color: var(--color-white);
+    font-size: var(--font-16);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    position: relative;
+    text-decoration: none;
+    
+}
+
+a, a:hover, a:focus {
+    text-decoration: none;
+    outline: none;
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: ease;
+    box-shadow: none;
+}
+
+    a {
+      outline: none;
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: ease;
+    box-shadow: none;
+    font-size: 50px;
+    }
+
+    .button.button-request span {
+    width: 96.6%;
+    clip-path: polygon(0 0, 87% 0, 100% 100%, 0% 100%);
+}
+
+.button span {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: var(--color-blacktwo);
+    clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+    width: 19.3rem;
+    padding-left: 2.6rem;
+    padding-right: 2.6rem;
+    transition-duration: 0.4s;
+}
+.button:after {
+    clip-path: polygon(-5% 0, 100% 0, 100% 100%, 89% 100%);
+    content: " ";
+    top: 0;
+    position: absolute;
+    right: 2px;
+    width: 3.1rem;
+    height: 100%;
+    background-color: var(--color-orange);
+    display: block;
+    transition-duration: 0.4s;
+}
+
+.button:hover span {
+  background-color: var(--color-orange);
+}
+
+.button:hover::after {
+  background-color: var(--color-black);
+}
+
+:root {
+    --font-base: 'Raleway', sans-serif;
+    --font-headings: 'Roboto Condensed', sans-serif;
+    --font-monts: 'Montserrat', sans-serif;
+    --color-white: #FFF;
+    --color-body: #555555;
+    --color-orange: #F07A33;
+    --color-black: #3A3F3E;
+    --color-blacktwo: #232424;
+    --font-64: 6.4rem;
+    --font-45: 4.5rem;
+    --font-40: 4rem;
+    --font-30: 3rem;
+    --font-35: 3.5rem;
+    --font-20: 2rem;
+    --font-18: 1.8rem;
+    --font-17: 1.7rem;
+    --font-16: 1.6rem;
+    --font-14: 1.4rem;
+    --line-28: 2.8rem;
+    --transition: transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: ease;
+}
+
+@media (max-width: 991px) {
+    .button.button-request:after {
+        width: 2.8rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .button:after {
+        width: 2rem;
+    }
+}
+
+
+
+  </style>

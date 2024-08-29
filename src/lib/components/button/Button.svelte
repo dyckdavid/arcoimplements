@@ -1,9 +1,10 @@
 <script lang="ts">
   export let text = '';
+  export let link = '';
 </script>
 
 <div>
-  <a class="button button-request" href="/">
+  <a class="button button-request" href={link}>
     <span>
       {text}
     </span>
@@ -16,7 +17,6 @@
   .button.button-request {
         width: 21.4rem;
         height: 5.2rem;
-        margin: inherit;
         cursor: pointer;
 
 

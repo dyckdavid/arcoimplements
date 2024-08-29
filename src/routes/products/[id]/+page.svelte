@@ -11,7 +11,6 @@
   import { PortableText } from "@portabletext/svelte";
   import type { PageData } from "./$types";
   import Carousel2 from "$lib/components/imagecarousel/Carousel2.svelte";
-  import { writable } from 'svelte/store';
   import Button from '$lib/components/button/Button.svelte';
 
   export let data: PageData;
@@ -32,6 +31,7 @@
 
   let mainContent: HTMLElement;
   let imageCarousel: HTMLElement;
+  let quoteButton: HTMLElement;
 
   onMount(() => {
       const handleScroll = () => {
@@ -40,8 +40,12 @@
 
           if (mainBottom <= windowHeight) {
               imageCarousel.classList.remove('sticky');
+              quoteButton.classList.remove('fixed');
+              quoteButton.classList.add('hidden');
           } else {
               imageCarousel.classList.add('sticky');
+              quoteButton.classList.add('fixed');
+              quoteButton.classList.remove('hidden');
           }
       };
 
@@ -82,7 +86,7 @@
                 </h1><br>
                 <div class="justify-center pl-5">
 
-                  <Button text="Request Quote" />
+                  
                   {#if product.instructions}
                   <PortableText value={product.instructions} components={{}} />
                 {:else}
@@ -94,6 +98,12 @@
           </div>
       </div>
   </main>
+
+  <div>
+    <div class="bottom-1 left-1/2 transform -translate-x-1/2 z-[100]" bind:this={quoteButton}>
+        <Button text="Request Quote" link="mailto:davi@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}%20!" />
+    </div>
+  </div>
 </div>
 {:else}
 <p class="pt-20">Could not find product.</p>

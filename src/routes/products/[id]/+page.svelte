@@ -73,7 +73,7 @@
       <div class="h-full py-6 pl-4 pr-6 sm:pl-6 lg:pl-8 ">
           <div class="relative h-full" style="min-height: 12rem">
               <div
-                  class="absolute inset-0 rounded-lg  flex justify-center items-center w-full"
+                  class="absolute inset-0 flex justify-center items-center w-full"
               >
               <Carousel2 images={mediaItems} />
               </div>
@@ -93,12 +93,20 @@
                 </h1><br>
                 <div class="justify-center pl-5">
 
+                  {#if product?.specs === true}
+  <p>Width: {product.specWidth}</p>
+  <p>Height: {product.specHeight}</p>
+  <p>Weight: {product.specWeight}</p>
+{:else}
+  <p class="text-sm md:text-base text-white">No instructions provided.</p>
+{/if}
+
                   
-                  {#if product.instructions}
+                  <!-- {#if product.instructions}
                   <PortableText value={product.instructions} components={{}} />
                 {:else}
                   <p class="text-sm md:text-base text-black">No instructions provided.</p>
-                {/if}
+                {/if} -->
                 </div>
             </div>
               </div>

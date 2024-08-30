@@ -15,8 +15,8 @@
 
 <style>
   .button.button-request {
-        width: 21.4rem;
-        height: 5.2rem;
+        width: 20.2rem;
+        height: 4.1rem;
         cursor: pointer;
 
 
@@ -75,7 +75,7 @@ a, a:hover, a:focus {
     transition-duration: 0.4s;
 }
 .button:after {
-    clip-path: polygon(-5% 0, 100% 0, 100% 100%, 89% 100%);
+    clip-path: polygon(5% 1%, 100% 0, 100% 100%, 88% 100%);
     content: " ";
     top: 0;
     position: absolute;
@@ -130,6 +130,7 @@ a, a:hover, a:focus {
 @media (max-width: 991px) {
     .button:after {
         width: 2rem;
+        clip-path: polygon(-5% 1%, 100% 0, 100% 100%, 88% 100%);
     }
 }
 

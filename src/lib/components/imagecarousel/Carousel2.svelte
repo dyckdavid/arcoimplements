@@ -38,7 +38,7 @@
 </script>
 
 <div class="relative h-full">
-  <div class="embla" use:emblaCarouselSvelte on:emblaInit={onInit}>
+  <div class="embla rounded-lg border-0" use:emblaCarouselSvelte on:emblaInit={onInit}>
     <div class="embla__container">
       {#each images as {type, src, title,}}
         <div class="embla__slide">

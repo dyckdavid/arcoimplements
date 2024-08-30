@@ -109,7 +109,7 @@
   <div>
     <div>
       <div class="fixed left-1/2 transform -translate-x-1/2 z-[100]" style="bottom: {buttonPosition}; transition: bottom 0.3s;">
-        <Button text="Request Quote" link="mailto:davi@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" />
+        <Button text="Request Quote" link="mailto:david@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" />
       </div>
     </div>
     

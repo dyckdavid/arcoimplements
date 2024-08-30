@@ -26,26 +26,33 @@
 
   let mediaItems: MediaItem[] = product ? transformMediaUrls(product.imageUrls) : [];
 
-
-
+  let lastScrollY = window.pageYOffset;
+  let buttonPosition: string = '5px';
 
   let mainContent: HTMLElement;
   let imageCarousel: HTMLElement;
-  let quoteButton: HTMLElement;
 
   onMount(() => {
       const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+          if (currentScrollY > lastScrollY) {
+              buttonPosition = '-100%';
+          } else {
+              buttonPosition = '5px';
+          }
+
+          lastScrollY = currentScrollY;
+
+
+        
           const mainBottom = mainContent.getBoundingClientRect().bottom;
           const windowHeight = window.innerHeight;
 
           if (mainBottom <= windowHeight) {
               imageCarousel.classList.remove('sticky');
-              quoteButton.classList.remove('fixed');
-              quoteButton.classList.add('hidden');
           } else {
               imageCarousel.classList.add('sticky');
-              quoteButton.classList.add('fixed');
-              quoteButton.classList.remove('hidden');
           }
       };
 
@@ -78,7 +85,7 @@
       <div class=" py-6 px-4 sm:px-6 lg:px-8">
           <div class="relative  min-h-fit">
               <div
-                  class="  min-h-[90vh]  inset-0 rounded-lg border-2  border-gray-200 flex justify-center"
+                  class="  min-h-[90vh]  inset-0 rounded-lg flex justify-center"
               >
               <div class="pt-4 ">
                 <h1 class="text-center text-2xl md:text-4xl text-primary font-bold justify-center">
@@ -100,9 +107,12 @@
   </main>
 
   <div>
-    <div class="bottom-1 left-1/2 transform -translate-x-1/2 z-[100]" bind:this={quoteButton}>
-        <Button text="Request Quote" link="mailto:davi@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}%20!" />
+    <div>
+      <div class="fixed left-1/2 transform -translate-x-1/2 z-[100]" style="bottom: {buttonPosition}; transition: bottom 0.3s;">
+        <Button text="Request Quote" link="mailto:davi@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" />
+      </div>
     </div>
+    
   </div>
 </div>
 {:else}

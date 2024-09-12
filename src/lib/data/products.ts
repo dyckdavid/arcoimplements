@@ -10,6 +10,12 @@ type ImageAsset = {
 type Product = {
   _id: string;
   name: string;
+  specs: boolean;
+  specWidth: number;
+  specHeight: number;
+  specWeight: number;
+  features: boolean;
+  featureDetails?: any;
   description: string;
   price: number;
   instructions?: any;
@@ -39,6 +45,14 @@ export async function getProducts(): Promise<Product[]> {
       "mainImage": mainImage.asset->url, 
       price, 
       createdAt,
+      specDetails, 
+      featureDetails,
+      specs,
+      specWidth,
+      specHeight,
+      specWeight,
+      features,
+      featureDetails,
       "imageUrls": images[].asset->url
     }`
   );
@@ -49,7 +63,7 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProductById(id: string): Promise<Product> {
   const product = await sanityClient.fetch(
-    '*[_type == "products" && _id == $id]{_id, name, description, price, instructions, mainImage, "imageUrls": images[].asset->url}',
+    '*[_type == "products" && _id == $id]{_id, name, description, price, instructions, specs, specWidth, specHeight, specWeight, features, featureDetails, mainImage, "imageUrls": images[].asset->url}',
     { id }
   );
 

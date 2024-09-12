@@ -117,7 +117,7 @@
 				  </div>
 				  <div class="flex items-center justify-center md:justify-start" id="mail">
 					<i class="fas fa-envelope text-xl mr-2"><IconMail class="mr-2" /></i> 
-					<p class="text-lg"><span class="font-semibold cursor-pointer"><a href="mailto:estufaselarco@gmail.com">Email: estufaselarco@gmail.com</a></span> </p>
+					<p class="text-lg"><span class="font-semibold cursor-pointer"><a href="mailto:david@arcoimplements.com">Email: david@arcoimplements.com</a></span> </p>
 				  </div>
 				  <div class="flex items-center justify-center md:justify-start" id="web">
 					<i class="fas fa-globe text-xl mr-2"><IconWorldWww class="mr-2" /></i> 

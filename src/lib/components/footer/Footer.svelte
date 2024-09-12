@@ -48,6 +48,6 @@
   
     
     <div class="text-center p-4 text-sm md:text-base">
-      <p>©2024 Arco Implements</p>
+      <p>© {new Date().getFullYear()} Arco Implements</p>
     </div>
   </footer>

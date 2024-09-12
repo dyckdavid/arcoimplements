@@ -136,9 +136,9 @@
         <h2 class="text-xl font-bold mb-2">Email</h2>
         <div class="flex items-center justify-center space-x-2">
           <span class="relative custom-underline" >
-          <p class="cursor-pointer">estufaselarco@gmail.com</p>
+          <p class="cursor-pointer">david@arcoimplements.com</p>
         </span>
-          <button on:click={() => copyText('estufaselarco@gmail.com', 'email')} class="cursor-pointer relative">
+          <button on:click={() => copyText('david@arcoimplements.com', 'email')} class="cursor-pointer relative">
             {#if showCopyConfirmation.email}
               <IconCheck class="w-5 h-5 sm:w-6 sm:h-6"/>
               <span class="absolute -top-8 left-0 bg-black text-white text-xs py-1 px-2 rounded">Copied!</span>

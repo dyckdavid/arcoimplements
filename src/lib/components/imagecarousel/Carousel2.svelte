@@ -38,7 +38,7 @@
 </script>
 
 <div class="relative h-full">
-  <div class="embla" use:emblaCarouselSvelte on:emblaInit={onInit}>
+  <div class="embla rounded-lg border-0" use:emblaCarouselSvelte on:emblaInit={onInit}>
     <div class="embla__container">
       {#each images as {type, src, title,}}
         <div class="embla__slide">
@@ -97,8 +97,7 @@
 }
 
 .embla__slide img, .embla__slide video {
-    height: 300px;  /* Fixed height for all images */
-    width: 400px;  /* Fixed width for all images */
+
     object-fit: contain;  /* Keeps the original aspect ratio within the given dimensions */
 }
 

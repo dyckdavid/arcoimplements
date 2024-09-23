@@ -14,7 +14,7 @@
 </svelte:head>
 
 <section class="max-w-7xl m-auto p-4">
-  <h1 class="text-5xl text-center mb-8 mt-16">Products</h1>
+  <h1 class="text-5xl text-center mb-8 ">Products</h1>
   {#if products && products.length}
     <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {#each products as product}

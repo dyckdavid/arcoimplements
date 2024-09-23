@@ -11,9 +11,9 @@ type Product = {
   _id: string;
   name: string;
   specs: boolean;
-  specWidth: number;
-  specHeight: number;
-  specWeight: number;
+  specWidth: string;
+  specHeight: string;
+  specWeight: string;
   features: boolean;
   featureDetails?: any;
   description: string;

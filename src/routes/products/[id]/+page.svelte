@@ -28,7 +28,7 @@
   let mediaItems: MediaItem[] = product ? transformMediaUrls(product.imageUrls) : [];
 
   let lastScrollY = window.pageYOffset;
-  let buttonPosition: string = '5px';
+  let buttonPosition: string = '5px'; 
 
   let mainContent: HTMLElement;
   let imageCarousel: HTMLElement;

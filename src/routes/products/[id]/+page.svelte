@@ -1,8 +1,9 @@
 <script lang="ts" context="module">
   export interface MediaItem {
     src: string;
-    type: 'image' | 'video';
+    type: 'image' | 'video' | 'youtube';
     title: string;
+    youtubeId?: string;
   }
 </script>
 
@@ -17,15 +18,28 @@
   export let data: PageData;
   let product = data.product;
 
-  const transformMediaUrls = (urls: string[]): MediaItem[] => {
-    return urls.map(url => ({
+  const transformMediaUrls = (urls: string[], youtubeId?: string): MediaItem[] => {
+  const items = urls.map(url => {
+    const isVideo = url.match(/\.(mp4|mov|wmv)$/);
+    return {
       src: url,
-      type: url.match(/\.(mp4|mov|wmv)$/) ? 'video' : 'image' as 'video' | 'image',
-      title: 'A descriptive title'
-    }));
-  };
+      type: isVideo ? 'video' : 'image',
+      title: 'A descriptive title',
+    };
+  });
 
-  let mediaItems: MediaItem[] = product ? transformMediaUrls(product.imageUrls) : [];
+  // If there's a YouTube ID, add it to the media items
+  if (youtubeId) {
+    items.push({
+      src: `https://www.youtube.com/embed/${youtubeId}`,
+      type: 'youtube',
+      title: 'YouTube Video',
+    });
+  }
+
+  return items as MediaItem[];
+};
+  let mediaItems: MediaItem[] = product ? transformMediaUrls(product.imageUrls, product.youtubeId) : [];
 
   let lastScrollY = window.pageYOffset;
   let buttonPosition: string = '5px'; 
@@ -68,6 +82,7 @@
       };
 
       window.addEventListener('scroll', handleScroll);
+      console.log(window.innerWidth);
 
       return () => {
           window.removeEventListener('scroll', handleScroll);

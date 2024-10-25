@@ -2,7 +2,7 @@
   // If MediaItem is used outside this component, otherwise, move it inside the other <script> tag without export
     export interface MediaItem {
   src: string;
-  type: 'image' | 'video';
+  type: 'image' | 'video' | 'youtube';
   title: string;
 }
   
@@ -40,15 +40,25 @@
 <div class="relative h-full">
   <div class="embla rounded-lg border-0" use:emblaCarouselSvelte on:emblaInit={onInit}>
     <div class="embla__container">
-      {#each images as {type, src, title,}}
+      {#each images as { type, src, title }}
         <div class="embla__slide">
           {#if type === 'image'}
             <img {src} alt={title} class="w-full h-full object-cover" />
           {:else if type === 'video'}
-          <!-- svelte-ignore missing-declaration -->
-          <!-- svelte-ignore a11y-media-has-caption -->
-          <video {src} class="w-full h-full object-cover" controls aria-label={title}>
-          </video>          {/if}
+            <!-- svelte-ignore missing-declaration -->
+            <!-- svelte-ignore a11y-media-has-caption -->
+            <video {src} class="w-full h-full object-cover" controls aria-label={title}>
+            </video>
+          {:else if type === 'youtube'}
+            <iframe
+              src={src}
+              title={title}
+              class="w-full h-full object-cover"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          {/if}
         </div>
       {/each}
     </div>

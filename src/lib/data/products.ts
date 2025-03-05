@@ -7,7 +7,7 @@ type ImageAsset = {
   };
 };
 
-type Product = {
+export type Product = {
   _id: string;
   name: string;
   specs: boolean;

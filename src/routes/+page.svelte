@@ -6,7 +6,7 @@
     import { initAnimations } from '$lib/animations';
     import { gsap } from 'gsap';
 	import type { Product } from '$lib/data/products'
-	import { getProducts } from '$lib/data/products'; // Adjust the import path as necessary
+	import { getProducts } from '$lib/data/products';
 
     let letters: HTMLElement[] = [];
     let welcomeText = "WELCOME TO ARCO IMPLEMENTS";

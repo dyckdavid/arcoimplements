@@ -12,19 +12,6 @@
 
 	onMount(() => {
     initAnimations();
-    // const letters = document.querySelectorAll('.letter');
-    // letters.forEach((letter, index) => {
-    //     gsap.fromTo(letter, 
-    //         { opacity: 0, y: 20 },
-    //         { 
-    //             opacity: 1,
-    //             y: 0,
-    //             duration: 0.3,
-    //             delay: index * 0.1,
-    //             ease: "power2.out"
-    //         }
-    //     );
-    // });
 	})
 
 	
@@ -41,7 +28,7 @@
                 { 
                     opacity: 1, // End opacity
                     y: 0, // End position
-                    duration: 0.3,
+                    duration: 0.2,
                     delay: index * 0.05, // Delay for each letter
                     ease: "power2.out" // Easing for a smooth effect
                 }
@@ -67,8 +54,8 @@
                             {#each welcomeText.split(' ') as word}
                                 <span class="word">
                                     {#each word.split('') as letter, index}
-                                        <span bind:this={letters[index]} class="letter">{letter}</span>
-                                    {/each}
+    <span bind:this={letters[index]} class="letter">{letter}</span>
+{/each}
                                 </span>
                                 &nbsp;
                             {/each}
@@ -222,6 +209,7 @@
     }
 
     .word {
-        margin-right: 8px;
+        display: inline-block;
+        margin-right: 5px;
     }
 </style>

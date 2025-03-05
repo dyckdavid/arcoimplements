@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
     import homevideo from '$lib/videos/webistehomevideo.mp4';
-	import homeimage from '$lib/images/Arcobuilding.jpg';
+	import homeimage from '$lib/images/background.png';
     import { IconPhone, IconMail, IconWorldWww } from '@tabler/icons-svelte';
     import { initAnimations } from '$lib/animations';
     import { gsap } from 'gsap';
@@ -47,34 +47,34 @@
 				<h1 class="text-white-500 p-8 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl">
 					<span class="word">
 						<span class="letter">W</span>
-						<span class="letter">e</span>
-						<span class="letter">l</span>
-						<span class="letter">c</span>
-						<span class="letter">o</span>
-						<span class="letter">m</span>
-						<span class="letter">e</span>
+						<span class="letter">E</span>
+						<span class="letter">L</span>
+						<span class="letter">C</span>
+						<span class="letter">O</span>
+						<span class="letter">M</span>
+						<span class="letter">E</span>
 					</span>
 					<span class="word">
-						<span class="letter">t</span>
-						<span class="letter">o</span>
+						<span class="letter">T</span>
+						<span class="letter">O</span>
 					</span>
 					<span class="word">
 						<span class="letter">A</span>
-						<span class="letter">r</span>
-						<span class="letter">c</span>
-						<span class="letter">o</span>
+						<span class="letter">R</span>
+						<span class="letter">C</span>
+						<span class="letter">O</span>
 					</span>
 					<span class="word">
 						<span class="letter">I</span>
-						<span class="letter">m</span>
-						<span class="letter">p</span>
-						<span class="letter">l</span>
-						<span class="letter">e</span>
-						<span class="letter">m</span>
-						<span class="letter">e</span>
-						<span class="letter">n</span>
-						<span class="letter">t</span>
-						<span class="letter">s</span>
+						<span class="letter">M</span>
+						<span class="letter">P</span>
+						<span class="letter">L</span>
+						<span class="letter">E</span>
+						<span class="letter">M</span>
+						<span class="letter">E</span>
+						<span class="letter">N</span>
+						<span class="letter">T</span>
+						<span class="letter">S</span>
 					</span>
 				</h1>
 			</div>
@@ -230,11 +230,11 @@
   
   .letter {
     display: inline-block;
-    margin-right: -2px;
+    margin-right: -10px;
   }
 
   .word {
-    margin-right: 5px;
+    margin-right: 15px;
   }
 
 	</style>

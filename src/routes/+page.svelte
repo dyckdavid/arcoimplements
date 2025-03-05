@@ -4,13 +4,23 @@
 	import homeimage from '$lib/images/Arcobuilding.jpg';
     import { IconPhone, IconMail, IconWorldWww } from '@tabler/icons-svelte';
     import { initAnimations } from '$lib/animations';
-
-
+    import { gsap } from 'gsap';
 
 	onMount(() => {
     initAnimations();
-
-
+    const letters = document.querySelectorAll('.letter');
+    letters.forEach((letter, index) => {
+        gsap.fromTo(letter, 
+            { opacity: 0, y: 20 },
+            { 
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+                delay: index * 0.1,
+                ease: "power2.out"
+            }
+        );
+    });
 	})
 
 	
@@ -33,7 +43,41 @@
 		  </video> -->
 		  <img src={homeimage} alt="Homeimage" class="absolute top-0 left-0 w-full h-full object-cover z-0">
 		  <div class="relative z-10 p-5">
-			<h1 class="text-white-500 p-8 bg-black bg-opacity-75 rounded-2xl text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl" id="welcome-text">Welcome to Arco Implements</h1>
+			<div id="welcome-text-container">
+				<h1 class="text-white-500 p-8 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl">
+					<span class="word">
+						<span class="letter">W</span>
+						<span class="letter">e</span>
+						<span class="letter">l</span>
+						<span class="letter">c</span>
+						<span class="letter">o</span>
+						<span class="letter">m</span>
+						<span class="letter">e</span>
+					</span>
+					<span class="word">
+						<span class="letter">t</span>
+						<span class="letter">o</span>
+					</span>
+					<span class="word">
+						<span class="letter">A</span>
+						<span class="letter">r</span>
+						<span class="letter">c</span>
+						<span class="letter">o</span>
+					</span>
+					<span class="word">
+						<span class="letter">I</span>
+						<span class="letter">m</span>
+						<span class="letter">p</span>
+						<span class="letter">l</span>
+						<span class="letter">e</span>
+						<span class="letter">m</span>
+						<span class="letter">e</span>
+						<span class="letter">n</span>
+						<span class="letter">t</span>
+						<span class="letter">s</span>
+					</span>
+				</h1>
+			</div>
 		  </div>
 		</div>
 
@@ -163,6 +207,7 @@
 	  margin: 0;
 	  padding: 0;
 	  overflow-x: hidden;
+	  opacity: 1;
 	}
   
   
@@ -183,5 +228,13 @@
     width: 100%;
   }
   
+  .letter {
+    display: inline-block;
+    margin-right: -2px;
+  }
+
+  .word {
+    margin-right: 5px;
+  }
 
 	</style>

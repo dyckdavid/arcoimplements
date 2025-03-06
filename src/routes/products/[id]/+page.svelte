@@ -151,7 +151,10 @@
   <div>
     <div>
       <div class="fixed left-1/2 transform -translate-x-1/2 z-[100]" style="bottom: {buttonPosition}; transition: bottom 0.3s;">
-        <Button text="Request Quote" link="mailto:david@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" />
+        <!-- <Button text="Request Quote" link="mailto:david@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" /> -->
+        <div class="flex justify-center" id="products-button-1">
+			    <a href="mailto:david@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" class="inline-block mx-auto bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 mb-1">Request Quote</a>
+			  </div>
       </div>
     </div>
     

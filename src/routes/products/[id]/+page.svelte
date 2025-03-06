@@ -42,7 +42,8 @@
   let mediaItems: MediaItem[] = product ? transformMediaUrls(product.imageUrls, product.youtubeId) : [];
 
   let lastScrollY = window.pageYOffset;
-  let buttonPosition: string = '5px'; 
+  const showButton = writable(true);
+  const buttonPosition = writable('50px');
 
   let mainContent: HTMLElement;
   let imageCarousel: HTMLElement;
@@ -61,24 +62,31 @@
       const handleScroll = () => {
         const currentScrollY = window.scrollY;
 
-          if (currentScrollY > lastScrollY) {
-              buttonPosition = '-100%';
-          } else {
-              buttonPosition = '5px';
-          }
+        if (currentScrollY <= 50) {
+            showButton.set(true);
+            buttonPosition.set('10px');
+        } else {
+            if (currentScrollY > lastScrollY) {
+                showButton.set(false);
+            } else {
+                showButton.set(true);
+            }
+            buttonPosition.set('5px');
+        }
 
-          lastScrollY = currentScrollY;
+        lastScrollY = currentScrollY;
 
+        const mainBottom = mainContent.getBoundingClientRect().bottom;
+        const windowHeight = window.innerHeight;
 
-        
-          const mainBottom = mainContent.getBoundingClientRect().bottom;
-          const windowHeight = window.innerHeight;
+        if (mainBottom <= windowHeight) {
+            imageCarousel.classList.remove('sticky');
+        } else {
+            imageCarousel.classList.add('sticky');
+        }
 
-          if (mainBottom <= windowHeight) {
-              imageCarousel.classList.remove('sticky');
-          } else {
-              imageCarousel.classList.add('sticky');
-          }
+        console.log('Current Scroll Y:', currentScrollY);
+        console.log('Last Scroll Y:', lastScrollY);
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -150,11 +158,12 @@
 
   <div>
     <div>
-      <div class="fixed left-1/2 transform -translate-x-1/2 z-[100]" style="bottom: {buttonPosition}; transition: bottom 0.3s;">
-        <!-- <Button text="Request Quote" link="mailto:david@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" /> -->
-        <div class="flex justify-center" id="products-button-1">
-			    <a href="mailto:david@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" class="inline-block mx-auto bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 mb-1">Request Quote</a>
-			  </div>
+      <div class="fixed left-1/2 transform -translate-x-1/2 z-[100] bottom-10 transition-all duration-300">
+        {#if $showButton}
+            <div class="flex justify-center" id="products-button-1">
+                <a href="mailto:david@arcoimplements.com?subject=Quote%20about%20{product.name}&body=Requesting%20Quote%20about%20{product.name}!" class="inline-block mx-auto bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 mb-1">Request Quote</a>
+            </div>
+        {/if}
       </div>
     </div>
     

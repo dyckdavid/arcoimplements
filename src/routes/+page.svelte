@@ -15,8 +15,27 @@
 
 
 	onMount(async () => {
-       products = await getProducts();
+       const products = await getProducts();
        recentProducts = products.slice(0, 2); // Get the two most recent products
+       console.log(recentProducts); // Check if products are fetched correctly
+
+       // Delay the animation to ensure elements are rendered d
+       setTimeout(() => {
+           const productElements = document.querySelectorAll('.product-item');
+           console.log(productElements); // Check if elements are selected
+           productElements.forEach((product, index) => {
+               gsap.fromTo(product, 
+                   { opacity: 0, x: -100 }, // Start from the left
+                   { 
+                       opacity: 1, 
+                       x: 0, 
+                       duration: 0.5, 
+                       delay: index * 0.1, // Stagger the animations
+                       ease: "power2.out" 
+                   }
+               );
+           });
+       }, 100); // Delay for 100 milliseconds
    });
 
 	onMount(() => {
@@ -63,8 +82,8 @@
                             {#each welcomeText.split(' ') as word}
                                 <span class="word">
                                     {#each word.split('') as letter, index}
-    <span bind:this={letters[index]} class="letter">{letter}</span>
-{/each}
+                                        <span bind:this={letters[index]} class="letter">{letter}</span>
+                                    {/each}
                                 </span>
                                 &nbsp;
                             {/each}
@@ -85,10 +104,7 @@
 					<p class="text-center pt-2 text-lg pl-2 pr-2">The best place to find amazing products at affordable prices</p>
 				</div>
 			</div>
-	
-			  
-	
-				
+
 				<!-- <div class="flex flex-col md:flex-row items-center md:items-start py-6" id="first-products-services">
 				  <div class="md:w-1/3" id="first-product">
 					<img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
@@ -100,27 +116,20 @@
 				</div> -->
 
 
-				
-					<div class="container mx-auto px-4 pt-5 pb-5 ">
-
-						{#each recentProducts as product (product._id)}<!-- Move key here -->
-						
-							<div class="flex flex-col md:flex-row items-center md:items-start py-6" id="first-products-services">
-								
-   							 <div class="md:w-1/3" id="first-product">
-        						<img src={product.mainImage} alt={product.name} class=" mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" />
-							</div>
-							<div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0" >
-       							 <h3 class="text-2xl font-semibold pl-9" id="second-product">{product.name}</h3>
-							
-						
-					</div>
-				</div>
-					{/each}
-				</div>
+                <div class="container mx-auto px-4 pt-5 pb-5">
+                    {#each recentProducts as product (product._id)}
+                        <div class="product-item flex flex-col md:flex-row items-center md:items-start py-6" id={product._id}>
+                            <div class="md:w-1/3" id="first-product">
+                                <img src={product.mainImage} alt={product.name} class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" />
+                            </div>
+                            <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
+                                <h3 class="text-2xl font-semibold pl-9">{product.name}</h3>
+                            </div>
+                        </div>
+                    {/each}
+                </div>
 
 
-				
 				<!-- <div class="container mx-auto px-4 pt-5 pb-5 " >
 
 			
@@ -135,10 +144,7 @@
 					</div>
 		
 				</div> -->
-		
 
-			
-	
 				
 			  <div class="flex justify-center" id="products-button-1">
 	

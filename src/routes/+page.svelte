@@ -11,9 +11,9 @@
 
     let letters: HTMLElement[] = [];
     let welcomeText = "WELCOME TO ARCO IMPLEMENTS";
-	let products: Product[] = []; // Array to hold the fetched products
-    let recentProducts: Product[] = []; // Array to hold the most recent products
-    let loading: boolean = true; // Loading state
+	let products: Product[] = [];
+    let recentProducts: Product[] = [];
+    let loading: boolean = true;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -23,7 +23,7 @@
 
 	
     onMount(() => {
-        // Clear the letters array before populating it
+       
         letters = [];
 
         // Select all letter elements after they are rendered
@@ -31,7 +31,7 @@
 
         letterElements.forEach((letter, index) => {
             gsap.fromTo(letter, 
-                { opacity: 0, y: 20 }, // Start properties
+                { opacity: 0, y: 20 },
                 { 
                     opacity: 1, // End opacity
                     y: 0, // End position
@@ -46,29 +46,28 @@
     onMount(async () => {
         try {
             const products = await getProducts();
-            recentProducts = products.slice(0, 2); // Get the two most recent products
-            console.log(recentProducts); // Check if products are fetched correctly
+            recentProducts = products.slice(0, 2);
+            console.log(recentProducts);
         } catch (error) {
             console.error("Error fetching products:", error);
         } finally {
-            loading = false; // Set loading to false after fetching
-            animateProducts(); // Call the animation function
+            loading = false;
+            animateProducts();
         }
     });
 
     function animateProducts() {
-        // Delay the animation to ensure elements are rendered
+        
         setTimeout(() => {
             const productElements = document.querySelectorAll('.product-item');
-            console.log(productElements); // Check if elements are selected
             productElements.forEach((product, index) => {
                 gsap.fromTo(product, 
-                    { opacity: 0, x: -100 }, // Start from the left
+                    { opacity: 0, x: -100 }, 
                     { 
                         opacity: 1, 
                         x: 0, 
                         duration: 0.8, 
-                        delay: index * 0.1, // Stagger the animations
+                        delay: index * 0.1, 
                         ease: "power2.out",
                         scrollTrigger: {
                             trigger: product,
@@ -122,18 +121,6 @@
 					<p class="text-center pt-2 text-lg pl-2 pr-2">The best place to find amazing products at affordable prices</p>
 				</div>
 			</div>
-
-				<!-- <div class="flex flex-col md:flex-row items-center md:items-start py-6" id="first-products-services">
-				  <div class="md:w-1/3" id="first-product">
-					<img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
-				  </div>
-				  <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
-					<h2 class="text-2xl font-semibold pl-9" id="second-product">Gates (4 - 16 feet) long</h2>
-					<p class="mt-2 pl-9" id="third-product">Our gates represent the pinnacle of longevity in the market. For gates that are 12 feet in length or longer, we incorporate our superior heavy-duty double strap system as a standard feature to ensure unmatched durability and strength.</p>
-				  </div>
-				</div> -->
-
-
                 <div class="container mx-auto px-4 pt-5 pb-5">
                     {#if loading}
                         <div class="loading-spinner">Loading...</div> <!-- Replace with a spinner or loading indicator -->
@@ -150,32 +137,64 @@
                             </div>
                         {/each}
                     {/if}
-                </div>
-                 
-
-
-				<!-- <div class="container mx-auto px-4 pt-5 pb-5 " >
-
-			
-					<div class="flex flex-col md:flex-row items-center md:items-start py-6" id="first-products-services">
-					  <div class="md:w-1/3" id="first-product">
-						<img src="https://cdn.sanity.io/images/hnzv88np/production/89ad9d460c492ab154011d1b645f8094d1c29ae4-1688x840.png" class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" alt="Product 1" />
-					  </div>
-					  <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
-						<h2 class="text-2xl font-semibold pl-9" id="second-product">Gates (4 - 16 feet) long</h2>
-						<p class="mt-2 pl-9" id="third-product">Our gates represent the pinnacle of longevity in the market. For gates that are 12 feet in length or longer, we incorporate our superior heavy-duty double strap system as a standard feature to ensure unmatched durability and strength.</p>
-					  </div>
-					</div>
-		
-				</div> -->
-
-				
+                </div>				
 			  <div class="flex justify-center" id="products-button-1">
-	
-			  <a href="/products" class="inline-block mx-auto bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 mb-5" id="button-1">All Products</a>
-			</div>
+			    <a href="/products" class="inline-block mx-auto bg-orange-500 text-white rounded px-6 py-2 hover:bg-orange-600 mb-5" id="button-1">All Products</a>
+			  </div>
 
 		</section>
+
+    
+        <!-- Contact Section -->
+
+    <section class="section2 flex flex-col items-center justify-center text-white py-8">
+        <div class="container mx-auto px-4">
+          
+          <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-2" id="contact-page-title">Contact Us</h1>
+            <p class="text-lg mb-4" id="conatct-welcome-text">Get more info at our contact page</p>
+            
+            <div class="flex justify-center items-center h-full w-full" id="button-contact">
+                <a href="/contact" class="flex items-center text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 md:text-lg lg:px-10 lg:py-4" >
+                    <IconPhone class="mr-2" />
+                    Contact Us
+                </a>
+            </div>
+          </div>
+      
+          <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-8 w-full">
+            
+            <div class="w-full md:w-1/2 space-y-4">
+              <div class="flex items-center justify-center md:justify-start" id="phone-no">
+                <i class="fas fa-phone-alt text-xl mr-2"><IconPhone class="mr-2" /></i> 
+                <p class="text-lg"><span class="font-semibold cursor-pointer" ><a href="tel:+6255943429">Phone: 625 594-3429</a></span>
+              </div>
+              <div class="flex items-center justify-center md:justify-start" id="mail">
+                <i class="fas fa-envelope text-xl mr-2"><IconMail class="mr-2" /></i> 
+                <p class="text-lg"><span class="font-semibold cursor-pointer"><a href="mailto:david@arcoimplements.com">Email: david@arcoimplements.com</a></span> </p>
+              </div>
+              <div class="flex items-center justify-center md:justify-start" id="web">
+                <i class="fas fa-globe text-xl mr-2"><IconWorldWww class="mr-2" /></i> 
+                <p class="text-lg"><span class="font-semibold cursor-pointer"><a href="/">Website: www.arcoimplements.com</a></span> </p>
+              </div>
+            </div>
+      
+            
+            <div class="w-full md:w-1/2 h-auto overflow-hidden rounded-lg shadow-lg" id="maps-iframe">
+              <!-- svelte-ignore a11y-missing-attribute -->
+              <iframe
+                
+                class="w-full"
+                style="min-height: 300px;"
+                frameborder="0"
+                allowfullscreen
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22270.87552797161!2d-106.85868869708742!3d28.466205065926044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86c1c9267981e2c3%3A0xf4f6dd51f411e669!2sEstufas%20El%20Arco!5e0!3m2!1sen!2smx!4v1699309386795!5m2!1sen!2smx">
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+      </section>
 	
     </main>
 </div>
@@ -199,16 +218,6 @@
         position: relative;
         overflow: hidden;
     }
-
-    /* .section2 {
-        min-height: 70vh;
-        background-color: rgb(32, 32, 32);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        overflow-x: hidden;
-        width: 100%;
-    } */
 
     .letter {
         display: inline-block;

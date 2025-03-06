@@ -7,6 +7,7 @@
     import { gsap } from 'gsap';
 	import type { Product } from '$lib/data/products'
 	import { getProducts } from '$lib/data/products';
+    import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
     let letters: HTMLElement[] = [];
     let welcomeText = "WELCOME TO ARCO IMPLEMENTS";
@@ -14,22 +15,7 @@
     let recentProducts: Product[] = []; // Array to hold the most recent products
     let loading: boolean = true; // Loading state
 
-
-	onMount(() => {
-        const productElements = document.querySelectorAll('.product-item');
-        productElements.forEach((product, index) => {
-            gsap.fromTo(product, 
-                { opacity: 0, x: -100 }, // Start from the left
-                { 
-                    opacity: 1, 
-                    x: 0, 
-                    duration: 0.5, 
-                    delay: index * 0.1, // Stagger the animations
-                    ease: "power2.out" 
-                }
-            );
-        });
-    });
+    gsap.registerPlugin(ScrollTrigger);
 
 	onMount(() => {
     initAnimations();
@@ -81,9 +67,15 @@
                     { 
                         opacity: 1, 
                         x: 0, 
-                        duration: 0.5, 
+                        duration: 0.8, 
                         delay: index * 0.1, // Stagger the animations
-                        ease: "power2.out" 
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: product,
+                            start: 'top bottom'
+                            // end: 'bottom 20%',
+                            // scrub: true
+                        }
                     }
                 );
             });
@@ -153,6 +145,7 @@
                                 </div>
                                 <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
                                     <h3 class="text-2xl font-semibold pl-9">{product.name}</h3>
+                                    <p class="mt-2 pl-9" id="third-product">{product.description}</p>
                                 </div>
                             </div>
                         {/each}

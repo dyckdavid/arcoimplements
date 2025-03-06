@@ -12,31 +12,40 @@
     let welcomeText = "WELCOME TO ARCO IMPLEMENTS";
 	let products: Product[] = []; // Array to hold the fetched products
     let recentProducts: Product[] = []; // Array to hold the most recent products
+    let loading: boolean = true; // Loading state
 
+    onMount(async () => {
+        try {
+            const products = await getProducts();
+            recentProducts = products.slice(0, 2); // Get the two most recent products
+            console.log(recentProducts); // Check if products are fetched correctly
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            loading = false; // Set loading to false after fetching
+            animateProducts(); // Call the animation function
+        }
+    });
 
-	onMount(async () => {
-       const products = await getProducts();
-       recentProducts = products.slice(0, 2); // Get the two most recent products
-       console.log(recentProducts); // Check if products are fetched correctly
-
-       // Delay the animation to ensure elements are rendered d
-       setTimeout(() => {
-           const productElements = document.querySelectorAll('.product-item');
-           console.log(productElements); // Check if elements are selected
-           productElements.forEach((product, index) => {
-               gsap.fromTo(product, 
-                   { opacity: 0, x: -100 }, // Start from the left
-                   { 
-                       opacity: 1, 
-                       x: 0, 
-                       duration: 0.5, 
-                       delay: index * 0.1, // Stagger the animations
-                       ease: "power2.out" 
-                   }
-               );
-           });
-       }, 100); // Delay for 100 milliseconds
-   });
+    function animateProducts() {
+        // Delay the animation to ensure elements are rendered
+        setTimeout(() => {
+            const productElements = document.querySelectorAll('.product-item');
+            console.log(productElements); // Check if elements are selected
+            productElements.forEach((product, index) => {
+                gsap.fromTo(product, 
+                    { opacity: 0, x: -100 }, // Start from the left
+                    { 
+                        opacity: 1, 
+                        x: 0, 
+                        duration: 0.5, 
+                        delay: index * 0.1, // Stagger the animations
+                        ease: "power2.out" 
+                    }
+                );
+            });
+        }, 100); // Delay for 100 milliseconds
+    }
 
 	onMount(() => {
     initAnimations();
@@ -117,16 +126,20 @@
 
 
                 <div class="container mx-auto px-4 pt-5 pb-5">
-                    {#each recentProducts as product (product._id)}
-                        <div class="product-item flex flex-col md:flex-row items-center md:items-start py-6" id={product._id}>
-                            <div class="md:w-1/3" id="first-product">
-                                <img src={product.mainImage} alt={product.name} class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" />
+                    {#if loading}
+                        <div class="loading-spinner">Loading...</div>
+                    {:else}
+                        {#each recentProducts as product (product._id)}
+                            <div class="product-item flex flex-col md:flex-row items-center md:items-start py-6" id={product._id}>
+                                <div class="md:w-1/3" id="first-product">
+                                    <img src={product.mainImage} alt={product.name} class="mx-auto md:mx-0 w-full h-auto object-cover rounded-lg" />
+                                </div>
+                                <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
+                                    <h3 class="text-2xl font-semibold pl-9">{product.name}</h3>
+                                </div>
                             </div>
-                            <div class="md:w-2/3 text-center md:text-left mt-4 md:mt-0">
-                                <h3 class="text-2xl font-semibold pl-9">{product.name}</h3>
-                            </div>
-                        </div>
-                    {/each}
+                        {/each}
+                    {/if}
                 </div>
 
 
@@ -194,5 +207,11 @@
     .word {
         display: inline-block;
         margin-right: 5px;
+    }
+
+    .loading-spinner {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-top: 20px;
     }
 </style>

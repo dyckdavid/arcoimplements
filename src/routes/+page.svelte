@@ -14,6 +14,49 @@
     let recentProducts: Product[] = []; // Array to hold the most recent products
     let loading: boolean = true; // Loading state
 
+
+	onMount(() => {
+        const productElements = document.querySelectorAll('.product-item');
+        productElements.forEach((product, index) => {
+            gsap.fromTo(product, 
+                { opacity: 0, x: -100 }, // Start from the left
+                { 
+                    opacity: 1, 
+                    x: 0, 
+                    duration: 0.5, 
+                    delay: index * 0.1, // Stagger the animations
+                    ease: "power2.out" 
+                }
+            );
+        });
+    });
+
+	onMount(() => {
+    initAnimations();
+	})
+
+	
+    onMount(() => {
+        // Clear the letters array before populating it
+        letters = [];
+
+        // Select all letter elements after they are rendered
+        const letterElements = document.querySelectorAll('.letter');
+
+        letterElements.forEach((letter, index) => {
+            gsap.fromTo(letter, 
+                { opacity: 0, y: 20 }, // Start properties
+                { 
+                    opacity: 1, // End opacity
+                    y: 0, // End position
+                    duration: 0.2,
+                    delay: index * 0.05, // Delay for each letter
+                    ease: "power2.out" // Easing for a smooth effect
+                }
+            );
+        });
+    });
+
     onMount(async () => {
         try {
             const products = await getProducts();
@@ -46,32 +89,6 @@
             });
         }, 100); // Delay for 100 milliseconds
     }
-
-	onMount(() => {
-    initAnimations();
-	})
-
-	
-    onMount(() => {
-        // Clear the letters array before populating it
-        letters = [];
-
-        // Select all letter elements after they are rendered
-        const letterElements = document.querySelectorAll('.letter');
-
-        letterElements.forEach((letter, index) => {
-            gsap.fromTo(letter, 
-                { opacity: 0, y: 20 }, // Start properties
-                { 
-                    opacity: 1, // End opacity
-                    y: 0, // End position
-                    duration: 0.2,
-                    delay: index * 0.05, // Delay for each letter
-                    ease: "power2.out" // Easing for a smooth effect
-                }
-            );
-        });
-    });
 </script>
 
 <svelte:head>
@@ -127,7 +144,7 @@
 
                 <div class="container mx-auto px-4 pt-5 pb-5">
                     {#if loading}
-                        <div class="loading-spinner">Loading...</div>
+                        <div class="loading-spinner">Loading...</div> <!-- Replace with a spinner or loading indicator -->
                     {:else}
                         {#each recentProducts as product (product._id)}
                             <div class="product-item flex flex-col md:flex-row items-center md:items-start py-6" id={product._id}>
@@ -141,6 +158,7 @@
                         {/each}
                     {/if}
                 </div>
+                 
 
 
 				<!-- <div class="container mx-auto px-4 pt-5 pb-5 " >

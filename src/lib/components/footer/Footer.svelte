@@ -1,6 +1,6 @@
 <script>
         import { IconBrandX, IconBrandFacebook, IconBrandYoutube } from '@tabler/icons-svelte';
-        import logo from "$lib/images/implementslogo.png";
+        import logo from "$lib/images/logo.png";
 
 </script>
 
@@ -9,7 +9,7 @@
       
       
       <div class="mb-8 md:mb-0">
-        <img src={logo} alt="Arco Implements Logo" class="h-20 mb-3">
+        <img src={logo} alt="Arco Implements Logo" class="h-40 mb-3">
         <p class="text-xl font-semibold">Arco Implements</p>
       </div>
       

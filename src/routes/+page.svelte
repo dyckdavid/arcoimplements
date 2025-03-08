@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import homevideo from '$lib/videos/webistehomevideo.mp4';
-	import homeimage from '$lib/images/background.png';
+	import homeimage from '$lib/images/backgroundcowimg.png';
     import { IconPhone, IconMail, IconWorldWww } from '@tabler/icons-svelte';
     import { initAnimations } from '$lib/animations';
     import { gsap } from 'gsap';
@@ -91,9 +91,9 @@
     <main class="overflow-x-hidden">
         <!-- Hero Section with Welcome Text -->
         <div class="video-background flex items-center justify-center h-screen parallax-section overflow-x-hidden">
-            <img src={homeimage} alt="Homeimage" class="absolute top-0 left-0 w-full h-full object-cover z-0">
+            <img src={homeimage} alt="Homeimage" class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40">
             <div class="relative z-10 p-5">
-                <h1 class="text-white p-5 text-4xl text-center md:text-4xl lg:text-5xl xl:text-6xl">
+                <h1 class="text-red-800 font-bold p-5 text-5xl text-center md:text-6xl lg:text-7xl xl:text-8xl">
                     <div id="welcome-text-container">
                         <span class="word">
                             {#each welcomeText.split(' ') as word}

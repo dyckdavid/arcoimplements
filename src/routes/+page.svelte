@@ -100,9 +100,9 @@
         alt="Homeimage"
         class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40"
       />
-      <div class="relative z-10 p-2 pb-20">
+      <div class="relative z-10 p-2 padding-bottom">
         <h1
-          class="font-bold p-2 text-2xl text-center md:text-3xl lg:text-5xl xl:text-5xl"
+          class="font-bold p-2 text-4xl text-center md:text-4xl lg:text-5xl xl:text-5xl"
         >
           <div id="welcome-text-container" class="bg-container mx-auto">
             {#each welcomeText.split(" ") as word, index}
@@ -281,6 +281,10 @@
     overflow: hidden;
   }
 
+  .padding-bottom {
+    padding-bottom: 110px;
+  }
+
   /* .letter {
         display: inline-block;
         margin-right: -2px;
@@ -303,7 +307,7 @@
 
   .bg-container {
     background-color: #e5d5c0;
-    padding: 5px;
+    padding: 7px;
     border-radius: 20px;
     display: inline-block;
     text-align: center;

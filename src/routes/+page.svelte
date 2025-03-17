@@ -93,10 +93,12 @@
             <img src={homeimage} alt="Homeimage" class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40">
             <div class="relative z-10 p-5 pb-20">
                 <h1 class="font-bold p-5 text-5xl text-center md:text-6xl lg:text-7xl xl:text-8xl">
-                    <div id="welcome-text-container" class="bg-container">
+                    <div id="welcome-text-container" class="bg-container mx-auto">
                         {#each welcomeText.split(' ') as word, index}
                             <span bind:this={words[index]} class="word">{word}</span>
-                            &nbsp;
+                            {#if index < welcomeText.split(' ').length - 1}
+                                &nbsp;
+                            {/if}
                         {/each}
                     </div>
                 </h1>
@@ -116,7 +118,7 @@
 			</div>
                 <div class="container mx-auto px-4 pt-5 pb-5">
                     {#if loading}
-                        <div class="loading-spinner">Loading...</div> <!-- Replace with a spinner or loading indicator -->
+                        <div class="loading-spinner">Loading...</div>
                     {:else}
                         {#each recentProducts as product (product._id)}
                             <div class="product-item flex flex-col md:flex-row items-center md:items-start py-6" id={product._id}>
@@ -221,9 +223,7 @@
         display: inline-block;
         margin-right: 5px;
         color: #664230;
-        background-color: #e5d5c0;
         padding: 0px;
-        border-radius: 25px;
     }
 
     .loading-spinner {
@@ -234,8 +234,20 @@
 
     .bg-container {
         background-color: #e5d5c0;
-        padding: 10px;
+        padding: 5px;
         border-radius: 25px;
         display: inline-block;
+        text-align: center;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .bg-container {
+            padding: 3px;
+        }
+        .word {
+            margin-right: 3px;
+        }
     }
 </style>

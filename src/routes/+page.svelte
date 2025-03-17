@@ -9,7 +9,7 @@
 	import { getProducts } from '$lib/data/products';
     import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-    let letters: HTMLElement[] = [];
+    let words: HTMLElement[] = [];
     let welcomeText = "WELCOME TO ARCO IMPLEMENTS";
 	// let products: Product[] = [];
     let recentProducts: Product[] = [];
@@ -23,20 +23,19 @@
 
 	
     onMount(() => {
-       
-        letters = [];
+        words = [];
 
-        // Select all letter elements after they are rendered
-        const letterElements = document.querySelectorAll('.letter');
+        // Select all word elements after they are rendered
+        const wordElements = document.querySelectorAll('.word');
 
-        letterElements.forEach((letter, index) => {
-            gsap.fromTo(letter, 
+        wordElements.forEach((word, index) => {
+            gsap.fromTo(word, 
                 { opacity: 0, y: 20 },
                 { 
                     opacity: 1, // End opacity
                     y: 0, // End position
-                    duration: 0.2,
-                    delay: index * 0.05, // Delay for each letter
+                    duration: 0.5, // Adjust duration for word animation
+                    delay: index * 0.2, // Delay for each word
                     ease: "power2.out" // Easing for a smooth effect
                 }
             );
@@ -94,17 +93,11 @@
             <img src={homeimage} alt="Homeimage" class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40">
             <div class="relative z-10 p-5 pb-20">
                 <h1 class="font-bold p-5 text-5xl text-center md:text-6xl lg:text-7xl xl:text-8xl">
-                    <div id="welcome-text-container">
-                        <span class="word">
-                            {#each welcomeText.split(' ') as word}
-                                <span class="">
-                                    {#each word.split('') as letter, index}
-                                        <span bind:this={letters[index]} class="letter">{letter}</span>
-                                    {/each}
-                                </span>
-                                &nbsp;
-                            {/each}
-                        </span>
+                    <div id="welcome-text-container" class="bg-container">
+                        {#each welcomeText.split(' ') as word, index}
+                            <span bind:this={words[index]} class="word">{word}</span>
+                            &nbsp;
+                        {/each}
                     </div>
                 </h1>
             </div>
@@ -219,17 +212,17 @@
         overflow: hidden;
     }
 
-    .letter {
+    /* .letter {
         display: inline-block;
         margin-right: -2px;
-    }
+    } */
 
     .word {
         display: inline-block;
         margin-right: 5px;
         color: #664230;
         background-color: #e5d5c0;
-        padding: 10px;
+        padding: 0px;
         border-radius: 25px;
     }
 
@@ -237,5 +230,12 @@
         text-align: center;
         font-size: 1.5rem;
         margin-top: 20px;
+    }
+
+    .bg-container {
+        background-color: #e5d5c0;
+        padding: 10px;
+        border-radius: 25px;
+        display: inline-block;
     }
 </style>

@@ -41,7 +41,7 @@
 };
   let mediaItems: MediaItem[] = product ? transformMediaUrls(product.imageUrls, product.youtubeId) : [];
 
-  let lastScrollY = window.pageYOffset;
+  let lastScrollY = 0;
   const showButton = writable(true);
   const buttonPosition = writable('50px');
 
